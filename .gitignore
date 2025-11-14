@@ -1,0 +1,45 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Archives
+*.zip
+
+# Claude AI working directories
+.claude/
+
+# Backup and temp files
+*.bak
+*~
+*.swp
+*.swo
+*.tmp
+
+# Old versions and documentation
+dashboard_20251111_updated.html
+dashboard_20251111_final.html
+PHASE_5_6_7_COMPLETE.md
+SESSION_HANDOFF.md
+*.md
+unwinding_mechanics_report.md
+ai-unwinding-monitor/
