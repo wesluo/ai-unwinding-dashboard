@@ -6,6 +6,44 @@
     <title>AI Infrastructure Unwinding Monitor - Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
+        :root {
+            /* V4.0 Design System - Dark Theme (ai-bubble-monitor.vercel.app) */
+            /* Backgrounds */
+            --bg-primary: #3d4044;
+            --bg-card: #2e3135;
+            --bg-card-alt: #35383c;
+            --bg-hover: rgba(255,255,255,0.05);
+
+            /* Text */
+            --text-primary: #ffffff;
+            --text-secondary: #b0b3b8;
+            --text-tertiary: #8a8d91;
+
+            /* Accents */
+            --accent-positive: #c0ff00;  /* Lime green for positive */
+            --accent-negative: #ff6b6b;  /* Coral red for alerts */
+            --accent-warning: #ffa726;   /* Amber for warnings */
+            --accent-info: #64b5f6;      /* Sky blue for info */
+
+            /* Chart colors */
+            --chart-lime: #c0ff00;
+            --chart-coral: #ff6b6b;
+            --chart-blue: #87ceeb;
+            --chart-green: #90ee90;
+
+            /* Borders & Shadows */
+            --border-subtle: rgba(255,255,255,0.08);
+            --border-medium: rgba(255,255,255,0.15);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.3);
+            --shadow-lg: 0 8px 16px rgba(0,0,0,0.4);
+
+            /* Spacing */
+            --gap: 20px;
+            --card-padding: 24px;
+            --border-radius: 12px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,1806 +52,1117 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            padding: 20px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 0;
         }
 
+        /* V4.0 Professional Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .header-search {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .header-search input {
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 10px 20px;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .header-search input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .header-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .header-btn:hover {
+            background: var(--bg-hover);
+        }
+
+        .header-btn.ai-assistant {
+            background: var(--accent-positive);
+            color: #000;
+            border: none;
+            font-weight: 600;
+        }
+
+        .header-btn.ai-assistant:hover {
+            background: #b0e600;
+        }
+
+        .settings-icon {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        /* Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: var(--gap);
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-            border-radius: 12px;
-            border: 1px solid #333;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .timestamp {
-            color: #888;
-            font-size: 0.9em;
-        }
-
-        .risk-overview {
+        /* V4.0 Grid-Based Layout */
+        .dashboard-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--gap);
+            margin-bottom: var(--gap);
         }
 
-        .risk-card {
-            background: #1a1a1a;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #333;
-            text-align: center;
+        /* Card Base Styles */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--border-radius);
+            padding: var(--card-padding);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+            position: relative;
         }
 
-        .risk-card h3 {
-            font-size: 0.9em;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+        .card:hover {
+            background: var(--bg-card-alt);
         }
 
-        .risk-score {
-            font-size: 3em;
+        .card--wide {
+            grid-column: span 2;
+        }
+
+        /* V4.0 Metric Card (Compact) */
+        .metric-card {
+            grid-column: span 1;
+        }
+
+        .info-icon {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--text-tertiary);
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .risk-low { color: #10b981; }
-        .risk-moderate { color: #f59e0b; }
-        .risk-high { color: #ef4444; }
-        .risk-critical { color: #dc2626; }
+        .info-icon:hover {
+            border-color: var(--accent-info);
+            color: var(--accent-info);
+        }
 
-        .status-badge {
+        .metric-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+            margin: 16px 0;
+        }
+
+        .metric-badge {
             display: inline-block;
-            padding: 6px 16px;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: var(--accent-positive);
+            color: #000;
+            margin: 12px 0;
         }
 
-        .status-green {
-            background: #10b98120;
-            color: #10b981;
-            border: 1px solid #10b981;
+        .metric-badge.negative {
+            background: var(--accent-negative);
+            color: #fff;
         }
 
-        .status-yellow {
-            background: #f59e0b20;
-            color: #f59e0b;
-            border: 1px solid #f59e0b;
+        .metric-description {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            margin-top: 12px;
         }
 
-        .status-red {
-            background: #ef444420;
-            color: #ef4444;
-            border: 1px solid #ef4444;
+        .metric-link {
+            color: var(--accent-info);
+            font-size: 0.8125rem;
+            text-decoration: none;
+            margin-top: 8px;
+            display: inline-block;
         }
 
-        .section {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #333;
-            margin-bottom: 30px;
+        .metric-link:hover {
+            text-decoration: underline;
         }
 
-        .section h2 {
-            font-size: 1.5em;
+        /* V4.0 Chart Card (Wide) */
+        .chart-card {
+            grid-column: span 2;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
             margin-bottom: 20px;
-            color: #3b82f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .chart-container {
             position: relative;
-            height: 400px;
-            margin-bottom: 30px;
+            height: 300px;
         }
 
-        .signals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .signal-item {
-            background: #0a0a0a;
+        /* V4.0 Info Icon Popover System */
+        .popover {
+            position: absolute;
+            z-index: 1000;
+            background: #2a2d31;
+            border: 1px solid var(--border-medium);
+            border-radius: var(--border-radius);
             padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #3b82f6;
+            box-shadow: var(--shadow-lg);
+            max-width: 350px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            top: 40px;
+            right: 0;
         }
 
-        .signal-item.warning {
-            border-left-color: #ef4444;
+        .info-icon:hover + .popover,
+        .popover:hover {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        .signal-item.caution {
-            border-left-color: #f59e0b;
+        .popover-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
         }
 
-        .signal-item h4 {
-            font-size: 1em;
-            margin-bottom: 10px;
-            color: #e0e0e0;
-        }
-
-        .signal-item p {
-            color: #888;
-            font-size: 0.9em;
+        .popover-description {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
             line-height: 1.6;
+            margin-bottom: 12px;
         }
 
-        .company-list {
+        .popover-meta {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+
+        .popover-meta div {
+            margin-bottom: 4px;
+        }
+
+        /* Mobile backdrop for popovers */
+        @media (hover: none) {
+            .popover-backdrop {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.3);
+                z-index: 999;
+                display: none;
+            }
+
+            .popover-backdrop.active {
+                display: block;
+            }
+
+            .info-icon.active + .popover {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-badge.green {
+            background: rgba(192, 255, 0, 0.2);
+            color: var(--accent-positive);
+        }
+
+        .status-badge.yellow {
+            background: rgba(255, 167, 38, 0.2);
+            color: var(--accent-warning);
+        }
+
+        .status-badge.red {
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--accent-negative);
+        }
+
+        /* Section Styles */
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--border-radius);
+            padding: var(--card-padding);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--gap);
+        }
+
+        .section h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        /* Company Cards - Dense Grid */
+        .company-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
         }
 
         .company-card {
-            background: #0a0a0a;
-            padding: 20px;
+            background: var(--bg-card-alt);
+            border: 1px solid var(--border-subtle);
             border-radius: 8px;
-            border: 1px solid #333;
+            padding: 16px;
         }
 
         .company-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .company-name {
-            font-size: 1.2em;
-            font-weight: bold;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         .metric-row {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #2a2a2a;
-        }
-
-        .metric-row:last-child {
-            border-bottom: none;
+            padding: 6px 0;
+            font-size: 0.8125rem;
         }
 
         .metric-label {
-            color: #888;
-            font-size: 0.85em;
+            color: var(--text-tertiary);
         }
 
-        .metric-value {
-            font-weight: 600;
+        .metric-value-text {
+            font-weight: 500;
+            color: var(--text-primary);
         }
 
-        .phase-tracker {
-            background: #0a0a0a;
-            padding: 30px;
+        /* Signal Cards */
+        .signals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .signal-card {
+            background: var(--bg-card-alt);
+            border-left: 3px solid var(--accent-warning);
             border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 16px;
         }
 
-        .phase-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 6px;
-            background: #1a1a1a;
+        .signal-card.critical {
+            border-left-color: var(--accent-negative);
         }
 
-        .phase-item.active {
-            border: 2px solid #ef4444;
-            background: #ef444410;
-        }
-
-        .phase-number {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 15px;
-            background: #2a2a2a;
-            color: #888;
-        }
-
-        .phase-item.active .phase-number {
-            background: #ef4444;
-            color: white;
-        }
-
-        .phase-content {
-            flex: 1;
-        }
-
-        .phase-title {
+        .signal-card h4 {
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 5px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
         }
 
-        .phase-description {
-            font-size: 0.85em;
-            color: #888;
-        }
-
-        .rationale-box {
-            background: #0a0a0a;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid #3b82f6;
-        }
-
-        .rationale-box h4 {
-            font-size: 1em;
-            margin-bottom: 10px;
-            color: #3b82f6;
-        }
-
-        .rationale-box p {
-            color: #d0d0d0;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .rationale-box.concern {
-            border-left-color: #f59e0b;
-        }
-
-        .rationale-box.concern h4 {
-            color: #f59e0b;
-        }
-
-        .company-notes {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #2a2a2a;
-            font-size: 0.85em;
-            color: #888;
+        .signal-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
             line-height: 1.5;
         }
 
-        .scoring-details-container {
-            margin: 20px 0;
-        }
-
-        .toggle-scoring-btn {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-            color: #3b82f6;
-            border: 1px solid #3b82f6;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            text-align: left;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-scoring-btn:hover {
-            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
-            border-color: #5b9df6;
-        }
-
-        .scoring-details-content {
-            margin-top: 20px;
-            padding: 20px;
-            background: #0a0a0a;
-            border-radius: 8px;
-            border: 1px solid #333;
-        }
-
-        .scoring-table-wrapper {
-            overflow-x: auto;
-        }
-
-        .scoring-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: #1a1a1a;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .scoring-table thead {
-            background: #2a2a2a;
-        }
-
-        .scoring-table th {
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            color: #3b82f6;
-            border-bottom: 2px solid #333;
-        }
-
-        .scoring-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #2a2a2a;
-            color: #d0d0d0;
-        }
-
-        .scoring-table .description-row td {
-            padding-top: 5px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #2a2a2a;
-        }
-
-        .scoring-table .total-row {
-            background: #2a2a2a;
-            border-top: 3px solid #3b82f6;
-        }
-
-        .scoring-table .total-row td {
-            padding: 15px;
-            border-bottom: none;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 0.85em;
-        }
-
-        /* Toggle UI Styles */
+        /* Tab/Mode Toggle */
         .mode-toggle {
             display: flex;
             justify-content: center;
             gap: 0;
-            margin-bottom: 20px;
+            margin: 20px 0;
             border-radius: 8px;
             overflow: hidden;
-            background: #1a1a1a;
-            border: 1px solid #333;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
             width: fit-content;
-            margin: 0 auto 20px auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .toggle-btn {
-            padding: 12px 32px;
+            padding: 10px 28px;
             background: transparent;
             border: none;
-            color: #888;
+            color: var(--text-secondary);
             cursor: pointer;
-            font-size: 0.95em;
+            font-size: 0.875rem;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .toggle-btn:hover {
-            background: #2a2a2a;
-            color: #e0e0e0;
+            background: var(--bg-hover);
+            color: var(--text-primary);
         }
 
         .toggle-btn.active {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: white;
-        }
-
-        /* Dashboard views controlled by inline styles and JavaScript */
-
-        /* Empty state placeholder */
-        .empty-placeholder {
-            background: #1a1a1a;
-            border: 2px dashed #333;
-            border-radius: 12px;
-            padding: 60px 40px;
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .empty-placeholder h2 {
-            color: #888;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-
-        .empty-placeholder p {
-            color: #666;
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto 15px;
-        }
-
-        .empty-placeholder code {
-            background: #0a0a0a;
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: #3b82f6;
-            font-family: 'Courier New', monospace;
-        }
-
-        /* Leading indicators specific styles */
-        .category-section {
-            margin-bottom: 50px;
-        }
-
-        .category-section h2 {
-            color: #e0e0e0;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #333;
-        }
-
-        .indicators-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .indicator-card {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 20px;
-            transition: border-color 0.3s ease;
-        }
-
-        .indicator-card:hover {
-            border-color: #444;
-        }
-
-        .indicator-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .indicator-header h4 {
-            color: #e0e0e0;
-            font-size: 1.1em;
-            margin: 0;
-            flex: 1;
-        }
-
-        .tier-badge {
-            background: #2a2a2a;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            color: #888;
-        }
-
-        .divergence-badge {
-            background: #ef4444;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            color: white;
+            background: var(--accent-info);
+            color: #fff;
             font-weight: 600;
         }
 
-        .indicator-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #0a0a0a;
-            border-radius: 8px;
+        /* Dashboard Views */
+        .dashboard-view {
+            display: none;
         }
 
-        .status-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .status-dot.status-green { background: #10b981; }
-        .status-dot.status-yellow { background: #f59e0b; }
-        .status-dot.status-red { background: #ef4444; }
-        .status-dot.status-unknown { background: #666; }
-
-        .indicator-status .status-text {
-            flex: 1;
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-
-        .indicator-status .status-text.status-green { color: #10b981; }
-        .indicator-status .status-text.status-yellow { color: #f59e0b; }
-        .indicator-status .status-text.status-red { color: #ef4444; }
-        .indicator-status .status-text.status-unknown { color: #666; }
-
-        .indicator-status .score {
-            color: #888;
-            font-size: 0.9em;
-        }
-
-        .track-section {
-            margin: 10px 0;
-            padding: 12px;
-            background: #0a0a0a;
-            border-radius: 6px;
-            font-size: 0.85em;
-        }
-
-        .track-section strong {
-            color: #3b82f6;
+        .dashboard-view.active {
             display: block;
-            margin-bottom: 6px;
         }
 
-        .track-section p {
-            color: #ccc;
-            margin: 4px 0;
-            line-height: 1.6;
-        }
-
-        .indicator-trend {
-            margin-top: 12px;
-            padding: 8px;
-            background: #0a0a0a;
-            border-radius: 6px;
-            font-size: 0.85em;
-            color: #888;
+        /* Footer */
+        footer {
             text-align: center;
+            padding: 32px 20px;
+            color: var(--text-tertiary);
+            font-size: 0.8125rem;
         }
 
-        .validation-box {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 40px;
+        /* Responsive - Tablet */
+        @media (max-width: 1023px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card--wide {
+                grid-column: span 2;
+            }
         }
 
-        .validation-box h3 {
-            color: #e0e0e0;
-            font-size: 1.3em;
-            margin-bottom: 20px;
+        /* Responsive - Mobile */
+        @media (max-width: 767px) {
+            header {
+                flex-wrap: wrap;
+                padding: 12px 16px;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .header-search {
+                order: 3;
+                flex: 1 1 100%;
+                margin-top: 12px;
+                max-width: 100%;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card--wide {
+                grid-column: span 1;
+            }
+
+            .metric-value {
+                font-size: 3rem;
+            }
+
+            .chart-container {
+                height: 250px;
+            }
+
+            .company-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .validation-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .validation-metric {
-            text-align: center;
-            padding: 15px;
-            background: #0a0a0a;
-            border-radius: 8px;
-        }
-
-        .validation-metric .metric-label {
-            display: block;
-            color: #888;
-            font-size: 0.85em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .validation-metric .metric-value {
-            display: block;
-            color: #e0e0e0;
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-
-        .validation-metric .metric-value.alert {
-            color: #ef4444;
-        }
-
-        .divergent-list {
-            background: #2a1a1a;
-            border-left: 4px solid #ef4444;
-            padding: 15px;
-            border-radius: 6px;
-        }
-
-        .divergent-list strong {
-            color: #ef4444;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .divergent-list ul {
-            list-style: none;
-            padding-left: 20px;
-        }
-
-        .divergent-list li {
-            color: #ccc;
-            margin: 6px 0;
-            position: relative;
-        }
-
-        .divergent-list li:before {
-            content: "⚠️";
-            position: absolute;
-            left: -20px;
+        /* Accessibility - Keyboard Focus */
+        .info-icon:focus,
+        .header-btn:focus,
+        .toggle-btn:focus {
+            outline: 2px solid var(--accent-info);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
+    <!-- V4.0 Professional Header -->
+    <header>
+        <h1 class="header-title">Dashboard</h1>
+
+        <div class="header-search">
+            <input type="search" placeholder="Type to search for everything..." aria-label="Search dashboard">
+        </div>
+
+        <div class="header-actions">
+            <svg class="settings-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+
+            <button class="header-btn">Download Report</button>
+            <button class="header-btn ai-assistant">AI Assistant</button>
+        </div>
+    </header>
+
+    
+    <nav class="mode-toggle">
+        <button class="toggle-btn" data-mode="lagging">Lagging Indicators</button>
+        <button class="toggle-btn active" data-mode="leading">Leading Indicators</button>
+    </nav>
+    
+
     <div class="container">
-        <header>
-            <h1>AI Infrastructure Unwinding Monitor</h1>
-            <p class="timestamp">Last Updated: 2025-11-13 22:55:39 UTC</p>
-            
-        <nav class="mode-toggle">
-            <button class="toggle-btn" data-mode="lagging">Lagging Indicators</button>
-            <button class="toggle-btn active" data-mode="leading">Leading Indicators</button>
-        </nav>
-    
-        </header>
-
         <!-- Lagging Indicators View -->
-        <div class="dashboard-view" id="lagging-view" style="display: none;">
-        <div class="risk-overview">
-            <div class="risk-card">
-                <h3>Composite Risk Score</h3>
-                <div class="risk-score risk-low">7</div>
-                <span class="status-badge status-green">LOW RISK</span>
-                <p style="margin-top: 15px; font-size: 0.85em; color: #888; line-height: 1.5;">
-                    Weighted sum of warning indicators. Scale: 0-8 (LOW), 9-16 (MODERATE), 17-24 (HIGH), 25+ (CRITICAL).
-                    Based on capex guidance, AI revenue growth, utilization, margins, and other Phase 1 indicators.
-                </p>
-            </div>
-
-            <div class="risk-card">
-                <h3>Phase Status</h3>
-                <div class="risk-score" style="font-size: 2em;">Pre-Phase 1</div>
-                <span class="status-badge status-yellow">Monitoring</span>
-                <p style="margin-top: 15px; font-size: 0.85em; color: #888; line-height: 1.5;">
-                    Current unwinding phase: Pre-Phase 1 (no unwinding), Phase 1 (capex cuts), through Phase 6 (equity repricing).
-                    See Phase Progression Tracker below for details.
-                </p>
-            </div>
-
-            <div class="risk-card">
-                <h3>Active Signals</h3>
-                <div class="risk-score" style="font-size: 2em; color: #f59e0b;">2</div>
-                <span class="status-badge status-yellow">0 Warnings</span>
-                <p style="margin-top: 15px; font-size: 0.85em; color: #888; line-height: 1.5;">
-                    Number of notable events or trends detected in recent earnings/news.
-                    Can be positive (capex acceleration) or concerning (guidance misses, market reactions). See details below.
-                </p>
-            </div>
+        <div class="dashboard-view " id="lagging-view">
+            <div class="dashboard-grid">
+    <div class="card metric-card">
+        <div class="info-icon" tabindex="0">i</div>
+        
+        <div class="popover">
+            <div class="popover-title">Lagging Indicators</div>
+            <div class="popover-description">Composite risk score from quarterly earnings reports. Tracks capex guidance, AI revenue growth, utilization rates, operating margins, and other Phase 1 indicators that confirm unwinding after it has begun.</div>
+            <div class="popover-meta"><div><strong>Scale:</strong> 0-8 (LOW), 9-16 (MODERATE), 17-24 (HIGH), 25+ (CRITICAL)</div><div><strong>Data Source:</strong> Quarterly earnings reports</div><div><strong>Update Frequency:</strong> Quarterly</div><div><strong>Confidence:</strong> High</div></div>
         </div>
-
-        <div class="section">
-            <h2>Risk Assessment Rationale</h2>
-            
-    <div class="rationale-box">
-        <h4>Summary</h4>
-        <p>Composite Risk Score of 7/40 indicates LOW RISK. AI infrastructure buildout continues to accelerate with no Phase 1 unwinding signals in operational metrics. All major hyperscalers raised capex guidance in Q3 2025. The 2 Active Signals tracked include both positive developments (capex acceleration) and emerging concerns (Meta investor skepticism).</p>
-    </div>
-
-    <div class="rationale-box">
-        <h4>Why Risk is LOW</h4>
-        <p>Score of 7 is well below the 9-point threshold for MODERATE risk. Capex guidance universally increasing (not decreasing), no excess GPU capacity, no project delays, strong semiconductor demand. Collective hyperscaler spending exceeds $380B for 2025. Each RED indicator (capex cuts >15%, AI growth <20% YoY, utilization <60%) would add 2-6 points to the score - none are currently triggered.</p>
-    </div>
-
-    <div class="rationale-box">
-        <h4>Why Not MODERATE</h4>
-        <p>Would need 9+ points to reach MODERATE. No capex reductions detected (would add 3-6 points). AI revenue growth remains strong 25-55% YoY range - no RED signals (would add 6 points if <20%). No indicators of excess capacity or utilization concerns (would add 4 points). Operating fundamentals remain healthy across all primary indicators.</p>
-    </div>
-
-    <div class="rationale-box concern">
-        <h4>Key Concerns to Monitor</h4>
-        <p>Current 7 points come from: (1) AI revenue deceleration from hypergrowth = 1 point × 3x multiplier = 3 points, (2) Meta market reaction signaling sentiment risk = 1 point × 2x multiplier = 2 points, (3) Minor margin/valuation concerns = 2 points × 1x = 2 points. Meta stock drop (-11% despite beat) signals emerging investor skepticism. CoreWeave revenue guidance miss suggests potential demand softening in specialist tier. These are sentiment risks, not operational signals yet.</p>
-    </div>
-
-    <div class="rationale-box concern">
-        <h4>Critical Watch Items</h4>
-        <p>NVIDIA Q3 earnings (Nov 19) critical - if Data Center revenue misses or guidance disappoints, could add 4-6 points, pushing toward MODERATE (9-16 range). Meta sentiment spreading to MSFT/AMZN/GOOGL could add another 2-4 points. Any hyperscaler announcing capex reduction >5% would immediately add 3 points (YELLOW) or 6 points if >15% (RED). Active Signals of 2 reflects these two key developments being monitored.</p>
+        
+        <div class="metric-value" style="color: var(--accent-positive);">7/40</div>
+        <div class="metric-badge ">LOW RISK</div>
+        <div class="metric-description">Composite risk from quarterly earnings</div>
     </div>
     
-    <div class="scoring-details-container">
-        <button class="toggle-scoring-btn" onclick="toggleScoringDetails()">
-            <span id="scoring-toggle-icon">▼</span> Show Scoring Details
-        </button>
-
-        <div id="scoring-details" class="scoring-details-content" style="display: none;">
-            <div style="margin-bottom: 20px; padding: 15px; background: #0a0a0a; border-radius: 8px; border-left: 4px solid #3b82f6;">
-                <h4 style="margin-bottom: 10px; color: #3b82f6;">Formula</h4>
-                <p style="color: #e0e0e0; font-family: monospace; font-size: 1.1em;">Composite Risk Score = Σ (Indicator Points × Multiplier)</p>
-            </div>
-
-            <div class="scoring-table-wrapper">
-                <table class="scoring-table">
-                    <thead>
-                        <tr>
-                            <th>Indicator</th>
-                            <th style="text-align: center;">Multiplier</th>
-                            <th>Current Status</th>
-                            <th style="text-align: center;">Points</th>
-                            <th style="text-align: center;">Weighted</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-        <tr>
-            <td>1. Capex Guidance</td>
-            <td style="text-align: center;">3x</td>
-            <td><span class="status-badge status-green">🟢 GREEN (0)</span></td>
-            <td style="text-align: center;">0</td>
-            <td style="text-align: center; font-weight: 600;">0</td>
-        </tr>
-        <tr class="description-row">
-            <td colspan="5" style="padding-left: 30px; font-size: 0.85em; color: #888; font-style: italic;">
-                All hyperscalers raised capex guidance in Q3 2025
-            </td>
-        </tr>
+    <div class="card metric-card">
+        <div class="info-icon" tabindex="0">i</div>
         
-        <tr>
-            <td>2. AI Revenue Growth</td>
-            <td style="text-align: center;">3x</td>
-            <td><span class="status-badge status-yellow">🟡 YELLOW (1)</span></td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center; font-weight: 600;">3</td>
-        </tr>
-        <tr class="description-row">
-            <td colspan="5" style="padding-left: 30px; font-size: 0.85em; color: #888; font-style: italic;">
-                Decelerating from hypergrowth but still 25-55% YoY
-            </td>
-        </tr>
+        <div class="popover">
+            <div class="popover-title">Phase Status</div>
+            <div class="popover-description">Current phase in the 6-phase unwinding model. Pre-Phase 1 means no unwinding signals detected. Phase 1 would indicate capex guidance reductions by hyperscalers.</div>
+            <div class="popover-meta"><div><strong>Current:</strong> Pre-Phase 1 (No unwinding)</div><div><strong>Next Phase:</strong> Capex reductions</div><div><strong>Estimated Duration:</strong> 1-2 quarters</div></div>
+        </div>
         
-        <tr>
-            <td>3. GPU Utilization</td>
-            <td style="text-align: center;">2x</td>
-            <td><span class="status-badge status-green">🟢 GREEN (0)</span></td>
-            <td style="text-align: center;">0</td>
-            <td style="text-align: center; font-weight: 600;">0</td>
-        </tr>
-        <tr class="description-row">
-            <td colspan="5" style="padding-left: 30px; font-size: 0.85em; color: #888; font-style: italic;">
-                No indicators of excess capacity, demand remains strong
-            </td>
-        </tr>
+        <div class="metric-value" style="color: var(--text-primary);">Pre-Phase 1</div>
+        <div class="metric-badge ">Monitoring</div>
+        <div class="metric-description">Current unwinding phase</div>
+    </div>
+    
+    <div class="card metric-card">
+        <div class="info-icon" tabindex="0">i</div>
         
-        <tr>
-            <td>4. Margin Compression</td>
-            <td style="text-align: center;">2x</td>
-            <td><span class="status-badge status-yellow">🟡 YELLOW (1)</span></td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center; font-weight: 600;">2</td>
-        </tr>
-        <tr class="description-row">
-            <td colspan="5" style="padding-left: 30px; font-size: 0.85em; color: #888; font-style: italic;">
-                Meta investor concerns, sentiment pressure emerging
-            </td>
-        </tr>
+        <div class="popover">
+            <div class="popover-title">Active Signals</div>
+            <div class="popover-description">Number of active warning signals being tracked. Includes both positive developments (capex increases) and emerging concerns (investor skepticism).</div>
+            <div class="popover-meta"><div><strong>Total Signals:</strong> 2</div><div><strong>Critical:</strong> 0</div><div><strong>Status:</strong> Monitoring</div></div>
+        </div>
         
-        <tr>
-            <td>5. Timeline Changes</td>
-            <td style="text-align: center;">2x</td>
-            <td><span class="status-badge status-green">🟢 GREEN (0)</span></td>
-            <td style="text-align: center;">0</td>
-            <td style="text-align: center; font-weight: 600;">0</td>
-        </tr>
-        <tr class="description-row">
-            <td colspan="5" style="padding-left: 30px; font-size: 0.85em; color: #888; font-style: italic;">
-                No project delays announced, buildouts on schedule
-            </td>
-        </tr>
-        
-        <tr>
-            <td>6. Enterprise Adoption</td>
-            <td style="text-align: center;">1x</td>
-            <td><span class="status-badge status-yellow">🟡 YELLOW (1)</span></td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center; font-weight: 600;">1</td>
-        </tr>
-        <tr class="description-row">
-            <td colspan="5" style="padding-left: 30px; font-size: 0.85em; color: #888; font-style: italic;">
-                Mixed signals, proving ROI in various use cases
-            </td>
-        </tr>
-        
-        <tr>
-            <td>7. Cost Economics</td>
-            <td style="text-align: center;">1x</td>
-            <td><span class="status-badge status-yellow">🟡 YELLOW (1)</span></td>
-            <td style="text-align: center;">1</td>
-            <td style="text-align: center; font-weight: 600;">1</td>
-        </tr>
-        <tr class="description-row">
-            <td colspan="5" style="padding-left: 30px; font-size: 0.85em; color: #888; font-style: italic;">
-                Improving but not yet viable for all use cases
-            </td>
-        </tr>
-        
-        <tr>
-            <td>8. Semiconductor Orders</td>
-            <td style="text-align: center;">1x</td>
-            <td><span class="status-badge status-green">🟢 GREEN (0)</span></td>
-            <td style="text-align: center;">0</td>
-            <td style="text-align: center; font-weight: 600;">0</td>
-        </tr>
-        <tr class="description-row">
-            <td colspan="5" style="padding-left: 30px; font-size: 0.85em; color: #888; font-style: italic;">
-                Strong demand, NVIDIA backlog robust (pending Q3 confirmation)
-            </td>
-        </tr>
-        
-                        <tr class="total-row">
-                            <td colspan="4" style="text-align: right; font-weight: 700; font-size: 1.1em;">Total:</td>
-                            <td style="text-align: center; font-weight: 700; font-size: 1.2em; color: #10b981;">7</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div style="margin-top: 20px; padding: 15px; background: #10b98120; border-radius: 8px; border-left: 4px solid #10b981;">
-                <h4 style="margin-bottom: 10px; color: #10b981;">Current Score: 7 Points = LOW RISK</h4>
-                <p style="color: #d0d0d0; line-height: 1.6;">
-                    <strong>Calculation Breakdown:</strong><br>
-                    • AI Revenue Growth: 1 × 3 = 3 points (decelerating from hypergrowth but still 25-55% YoY)<br>
-                    • Margin Compression: 1 × 2 = 2 points (Meta investor concerns, sentiment pressure)<br>
-                    • Enterprise Adoption: 1 × 1 = 1 point (mixed signals, proving ROI)<br>
-                    • Cost Economics: 1 × 1 = 1 point (improving but not yet viable for all use cases)
-                </p>
-            </div>
+        <div class="metric-value" style="color: var(--text-primary);">2</div>
+        <div class="metric-badge ">2 Signals</div>
+        <div class="metric-description">Warning signals tracked</div>
+    </div>
+    </div><div class="dashboard-grid">
+    <div class="card chart-card card--wide">
+        <div class="card-title">
+            <span>Capex Trends</span>
+            <a href="#" class="metric-link">More detail →</a>
+        </div>
+        <div class="chart-container">
+            <canvas id="capexChart"></canvas>
         </div>
     </div>
     
+    <div class="card chart-card card--wide">
+        <div class="card-title">
+            <span>AI Revenue Growth</span>
+            <a href="#" class="metric-link">More detail →</a>
         </div>
-
-        <div class="section">
-            <h2>Phase Progression Tracker</h2>
-            <div class="phase-tracker">
-                
-        <div class="phase-item ">
-            <div class="phase-number">1</div>
-            <div class="phase-content">
-                <div class="phase-title">Phase 1: Capex Guidance Reductions</div>
-                <div class="phase-description">Hyperscalers reduce infrastructure spending guidance</div>
-                <div class="phase-description" style="margin-top: 5px; color: #666; font-style: italic;">Estimated Duration: 1-2 quarters</div>
-            </div>
+        <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
         </div>
-        
-        <div class="phase-item ">
-            <div class="phase-number">2</div>
-            <div class="phase-content">
-                <div class="phase-title">Phase 2: Semiconductor Orders Decline</div>
-                <div class="phase-description">Reduced chip orders, construction delays</div>
-                <div class="phase-description" style="margin-top: 5px; color: #666; font-style: italic;">Estimated Duration: 2-3 quarters</div>
-            </div>
-        </div>
-        
-        <div class="phase-item ">
-            <div class="phase-number">3</div>
-            <div class="phase-content">
-                <div class="phase-title">Phase 3: Counterparty Stress</div>
-                <div class="phase-description">Contract renegotiations, commitment reductions</div>
-                <div class="phase-description" style="margin-top: 5px; color: #666; font-style: italic;">Estimated Duration: 1-2 quarters</div>
-            </div>
-        </div>
-        
-        <div class="phase-item ">
-            <div class="phase-number">4</div>
-            <div class="phase-content">
-                <div class="phase-title">Phase 4: Private Credit Distress</div>
-                <div class="phase-description">Smaller players face financing stress</div>
-                <div class="phase-description" style="margin-top: 5px; color: #666; font-style: italic;">Estimated Duration: 2-4 quarters</div>
-            </div>
-        </div>
-        
-        <div class="phase-item ">
-            <div class="phase-number">5</div>
-            <div class="phase-content">
-                <div class="phase-title">Phase 5: Credit Market Contagion</div>
-                <div class="phase-description">Spreads widen, borrowing costs increase</div>
-                <div class="phase-description" style="margin-top: 5px; color: #666; font-style: italic;">Estimated Duration: 1-3 quarters</div>
-            </div>
-        </div>
-        
-        <div class="phase-item ">
-            <div class="phase-number">6</div>
-            <div class="phase-content">
-                <div class="phase-title">Phase 6: Equity Repricing</div>
-                <div class="phase-description">Stock valuations reset, growth expectations decline</div>
-                <div class="phase-description" style="margin-top: 5px; color: #666; font-style: italic;">Estimated Duration: 2-6 quarters</div>
-            </div>
-        </div>
-        
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Capex Trends</h2>
-            <div class="chart-container">
-                <canvas id="capexChart"></canvas>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>AI Revenue Growth Trends</h2>
-            <div class="chart-container">
-                <canvas id="revenueChart"></canvas>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Active Warning Signals</h2>
-            <div class="signals-grid">
-                
-        <div class="signal-item caution">
-            <h4>Hyperscaler CapEx Acceleration Continues</h4>
-            <p>All major hyperscalers increased 2025 capex guidance in Q3 earnings. Collective spending now exceeds $380B for 2025, up from ~$315B projections.</p>
-            <p style="margin-top: 10px;"><strong>Source:</strong> Q3 2025 Earnings Reports (Oct/Nov)</p>
-        </div>
-        
-        <div class="signal-item caution">
-            <h4>Meta Market Reaction: AI Spending Skepticism</h4>
-            <p>Meta stock dropped 11% despite beating estimates - largest drop in 3 years. Investor concerns about AI spending ROI despite $70-72B capex guidance increase.</p>
-            <p style="margin-top: 10px;"><strong>Source:</strong> Meta Q3 2025 Earnings (Oct 31)</p>
-        </div>
-        
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Company Metrics</h2>
-            <div class="company-list">
-                
+    </div>
+    </div><div class="section"><h2>Company Metrics</h2><div class="company-grid">
         <div class="company-card">
             <div class="company-header">
                 <div class="company-name">Microsoft (MSFT)</div>
-                <span class="status-badge status-green">GREEN</span>
+                <span class="status-badge green">GREEN</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Latest Capex</span>
-                <span class="metric-value">$64.6B (FY2025 actual, +45.1% YoY) - Accelerating in FY2026</span>
+                <span class="metric-value-text">$64.6B (FY2025 actual, +45.1% YoY) - Accelerating in FY2026</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value">$10B+ annual run rate (Q2 target)</span>
-            </div>
-            <div class="metric-row">
-                <span class="metric-label">Operating Margin</span>
-                <span class="metric-value">Stable</span>
+                <span class="metric-value-text">$10B+ annual run rate (Q2 target)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value">1</span>
+                <span class="metric-value-text">1</span>
             </div>
-            <div class="metric-row">
-                <span class="metric-label">Quarterly Report Date</span>
-                <span class="metric-value">2025-10-31</span>
-            </div>
-            <div class="company-notes">AI business fastest ever to $10B milestone. CFO Hood confirmed FY2026 capex acceleration.</div>
         </div>
         
         <div class="company-card">
             <div class="company-header">
                 <div class="company-name">Amazon (AMZN)</div>
-                <span class="status-badge status-green">GREEN</span>
+                <span class="status-badge green">GREEN</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Latest Capex</span>
-                <span class="metric-value">$125B (2025 guidance) - Q3: $23.95B (+7% QoQ, +83% YoY)</span>
+                <span class="metric-value-text">$125B (2025 guidance) - Q3: $23.95B (+7% QoQ, +83% YoY)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value">Strong AWS AI/ML growth</span>
-            </div>
-            <div class="metric-row">
-                <span class="metric-label">Operating Margin</span>
-                <span class="metric-value">AWS stable</span>
+                <span class="metric-value-text">Strong AWS AI/ML growth</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value">1</span>
+                <span class="metric-value-text">1</span>
             </div>
-            <div class="metric-row">
-                <span class="metric-label">Quarterly Report Date</span>
-                <span class="metric-value">2025-10-31</span>
-            </div>
-            <div class="company-notes">CFO Olsavsky indicated capex will grow further in 2026. Q1 2025: $24.3B.</div>
         </div>
         
         <div class="company-card">
             <div class="company-header">
                 <div class="company-name">Alphabet (GOOGL)</div>
-                <span class="status-badge status-green">GREEN</span>
+                <span class="status-badge green">GREEN</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Latest Capex</span>
-                <span class="metric-value">$91-93B (2025 guidance raised from $85B) - Q3: $24B</span>
+                <span class="metric-value-text">$91-93B (2025 guidance raised from $85B) - Q3: $24B</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value">Cloud AI strong, 1/4 of code now AI-generated</span>
-            </div>
-            <div class="metric-row">
-                <span class="metric-label">Operating Margin</span>
-                <span class="metric-value">Google Cloud improving</span>
+                <span class="metric-value-text">Cloud AI strong, 1/4 of code now AI-generated</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value">1</span>
+                <span class="metric-value-text">1</span>
             </div>
-            <div class="metric-row">
-                <span class="metric-label">Quarterly Report Date</span>
-                <span class="metric-value">2025-10-29</span>
-            </div>
-            <div class="company-notes">Raised capex guidance. 60% servers, 40% data center/networking. Q1: $17B.</div>
         </div>
         
         <div class="company-card">
             <div class="company-header">
                 <div class="company-name">Meta (META)</div>
-                <span class="status-badge status-yellow">YELLOW</span>
+                <span class="status-badge yellow">YELLOW</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Latest Capex</span>
-                <span class="metric-value">$70-72B (2025 guidance raised from $66-72B) - Q3: $19.37B (+14% QoQ, +111% YoY)</span>
+                <span class="metric-value-text">$70-72B (2025 guidance raised from $66-72B) - Q3: $19.37B (+14% QoQ, +111% YoY)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value">No direct revenue stream</span>
-            </div>
-            <div class="metric-row">
-                <span class="metric-label">Operating Margin</span>
-                <span class="metric-value">Under pressure</span>
+                <span class="metric-value-text">No direct revenue stream</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value">4</span>
+                <span class="metric-value-text">4</span>
             </div>
-            <div class="metric-row">
-                <span class="metric-label">Quarterly Report Date</span>
-                <span class="metric-value">2025-10-30</span>
-            </div>
-            <div class="company-notes">Stock dropped 11% (worst in 3 years) despite beat - investor concerns about AI ROI. Lacks cloud revenue story unlike peers.</div>
         </div>
         
         <div class="company-card">
             <div class="company-header">
                 <div class="company-name">NVIDIA (NVDA)</div>
-                <span class="status-badge status-green">GREEN</span>
+                <span class="status-badge green">GREEN</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Latest Capex</span>
-                <span class="metric-value">N/A (fabless)</span>
+                <span class="metric-value-text">N/A (fabless)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value">Expected +55.6% YoY Q3 (reports Nov 19)</span>
-            </div>
-            <div class="metric-row">
-                <span class="metric-label">Operating Margin</span>
-                <span class="metric-value">75%+</span>
+                <span class="metric-value-text">Expected +55.6% YoY Q3 (reports Nov 19)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value">2</span>
+                <span class="metric-value-text">2</span>
             </div>
-            <div class="metric-row">
-                <span class="metric-label">Quarterly Report Date</span>
-                <span class="metric-value">2025-11-19 (expected)</span>
-            </div>
-            <div class="company-notes">Q3 earnings pending Nov 19. Consensus: $1.23 EPS on $54.59B revenue. Data Center demand remains strong.</div>
         </div>
         
         <div class="company-card">
             <div class="company-header">
                 <div class="company-name">Oracle (ORCL)</div>
-                <span class="status-badge status-yellow">YELLOW</span>
+                <span class="status-badge yellow">YELLOW</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Latest Capex</span>
-                <span class="metric-value">$35B (FY2026 guidance, +91% YoY)</span>
+                <span class="metric-value-text">$35B (FY2026 guidance, +91% YoY)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value">52-55% YoY (Cloud Infrastructure)</span>
-            </div>
-            <div class="metric-row">
-                <span class="metric-label">Operating Margin</span>
-                <span class="metric-value">Negative FCF (-$5.9B TTM)</span>
+                <span class="metric-value-text">52-55% YoY (Cloud Infrastructure)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value">6</span>
+                <span class="metric-value-text">6</span>
             </div>
-            <div class="metric-row">
-                <span class="metric-label">Quarterly Report Date</span>
-                <span class="metric-value">2025-12-09 (Q2 FY2026)</span>
-            </div>
-            <div class="company-notes">Q2 FY2026: Cloud infra $3.3B (+52% YoY), RPO $97.3B (+50%). $30B OpenAI deal (4.5GW capacity). Raised $18B bonds, negotiating $38B more. Stargate project financing concerns emerging.</div>
         </div>
         
         <div class="company-card">
             <div class="company-header">
                 <div class="company-name">CoreWeave (CRWV)</div>
-                <span class="status-badge status-yellow">YELLOW</span>
+                <span class="status-badge yellow">YELLOW</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Latest Capex</span>
-                <span class="metric-value">$955.5M Q3 2025</span>
+                <span class="metric-value-text">$955.5M Q3 2025</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value">355% YoY (Q3 2025)</span>
-            </div>
-            <div class="metric-row">
-                <span class="metric-label">Operating Margin</span>
-                <span class="metric-value">Negative (adj. net loss $100.4M Q3)</span>
+                <span class="metric-value-text">355% YoY (Q3 2025)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value">6</span>
+                <span class="metric-value-text">6</span>
             </div>
-            <div class="metric-row">
-                <span class="metric-label">Quarterly Report Date</span>
-                <span class="metric-value">2025-11-10</span>
-            </div>
-            <div class="company-notes">IPO March 2025 @$40, now $105. Q3: $1.36B revenue, $55.6B backlog. $6.5B OpenAI expansion, $14.2B Meta deal. Revenue guidance cut to $5.05-5.15B (vs $5.29B expected).</div>
         </div>
         
         <div class="company-card">
             <div class="company-header">
                 <div class="company-name">Iris Energy (IREN)</div>
-                <span class="status-badge status-green">GREEN</span>
+                <span class="status-badge green">GREEN</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Latest Capex</span>
-                <span class="metric-value">$674M GPU procurement</span>
+                <span class="metric-value-text">$674M GPU procurement</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value">$500M+ ARR target by Q1 2026</span>
-            </div>
-            <div class="metric-row">
-                <span class="metric-label">Operating Margin</span>
-                <span class="metric-value">Improving</span>
+                <span class="metric-value-text">$500M+ ARR target by Q1 2026</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value">4</span>
+                <span class="metric-value-text">4</span>
             </div>
-            <div class="metric-row">
-                <span class="metric-label">Quarterly Report Date</span>
-                <span class="metric-value">2025-11-08 (Q1 FY2025)</span>
-            </div>
-            <div class="company-notes">Bitcoin miner pivoting to AI cloud. Stock +269% YTD 2025. Doubling GPU fleet to 23k GPUs. Market cap: $17.09B.</div>
         </div>
         
         <div class="company-card">
             <div class="company-header">
                 <div class="company-name">Applied Digital (APLD)</div>
-                <span class="status-badge status-green">GREEN</span>
+                <span class="status-badge green">GREEN</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Latest Capex</span>
-                <span class="metric-value">Multi-GW facilities under development</span>
+                <span class="metric-value-text">Multi-GW facilities under development</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value">84% YoY (Q1 FY2026)</span>
-            </div>
-            <div class="metric-row">
-                <span class="metric-label">Operating Margin</span>
-                <span class="metric-value">Negative (-$233.68M losses)</span>
+                <span class="metric-value-text">84% YoY (Q1 FY2026)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value">5</span>
+                <span class="metric-value-text">5</span>
             </div>
-            <div class="metric-row">
-                <span class="metric-label">Quarterly Report Date</span>
-                <span class="metric-value">2025-10-10 (Q1 FY2026)</span>
-            </div>
-            <div class="company-notes">$11B CoreWeave contract (400MW), $5B hyperscaler deal (200MW). Q1 FY2026: $64.2M revenue. Stock +39.4% YTD 2025.</div>
         </div>
         
         <div class="company-card">
             <div class="company-header">
                 <div class="company-name">Nebius (NBIS)</div>
-                <span class="status-badge status-green">GREEN</span>
+                <span class="status-badge green">GREEN</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Latest Capex</span>
-                <span class="metric-value">$955.5M Q3 2025</span>
+                <span class="metric-value-text">$955.5M Q3 2025</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value">400% YoY (Q3 2025)</span>
-            </div>
-            <div class="metric-row">
-                <span class="metric-label">Operating Margin</span>
-                <span class="metric-value">Negative (adj. net loss $100.4M Q3)</span>
+                <span class="metric-value-text">400% YoY (Q3 2025)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value">4</span>
+                <span class="metric-value-text">4</span>
             </div>
-            <div class="metric-row">
-                <span class="metric-label">Quarterly Report Date</span>
-                <span class="metric-value">2025-11-11</span>
-            </div>
-            <div class="company-notes">Formerly Yandex, renamed Aug 2024. Q3: $146.1M revenue. $19.4B Microsoft deal, $3B Meta deal (Nov 2025). Stock +475% past year.</div>
+        </div>
+        </div></div><div class="section"><h2>Active Warning Signals</h2><div class="signals-grid">
+        <div class="signal-card ">
+            <h4>Hyperscaler CapEx Acceleration Continues</h4>
+            <p>All major hyperscalers increased 2025 capex guidance in Q3 earnings. Collective spending now exceeds $380B for 2025, up from ~$315B projections.</p>
+            <p style="margin-top: 8px; font-size: 0.75rem; color: var(--text-tertiary);">
+                <strong>Source:</strong> Q3 2025 Earnings Reports (Oct/Nov)
+            </p>
         </div>
         
-            </div>
+        <div class="signal-card ">
+            <h4>Meta Market Reaction: AI Spending Skepticism</h4>
+            <p>Meta stock dropped 11% despite beating estimates - largest drop in 3 years. Investor concerns about AI spending ROI despite $70-72B capex guidance increase.</p>
+            <p style="margin-top: 8px; font-size: 0.75rem; color: var(--text-tertiary);">
+                <strong>Source:</strong> Meta Q3 2025 Earnings (Oct 31)
+            </p>
         </div>
+        </div></div>
         </div>
-        <!-- End Lagging Indicators View -->
 
         <!-- Leading Indicators View -->
-        <div class="dashboard-view" id="leading-view" style="display: block;">
+        <div class="dashboard-view active" id="leading-view">
+            <div class="dashboard-grid">
+    <div class="card metric-card">
+        <div class="info-icon" tabindex="0">i</div>
         
-    <div class="risk-overview">
-        <div class="risk-card">
-            <h3>Composite Leading Score</h3>
-            <div class="risk-score risk-low">10</div>
-            <span class="status-badge status-green">LOW RISK</span>
-            <p style="margin-top: 15px; font-size: 0.85em; color: #888; line-height: 1.5;">
-                Weighted sum of 12 leading indicators. Scale: 0-12 (LOW), 13-24 (MODERATE), 25-36 (HIGH), 37-48 (CRITICAL).
-                Predicts Phase 1 entry 1-3 quarters before lagging indicators confirm it.
-            </p>
+        <div class="popover">
+            <div class="popover-title">Leading Indicators</div>
+            <div class="popover-description">Composite score from real-time market signals including GPU pricing, cloud costs, funding activity, and supply chain signals. Designed to predict Phase 1 entry 1-3 quarters ahead.</div>
+            <div class="popover-meta"><div><strong>Scale:</strong> 0-12 (LOW), 13-24 (MODERATE), 25-36 (HIGH), 37-48 (CRITICAL)</div><div><strong>Update Frequency:</strong> Weekly/Monthly</div><div><strong>Prediction Horizon:</strong> 1-3 quarters ahead</div></div>
         </div>
-
-        <div class="risk-card">
-            <h3>Active Signals</h3>
-            <div class="risk-score" style="color: #3b82f6;">4</div>
-            <p style="margin-top: 15px; font-size: 0.85em; color: #888;">
-                Leading indicators showing caution (yellow) or warning (red) signals
-            </p>
-        </div>
-
-        <div class="risk-card">
-            <h3>Prediction Horizon</h3>
-            <div class="risk-score" style="color: #8b5cf6;">1-3 Qtrs</div>
-            <p style="margin-top: 15px; font-size: 0.85em; color: #888;">
-                Leading indicators provide advance warning before lagging indicators confirm unwinding
-            </p>
-        </div>
-    </div>
-
-    
-    <div class="validation-box">
-        <h3>🔍 Dual-Track Validation Status</h3>
-
-        <div class="validation-metrics">
-            <div class="validation-metric">
-                <span class="metric-label">Track Agreement</span>
-                <span class="metric-value">None</span>
-            </div>
-            <div class="validation-metric">
-                <span class="metric-label">Divergent Indicators</span>
-                <span class="metric-value ">0</span>
-            </div>
-            <div class="validation-metric">
-                <span class="metric-label">Last Validated</span>
-                <span class="metric-value">None</span>
-            </div>
-        </div>
-
         
-
-        <p style="margin-top: 15px; font-size: 0.85em; color: #888; line-height: 1.6;">
-            <strong>Track A:</strong> Manual/programmatic data collection from specific sources.<br>
-            <strong>Track B:</strong> Independent LLM web research with unrestricted sources.<br>
-            <strong>Validation:</strong> Agreement = both tracks reach same status (green/yellow/red). Divergence requires investigation.
-        </p>
+        <div class="metric-value" style="color: var(--accent-positive);">10/48</div>
+        <div class="metric-badge ">LOW RISK</div>
+        <div class="metric-description">Predictive market signals</div>
     </div>
     
-
-    <div class="category-section">
-        <h2>💰 Price Signals (Primary Indicators)</h2>
-        <div class="indicators-grid">
-        <div class="indicator-card">
-            <div class="indicator-header">
+    <div class="card metric-card">
+        <div class="info-icon" tabindex="0">i</div>
+        
+        <div class="popover">
+            <div class="popover-title">Quantitative/Qualitative Alignment</div>
+            <div class="popover-description">Measures agreement between quantitative data-driven metrics and qualitative LLM research. Alignment indicates both approaches reach the same conclusions.</div>
+            <div class="popover-meta"><div><strong>Quantitative:</strong> Programmatic data collection</div><div><strong>Qualitative:</strong> Independent LLM research</div><div><strong>Agreement:</strong> None</div></div>
+        </div>
+        
+        <div class="metric-value" style="color: var(--text-primary);">None</div>
+        <div class="metric-badge ">ALIGNED</div>
+        <div class="metric-description">Data vs Research agreement</div>
+    </div>
+    
+    <div class="card metric-card">
+        <div class="info-icon" tabindex="0">i</div>
+        
+        <div class="popover">
+            <div class="popover-title">Divergent Indicators</div>
+            <div class="popover-description">Number of indicators where quantitative and qualitative approaches disagree. Divergence indicates data limitations or market complexity.</div>
+            <div class="popover-meta"><div><strong>Divergent Count:</strong> 0</div><div><strong>Action Required:</strong> Investigation and validation</div></div>
+        </div>
+        
+        <div class="metric-value" style="color: var(--text-primary);">0</div>
+        <div class="metric-badge ">All Aligned</div>
+        <div class="metric-description">Requires investigation</div>
+    </div>
+    </div><div class="section"><h2>💰 Price Signals</h2><div class="signals-grid">
+            <div class="signal-card">
                 <h4>GPU Secondary Market Pricing</h4>
-                <span class="tier-badge">Tier 1</span>
-                <span class="divergence-badge">⚠️ Divergence</span>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge yellow">YELLOW</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +2 pts | Tier 1
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Establishing Baseline
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-yellow"></span>
-                <span class="status-text status-yellow">YELLOW</span>
-                <span class="score">+2 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>H100 80Gb Spot Price: 1.62<br>Trend 30D: unknown<br>Availability: tight<br>Offers Count: 3<br>Last Collected: 2025-11-14T03:54:25Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> GREEN</p>
-            <p><strong>Confidence:</strong> high</p>
-            <p>Independent research shows prices dropped 64-75% in 2025 but demand remains very strong (43% YoY growth, tight supply with 4-8 month lead times). 300+ new providers entering market. Prices stable Q4 2025 at $1.49-$6.16/hour. Market sentiment bullish despite price compression.</p>
             
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Establishing Baseline
-            </div>
-        </div>
-        
-        <div class="indicator-card">
-            <div class="indicator-header">
+            <div class="signal-card">
                 <h4>Cloud AI Service Pricing Wars</h4>
-                <span class="tier-badge">Tier 1</span>
-                
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 1
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Stable
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-green"></span>
-                <span class="status-text status-green">GREEN</span>
-                <span class="score">+0 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Azure Model: GPT-4o<br>Azure Price Input: 3.0<br>Azure Price Output: 10.0<br>Aws Model: Claude 3.5 Sonnet<br>Aws Price Input: 3.0<br>Aws Price Output: 15.0<br>Gcp Model: Gemini 2.5 Pro<br>Gcp Price Input: 1.25<br>Gcp Price Output: 10.0<br>Trend 30D: stable<br>Last Collected: 2025-11-14T03:54:25Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> GREEN</p>
-            <p><strong>Confidence:</strong> high</p>
-            <p>Independent research confirms dramatic price declines across all major AI inference platforms. GPT-4 equivalent costs fell 240x in 18 months (from $180/M tokens to <$1/M). GPT-4o saw 83% output and 90% input token price reductions in 16 months. DeepSeek halved prices in late 2025. Strong price competition indicates healthy demand and infrastructure investment, not unwinding. This is deflationary but growth-positive.</p>
-            
-            </div>
-
-            <div class="indicator-trend">
-                ➡️ <strong>30-Day Trend:</strong> Stable
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <div class="category-section">
-        <h2>🏭 Supply Chain Signals (Primary Indicators)</h2>
-        <div class="indicators-grid">
-        <div class="indicator-card">
-            <div class="indicator-header">
+            </div></div><div class="section"><h2>🏭 Supply Chain Signals</h2><div class="signals-grid">
+            <div class="signal-card">
                 <h4>Data Center REIT Occupancy & Pricing</h4>
-                <span class="tier-badge">Tier 1</span>
-                
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 1
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Unknown
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-green"></span>
-                <span class="status-text status-green">GREEN</span>
-                <span class="score">+0 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Dlr Occupancy: unavailable_pdf_only<br>Dlr Guidance: unavailable_pdf_only<br>Dlr Ai Bookings Pct: unavailable_pdf_only<br>Dlr Total Bookings: unavailable_pdf_only<br>Dlr Q3 2025 Materials: available_but_not_parseable_via_webfetch<br>Eqix Occupancy: not_disclosed_on_investor_homepage<br>Eqix Revenue Q3: 2320<br>Eqix Gross Bookings: 394<br>Eqix Bookings Growth Yoy: not_disclosed_on_investor_homepage<br>Eqix Net Interconnections: 7100<br>Eqix Total Interconnections: 499000<br>Eqix Deals Closed: 4400<br>Eqix Customers: 3400+<br>Vetted Sources Checked: 2<br>Vetted Sources Accessible: 2<br>Vetted Sources With Partial Data: 1<br>Data Limitations: ['DLR: Q3 2025 materials available as PDFs, WebFetch cannot parse PDF content', 'EQIX: Homepage provides high-level metrics but not detailed occupancy/growth rates']<br>Last Collected: 2025-11-14T05:10:00Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> GREEN</p>
-            <p><strong>Confidence:</strong> high</p>
-            <p>Independent research confirms exceptionally strong REIT performance in Q3 2025. Both DLR and EQIX posted healthy growth driven by AI workloads. Equinix: $2.32B revenue (+5% YoY), record $394M bookings (+25% YoY), 3GW developable capacity (doubling by 2029). Digital Realty: $1.6B revenue (+10% YoY), 499MW Americas pipeline (79% pre-leased), 125MW leasing target 2025. Industry showing historically low vacancy rates and surging rents. No softening signals.</p>
             
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Unknown
-            </div>
-        </div>
-        
-        <div class="indicator-card">
-            <div class="indicator-header">
+            <div class="signal-card">
                 <h4>Power Infrastructure Stress Signals</h4>
-                <span class="tier-badge">Tier 2</span>
-                <span class="divergence-badge">⚠️ Divergence</span>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Unknown
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-green"></span>
-                <span class="status-text status-green">GREEN</span>
-                <span class="score">+0 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Delay Severity: none_reported<br>Geographic Spread: not_applicable<br>Affected Regions: []<br>Vetted Sources Checked: 7<br>Vetted Sources Blocked: 2<br>Vetted Sources Accessible: 5<br>Vetted Sources With Data: 1<br>Blocked Sources: ['datacenterdynamics.com (403 forbidden)', 'puc.texas.gov (SSL certificate error)']<br>Accessible But No Data: ['datacenterfrontier.com', 'canarymedia.com (energynews.us redirect)', 'scc.virginia.gov', 'psc.ga.gov']<br>Findings From Vetted Sources: {'utilitydive.com': {'articles_found': 6, 'summary': 'Focus on managing data center growth through load flexibility, demand response, and cost allocation rules. No power delivery delays reported.', 'key_points': ['Exelon data center pipeline: 18 GW', 'PJM monitoring Amazon-PECO agreement for grid reliability', 'Kansas/Michigan approved large load rules protecting existing customers', 'Emphasis on demand response and load flexibility solutions']}}<br>Last Collected: 2025-11-14T05:05:00Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> RED</p>
-            <p><strong>Confidence:</strong> high</p>
-            <p>Independent research reveals SEVERE power infrastructure constraints that Track A's limited sources missed. Virginia grid connections taking 4-7 years (was <2 years). Northern Virginia data center load approaching 50% of state consumption by 2030 (vs 26% in 2023). $64B+ in projects canceled/delayed since 2023 due to grid constraints. Transformer lead times 2 years (4x pre-2022), prices up 4-9x. Texas SB-6 imposed $100K+ screening fees, financial commitments for transmission. This is a MAJOR constraint signal.</p>
-            
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Unknown
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <div class="category-section">
-        <h2>📈 Financial Market Signals (Primary Indicators)</h2>
-        <div class="indicators-grid">
-        <div class="indicator-card">
-            <div class="indicator-header">
+            </div></div><div class="section"><h2>📈 Financial Market Signals</h2><div class="signals-grid">
+            <div class="signal-card">
                 <h4>AI Startup Funding Velocity & Valuations</h4>
-                <span class="tier-badge">Tier 1</span>
-                <span class="divergence-badge">⚠️ Divergence</span>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge yellow">YELLOW</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +2 pts | Tier 1
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Data Limited
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-yellow"></span>
-                <span class="status-text status-yellow">YELLOW</span>
-                <span class="score">+2 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Deals Closed 30D: 1<br>Major Announcements: [{'company': 'Lambda', 'type': 'commercial_contract', 'partner': 'Microsoft', 'value': 'multibillion', 'date': '2025-11-03', 'note': 'Multi-year AI infrastructure agreement, tens of thousands of GPUs'}, {'company': 'Scribe', 'type': 'valuation_mention', 'value': 1300000000, 'source': 'TechCrunch', 'note': 'Valuation mentioned but funding round timing unclear'}]<br>Vc Sentiment: shifting - 'VCs abandon old rules for funky time of AI investing'<br>Down Rounds Count: 0<br>Up Rounds Count: 0<br>Valuation Trend: unclear_from_vetted_sources<br>Vetted Sources Checked: 5<br>Vetted Sources Blocked: 2<br>Vetted Sources Accessible: 3<br>Vetted Sources With Data: 2<br>Blocked Sources: ['crunchbase.com (homepage accessible, data requires navigation/search)', 'theinformation.com (403 forbidden)']<br>Data Limitations: ['Crunchbase requires specific search/filtering not accessible via homepage WebFetch', 'TechCrunch provides narrative coverage but limited systematic funding data', 'Company newsrooms show historical deals but unclear which are last 30 days', 'Lambda-Microsoft deal is commercial contract, not traditional VC funding']<br>Last Collected: 2025-11-14T05:20:00Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> GREEN</p>
-            <p><strong>Confidence:</strong> high</p>
-            <p>Independent research reveals exceptionally strong AI funding in Q3-Q4 2025. Q3 global VC funding +38% YoY reaching $97B, with AI capturing $45B (46% of total). Mega-rounds: Anthropic $13B, xAI $5.3B, Mistral $2B, OpenAI $40B (SoftBank-led at $300B valuation). Despite 'fewer deals but bigger bets' narrative, funding velocity at mega-scale remains robust. No down-rounds detected. Concentration among leaders but capital availability strong. This is opposite of unwinding.</p>
             
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Data Limited
-            </div>
-        </div>
-        
-        <div class="indicator-card">
-            <div class="indicator-header">
+            <div class="signal-card">
                 <h4>Tech Stock Correlation Breakdown</h4>
-                <span class="tier-badge">Tier 1</span>
-                
+                <div style="margin: 8px 0;">
+                    <span class="status-badge yellow">YELLOW</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +2 pts | Tier 1
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Moderate Divergence
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-yellow"></span>
-                <span class="status-text status-yellow">YELLOW</span>
-                <span class="score">+2 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Correlation Coef: 0.664<br>Dispersion Increasing: True<br>Underperformers: ['ORCL', 'CRWV', 'IREN', 'APLD', 'NBIS']<br>Weekly Changes: {'NVDA': -0.65, 'MSFT': 1.25, 'AMZN': -2.25, 'GOOGL': -2.17, 'META': -1.46, 'TSM': -2.43, 'ORCL': -10.76, 'CRWV': -26.74, 'IREN': -27.34, 'APLD': -25.8, 'NBIS': -19.01, 'OWL': 0.6}<br>Last Collected: 2025-11-14T03:54:25Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> YELLOW</p>
-            <p><strong>Confidence:</strong> medium</p>
-            <p>NVIDIA concentration at 8% of S&P 500 creating unusual dynamics. NVDA +27% vs S&P +15% (12M), but high beta of 0.18 across semiconductor sector means NVDA pullback would drag entire sector. Correlation remains positive but concentration risk is unprecedented - 33% of S&P returns attributed to NVDA in 2024. Not divergence per se, but elevated systemic risk. YELLOW for concentration concern rather than actual breakdown.</p>
             
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Moderate Divergence
-            </div>
-        </div>
-        
-        <div class="indicator-card">
-            <div class="indicator-header">
+            <div class="signal-card">
                 <h4>CDS Spreads for Exposed Lenders</h4>
-                <span class="tier-badge">Tier 2</span>
-                <span class="divergence-badge">⚠️ Divergence</span>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge red">UNAVAILABLE</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Unavailable
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-unavailable"></span>
-                <span class="status-text status-unavailable">UNAVAILABLE</span>
-                <span class="score">+0 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Oracle Bond Spread: unavailable_requires_premium_access<br>Ig Tech Average Spread: unavailable_requires_premium_access<br>Hy Ai Infra Spread: unavailable_requires_premium_access<br>Rating Actions: []<br>Spread Trend: unavailable<br>Vetted Sources Checked: 5<br>Vetted Sources Blocked: 3<br>Vetted Sources Accessible: 2<br>Vetted Sources With Data: 0<br>Blocked Sources: ['marketwatch.com/bonds (cannot fetch)', 'spglobal.com/ratings (403 forbidden)', 'finra-markets.morningstar.com (wrong section - equity not fixed income)']<br>Data Limitations: ['All bond/CDS data sources require premium subscriptions (Bloomberg Terminal, FactSet)', "Rating agency homepages don't display recent actions without search/login", 'FINRA BondCenter homepage shows equities, fixed income requires deeper navigation', 'Track A cannot access this data through vetted public URLs']<br>Last Collected: 2025-11-14T05:25:00Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> YELLOW</p>
-            <p><strong>Confidence:</strong> medium</p>
-            <p>Independent research found signs of credit market concern for Big Tech AI spending. Bond spreads for hyperscaler basket (Alphabet, Meta, Microsoft, Oracle) widened to 0.78pp over Treasuries in Nov (highest since April, up from 0.5pp in Sept). High-yield index OAS climbed to 3.15% from 2.76%. Oracle CDS protection being actively purchased. However, spreads still near historical lows and reflect concern over AI capex leverage, not credit distress. YELLOW for monitoring, not alarm.</p>
-            
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Unavailable
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <div class="category-section">
-        <h2>⚡ Activity-Based Signals (Secondary Indicators)</h2>
-        <div class="indicators-grid">
-        <div class="indicator-card">
-            <div class="indicator-header">
+            </div></div><div class="section"><h2>⚡ Activity-Based Signals</h2><div class="signals-grid">
+            <div class="signal-card">
                 <h4>Model Training Run Announcements</h4>
-                <span class="tier-badge">Tier 2</span>
-                
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Steady Releases
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-green"></span>
-                <span class="status-text status-green">GREEN</span>
-                <span class="score">+0 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Training Announcements: 7<br>Model Releases: [{'company': 'Anthropic', 'model': 'Claude Sonnet 4.5', 'date': '2025-09-29'}, {'company': 'Anthropic', 'model': 'Claude Haiku 4.5', 'date': '2025-10-15'}, {'company': 'Google DeepMind', 'model': 'Gemini 2.5 Computer Use', 'date': '2025-10'}, {'company': 'Google DeepMind', 'model': 'Veo 3.1', 'date': '2025-10'}, {'company': 'Google DeepMind', 'model': 'SIMA 2', 'date': '2025-11'}, {'company': 'Google DeepMind', 'model': 'Gemini Robotics 1.5', 'date': '2025-09'}, {'company': 'Meta', 'model': 'Omnilingual ASR (1600 languages)', 'date': '2025-11-10'}]<br>Infrastructure Announcements: [{'company': 'Anthropic', 'type': '$50B infrastructure investment', 'date': '2025-11-12'}, {'company': 'Anthropic', 'type': 'Google Cloud TPU expansion', 'date': '2025-10-23'}]<br>Training Cadence: steady<br>Compute Scale Mentions: ['Anthropic $50B investment', 'Google Cloud TPU expansion']<br>Delays Reported: 0<br>Missing Expected: ['Meta Llama 4 (no announcement)']<br>Vetted Sources Checked: 8<br>Vetted Sources Blocked: 2<br>Vetted Sources Accessible: 6<br>Vetted Sources With Data: 3<br>Blocked Sources: ['openai.com/news (403 forbidden)', 'x.ai/blog (403 forbidden)']<br>Last Collected: 2025-11-14T05:29:00Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> GREEN</p>
-            <p><strong>Confidence:</strong> high</p>
-            <p>Independent research confirms exceptionally active model training landscape in 2025. Major releases: GPT-5 (Aug 2025), Claude 4 family (May 2025), Claude Sonnet 4.5 (Sept), Gemini 2.5 Pro (March), Llama 4 (April with 10M token context). Google prepping Gemini 3.0 for late 2025. Polymarket gives Google 60% chance of strongest model by EOY. All major labs actively training and releasing. Zero signs of slowdown or training delays.</p>
             
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Steady Releases
-            </div>
-        </div>
-        
-        <div class="indicator-card">
-            <div class="indicator-header">
+            <div class="signal-card">
                 <h4>Inference Deployment Velocity</h4>
-                <span class="tier-badge">Tier 2</span>
-                <span class="divergence-badge">⚠️ Divergence</span>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge yellow">YELLOW</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +1 pts | Tier 2
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Data Limited
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-yellow"></span>
-                <span class="status-text status-yellow">YELLOW</span>
-                <span class="score">+1 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Production Case Studies: 3<br>Featured Customers: ['Intercom (Claude)', 'Asana (Claude)', 'European Parliament (Claude)']<br>Pilot Announcements: 0<br>Deployment Velocity: unclear_from_vetted_sources<br>Model Sunsets: unavailable<br>Vetted Sources Checked: 7<br>Vetted Sources Blocked: 2<br>Vetted Sources Accessible: 5<br>Vetted Sources With Data: 1<br>Blocked Sources: ['openai.com/customer-stories (403 forbidden)', 'platform.openai.com/docs/deprecations (403 forbidden)']<br>Data Limitations: ["Cloud provider blogs (Azure, AWS, GCP) don't show systematic case study counts on homepages", 'Customer story pages show featured cases without dates or deployment velocity metrics', 'Stanford AI Index page accessible but no recent adoption statistics visible', 'Cannot assess deployment velocity or production vs. pilot ratio from available data']<br>Last Collected: 2025-11-14T05:33:00Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> GREEN</p>
-            <p><strong>Confidence:</strong> high</p>
-            <p>Independent research shows rapid production deployment across all major platforms. Azure AI Foundry launched GPT-5 with model router saving 60% on inference costs, o3-mini and o4-mini reasoning models now available. AWS Bedrock, Azure, and Google Vertex AI all aggressively expanding model catalogs and enterprise features. Microsoft announced Azure can handle pilot-to-production with confidence. Cost optimizations (90% cache discounts, routing, batching) driving enterprise adoption. Deployment velocity strong.</p>
             
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Data Limited
-            </div>
-        </div>
-        
-        <div class="indicator-card">
-            <div class="indicator-header">
+            <div class="signal-card">
                 <h4>NVIDIA Partner Network Activity</h4>
-                <span class="tier-badge">Tier 2</span>
-                
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Unknown
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-green"></span>
-                <span class="status-text status-green">GREEN</span>
-                <span class="score">+0 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Partner Announcements: 5<br>Major Partnerships: [{'partner': 'Deutsche Telekom', 'type': 'Industrial AI Cloud', 'value': '$1.15B', 'date': '2025-11-04'}, {'partner': 'South Korea government', 'type': 'National AI infrastructure', 'date': '2025-10-31'}, {'partner': 'TSMC', 'type': 'First Blackwell US wafer', 'date': '2025-10-21'}, {'partner': 'Nokia', 'type': 'Collaboration'}, {'partner': 'Uber', 'type': 'NVIDIA Hyperion L4 integration'}]<br>New Products Launched: Blackwell US manufacturing<br>Demand Signals: strong_ecosystem_expansion<br>Inventory Status: no_concerns_mentioned<br>Vetted Sources Checked: 1<br>Vetted Sources Accessible: 1<br>Vetted Sources With Data: 1<br>Last Collected: 2025-11-14T05:37:00Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> GREEN</p>
-            <p><strong>Confidence:</strong> high</p>
-            <p>Independent research confirms exceptionally strong NVIDIA partner activity in Nov 2025. Major announcements: Palantir integration for operational AI, Cisco Nexus N9100 with Spectrum-X silicon, Lambda 100MW+ Kansas City facility (10K+ GB300 GPUs), Microsoft Azure GB300 cluster for OpenAI, Oracle DOE supercomputer, Together AI Memphis facility with GB200/GB300. Cisco, Dell, HPE, Supermicro all integrating NVIDIA GPUs. Ecosystem expansion at peak velocity.</p>
             
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Unknown
-            </div>
-        </div>
-        
-        <div class="indicator-card">
-            <div class="indicator-header">
+            <div class="signal-card">
                 <h4>Analyst Estimate Revisions</h4>
-                <span class="tier-badge">Tier 1</span>
-                
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 1
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Bullish Stable
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-green"></span>
-                <span class="status-text status-green">GREEN</span>
-                <span class="score">+0 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Total Analysts: 454<br>Strong Buy: 81<br>Buy: 309<br>Hold: 55<br>Sell: 9<br>Pct Bullish: 85.9<br>Buy Changes Mom: 1<br>Capex Estimate Direction: positive<br>Last Collected: 2025-11-14T03:54:25Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> GREEN</p>
-            <p><strong>Confidence:</strong> high</p>
-            <p>Independent research shows overwhelmingly bullish analyst sentiment on NVIDIA. 26 buy ratings vs 1 sell. Average price target $238 (range $155-$350). Recent Nov 3 updates: Loop Capital $350, Goldman $240, Rosenblatt bullish. Consensus forecasts substantial growth: next Q EPS $1.25, revenue $54.67B. Analysts project earnings could exceed $50 (10x from 2025 levels). 85.9% bullish rating aligns with Track A. No wave of downgrades detected.</p>
             
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Bullish Stable
-            </div>
-        </div>
-        
-        <div class="indicator-card">
-            <div class="indicator-header">
+            <div class="signal-card">
                 <h4>Job Postings & Organizational Changes</h4>
-                <span class="tier-badge">Tier 2</span>
-                <span class="divergence-badge">⚠️ Divergence</span>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Data Limited
+                </p>
             </div>
-
-            <div class="indicator-status">
-                <span class="status-dot status-green"></span>
-                <span class="status-text status-green">GREEN</span>
-                <span class="score">+0 pts</span>
-            </div>
-
-            <div class="track-section">
-                <strong>Track A (Data Collection):</strong>
-                <p>Hiring Activity: unclear_from_vetted_sources<br>Hiring Freezes: []<br>Layoff Announcements: []<br>Exec Departures: []<br>Org Changes: []<br>Layoffs Fyi Data: 165K tech layoffs YTD 2025 (aggregate, no company-specific data accessible)<br>Vetted Sources Checked: 6<br>Vetted Sources Accessible: 1<br>Vetted Sources With Data: 1<br>Blocked Or Limited: ['linkedin.com/jobs (requires login/interactive search)', 'careers.microsoft.com (requires search navigation)', 'amazon.jobs (requires search navigation)', 'careers.google.com (requires search navigation)', 'metacareers.com (requires search navigation)']<br>Data Limitations: ['Job sites require interactive search - homepage WebFetch insufficient', 'Layoffs.fyi shows aggregate stats but company-specific data in interactive database', 'Cannot assess job posting volume without search capability', 'No hiring freeze or exec departure announcements found on accessible pages']<br>Last Collected: 2025-11-14T05:40:00Z</p>
-            </div>
-
-            <div class="track-section">
-                <strong>Track B (LLM Research):</strong>
-                
-            <p><strong>Status:</strong> RED</p>
-            <p><strong>Confidence:</strong> high</p>
-            <p>Independent research reveals significant AI-related layoffs in 2025 that Track A's limited access missed. US layoffs topped 1M in 2025, with October at 33,281 (worst spike in 20 years). Microsoft cut 15K (~4% workforce) in May+July. Tech job postings down 36% from 2020. Companies cite AI automation as driver. Anthropic CEO warns AI could eliminate 50% of entry-level white-collar jobs. 41% of companies planning reductions over 5 years due to AI. This is RED - tech employment contracting due to AI.</p>
-            
-            </div>
-
-            <div class="indicator-trend">
-                ❓ <strong>30-Day Trend:</strong> Data Limited
-            </div>
+            </div></div>
         </div>
-        </div>
-    </div>
-    
-        </div>
-        <!-- End Leading Indicators View -->
 
         <footer>
-            <p>AI Infrastructure Unwinding Monitor | Data sources: SEC filings, earnings calls, public reports</p>
+            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-14 23:37:46 UTC</p>
+            <p>Data sources: SEC filings, earnings calls, public reports</p>
             <p>For educational and research purposes only. Not investment advice.</p>
         </footer>
     </div>
 
     <script>
-        // Mode toggle functionality
+        // V4.0 Mode Toggle
         document.querySelectorAll('.toggle-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const mode = this.dataset.mode;
 
                 // Update button states
-                document.querySelectorAll('.toggle-btn').forEach(b =>
-                    b.classList.remove('active')
-                );
+                document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
 
-                // Toggle views using direct style manipulation
+                // Toggle views
                 document.querySelectorAll('.dashboard-view').forEach(view => {
-                    view.style.display = 'none';
+                    view.classList.remove('active');
                 });
-                document.getElementById(mode + '-view').style.display = 'block';
+                document.getElementById(mode + '-view').classList.add('active');
             });
         });
-    </script>
 
-    <script>
-        // Toggle scoring details
-        function toggleScoringDetails() {
-            const content = document.getElementById('scoring-details');
-            const icon = document.getElementById('scoring-toggle-icon');
-            const button = document.querySelector('.toggle-scoring-btn');
+        // Touch device support for info popovers
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.info-icon').forEach(icon => {
+                icon.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
 
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
-                icon.textContent = '▲';
-                button.innerHTML = '<span id="scoring-toggle-icon">▲</span> Hide Scoring Details';
-            } else {
-                content.style.display = 'none';
-                icon.textContent = '▼';
-                button.innerHTML = '<span id="scoring-toggle-icon">▼</span> Show Scoring Details';
-            }
+                    // Close other active popovers
+                    document.querySelectorAll('.info-icon.active').forEach(other => {
+                        if (other !== this) other.classList.remove('active');
+                    });
+                });
+            });
+
+            // Close popovers when clicking outside
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.info-icon.active').forEach(icon => {
+                    icon.classList.remove('active');
+                });
+            });
         }
 
-        // Chart.js configuration
+        // V4.0 Chart Configuration - Multi-Color Palette
+        const chartColors = {
+            lime: '#c0ff00',
+            coral: '#ff6b6b',
+            blue: '#87ceeb',
+            green: '#90ee90'
+        };
+
         const chartOptions = {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
                 legend: {
                     labels: {
-                        color: '#e0e0e0'
+                        color: '#b0b3b8',
+                        font: { size: 13 },
+                        usePointStyle: true
                     }
+                },
+                tooltip: {
+                    backgroundColor: '#2a2d31',
+                    titleColor: '#ffffff',
+                    bodyColor: '#b0b3b8',
+                    borderColor: 'rgba(255,255,255,0.15)',
+                    borderWidth: 1,
+                    padding: 12,
+                    cornerRadius: 8
                 }
             },
             scales: {
                 x: {
-                    grid: {
-                        color: '#333'
-                    },
-                    ticks: {
-                        color: '#888'
-                    }
+                    grid: { color: 'rgba(255,255,255,0.08)' },
+                    ticks: { color: '#8a8d91', font: { size: 11 } },
+                    border: { color: 'rgba(255,255,255,0.08)' }
                 },
                 y: {
-                    grid: {
-                        color: '#333'
-                    },
-                    ticks: {
-                        color: '#888'
-                    }
+                    grid: { color: 'rgba(255,255,255,0.08)' },
+                    ticks: { color: '#8a8d91', font: { size: 11 } },
+                    border: { color: 'rgba(255,255,255,0.08)' }
                 }
-            }
+            },
+            interaction: { intersect: false, mode: 'index' },
+            animation: { duration: 300 }
         };
 
-        // Capex Chart
-        const capexCtx = document.getElementById('capexChart').getContext('2d');
+        
+    const capexCtx = document.getElementById('capexChart');
+    if (capexCtx) {
         new Chart(capexCtx, {
             type: 'line',
             data: {"labels": ["Q1 2024", "Q2 2024", "Q3 2024", "Q4 2024", "Q1 2025", "Q2 2025", "Q3 2025"], "datasets": [{"label": "Microsoft", "data": [14, 15, 16, 16.2, 21.4, 19.0, 20.0], "borderColor": "#3b82f6", "backgroundColor": "#3b82f640", "tension": 0.3}, {"label": "Amazon/AWS", "data": [13, 14, 16, 18, 24.3, 23.0, 23.95], "borderColor": "#f59e0b", "backgroundColor": "#f59e0b40", "tension": 0.3}, {"label": "Alphabet", "data": [10, 11, 12, 13, 17, 19, 24], "borderColor": "#10b981", "backgroundColor": "#10b98140", "tension": 0.3}, {"label": "Meta", "data": [6, 7, 8, 9, 13, 17, 19.37], "borderColor": "#8b5cf6", "backgroundColor": "#8b5cf640", "tension": 0.3}]},
@@ -1821,17 +1170,14 @@
                 ...chartOptions,
                 plugins: {
                     ...chartOptions.plugins,
-                    title: {
-                        display: true,
-                        text: 'Quarterly Capex ($B)',
-                        color: '#e0e0e0'
-                    }
+                    title: { display: true, text: 'Quarterly Capex ($B)', color: '#ffffff', font: { size: 14, weight: '600' } }
                 }
             }
         });
-
-        // Revenue Chart
-        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+    }
+    
+    const revenueCtx = document.getElementById('revenueChart');
+    if (revenueCtx) {
         new Chart(revenueCtx, {
             type: 'line',
             data: {"labels": ["Q1 2024", "Q2 2024", "Q3 2024", "Q4 2024", "Q1 2025"], "datasets": [{"label": "Azure AI Growth", "data": [50, 48, 45, 42, 38], "borderColor": "#3b82f6", "backgroundColor": "#3b82f640", "tension": 0.3}, {"label": "AWS AI/ML Growth (est.)", "data": [45, 44, 43, 41, 40], "borderColor": "#f59e0b", "backgroundColor": "#f59e0b40", "tension": 0.3}, {"label": "Google Cloud AI Growth (est.)", "data": [40, 38, 37, 36, 35], "borderColor": "#10b981", "backgroundColor": "#10b98140", "tension": 0.3}, {"label": "NVIDIA Data Center Growth", "data": [217, 150, 100, 80, 65], "borderColor": "#ef4444", "backgroundColor": "#ef444440", "tension": 0.3}]},
@@ -1839,14 +1185,12 @@
                 ...chartOptions,
                 plugins: {
                     ...chartOptions.plugins,
-                    title: {
-                        display: true,
-                        text: 'AI Revenue YoY Growth (%)',
-                        color: '#e0e0e0'
-                    }
+                    title: { display: true, text: 'AI Revenue YoY Growth (%)', color: '#ffffff', font: { size: 14, weight: '600' } }
                 }
             }
         });
+    }
+    
     </script>
 </body>
 </html>
