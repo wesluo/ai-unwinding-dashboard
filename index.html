@@ -58,85 +58,6 @@
             padding: 0;
         }
 
-        /* V4.0 Professional Header */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--bg-primary);
-            padding: 16px 24px;
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .header-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            white-space: nowrap;
-        }
-
-        .header-search {
-            flex: 1;
-            max-width: 400px;
-            position: relative;
-        }
-
-        .header-search input {
-            width: 100%;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid var(--border-subtle);
-            border-radius: 24px;
-            padding: 10px 20px;
-            color: var(--text-primary);
-            font-size: 0.875rem;
-        }
-
-        .header-search input::placeholder {
-            color: var(--text-tertiary);
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            margin-left: auto;
-        }
-
-        .header-btn {
-            padding: 8px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--border-subtle);
-            background: transparent;
-            color: var(--text-primary);
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-        }
-
-        .header-btn:hover {
-            background: var(--bg-hover);
-        }
-
-        .header-btn.ai-assistant {
-            background: var(--accent-positive);
-            color: #000;
-            border: none;
-            font-weight: 600;
-        }
-
-        .header-btn.ai-assistant:hover {
-            background: #b0e600;
-        }
-
-        .settings-icon {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            color: var(--text-secondary);
-        }
 
         /* Container */
         .container {
@@ -518,22 +439,6 @@
 
         /* Responsive - Mobile */
         @media (max-width: 767px) {
-            header {
-                flex-wrap: wrap;
-                padding: 12px 16px;
-            }
-
-            .header-title {
-                font-size: 1.5rem;
-            }
-
-            .header-search {
-                order: 3;
-                flex: 1 1 100%;
-                margin-top: 12px;
-                max-width: 100%;
-            }
-
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
@@ -557,7 +462,6 @@
 
         /* Accessibility - Keyboard Focus */
         .info-icon:focus,
-        .header-btn:focus,
         .toggle-btn:focus {
             outline: 2px solid var(--accent-info);
             outline-offset: 2px;
@@ -565,27 +469,8 @@
     </style>
 </head>
 <body>
-    <!-- V4.0 Professional Header -->
-    <header>
-        <h1 class="header-title">Dashboard</h1>
-
-        <div class="header-search">
-            <input type="search" placeholder="Type to search for everything..." aria-label="Search dashboard">
-        </div>
-
-        <div class="header-actions">
-            <svg class="settings-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-            </svg>
-
-            <button class="header-btn">Download Report</button>
-            <button class="header-btn ai-assistant">AI Assistant</button>
-        </div>
-    </header>
-
     
-    <nav class="mode-toggle">
+    <nav class="mode-toggle" style="margin-top: 20px;">
         <button class="toggle-btn" data-mode="lagging">Lagging Indicators</button>
         <button class="toggle-btn active" data-mode="leading">Leading Indicators</button>
     </nav>
@@ -888,11 +773,11 @@
         <div class="popover">
             <div class="popover-title">Quantitative/Qualitative Alignment</div>
             <div class="popover-description">Measures agreement between quantitative data-driven metrics and qualitative LLM research. Alignment indicates both approaches reach the same conclusions.</div>
-            <div class="popover-meta"><div><strong>Quantitative:</strong> Programmatic data collection</div><div><strong>Qualitative:</strong> Independent LLM research</div><div><strong>Agreement:</strong> None</div></div>
+            <div class="popover-meta"><div><strong>Quantitative:</strong> Programmatic data collection</div><div><strong>Qualitative:</strong> Independent LLM research</div><div><strong>Agreement:</strong> 50%</div><div><strong>Divergent Indicators:</strong> 6</div></div>
         </div>
         
-        <div class="metric-value" style="color: var(--text-primary);">None</div>
-        <div class="metric-badge ">ALIGNED</div>
+        <div class="metric-value" style="color: var(--text-primary);">50%</div>
+        <div class="metric-badge negative">DIVERGENT</div>
         <div class="metric-description">Data vs Research agreement</div>
     </div>
     
@@ -902,164 +787,404 @@
         <div class="popover">
             <div class="popover-title">Divergent Indicators</div>
             <div class="popover-description">Number of indicators where quantitative and qualitative approaches disagree. Divergence indicates data limitations or market complexity.</div>
-            <div class="popover-meta"><div><strong>Divergent Count:</strong> 0</div><div><strong>Action Required:</strong> Investigation and validation</div></div>
+            <div class="popover-meta"><div><strong>Divergent Count:</strong> 6</div><div><strong>Action Required:</strong> Investigation and validation</div></div>
         </div>
         
-        <div class="metric-value" style="color: var(--text-primary);">0</div>
-        <div class="metric-badge ">All Aligned</div>
+        <div class="metric-value" style="color: var(--text-primary);">6</div>
+        <div class="metric-badge negative">Needs Review</div>
         <div class="metric-description">Requires investigation</div>
     </div>
     </div><div class="section"><h2>💰 Price Signals</h2><div class="signals-grid">
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">GPU Secondary Market Pricing</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: YELLOW | Trend: unknown
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: GREEN | Confidence: High<br>
+                        <em>Independent research shows prices dropped 64-75% in 2025 but demand remains very strong (43% YoY growth, tight supply with 4-8 month lead times). 300+ new providers entering market. Prices stable Q4 2...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 1 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +2 points</div>
+                        <div style="color: var(--accent-negative);"><strong>⚠️ Divergence Detected</strong></div>
+                    </div>
+                </div>
+                
                 <h4>GPU Secondary Market Pricing</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge yellow">YELLOW</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +2 pts | Tier 1
                     </span>
+                    <span class="status-badge red" style="margin-left: 8px;">⚠️ DIVERGENT</span>
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Establishing Baseline
                 </p>
             </div>
             
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Cloud AI Service Pricing Wars</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: GREEN | Trend: stable
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: GREEN | Confidence: High<br>
+                        <em>Independent research confirms dramatic price declines across all major AI inference platforms. GPT-4 equivalent costs fell 240x in 18 months (from $180/M tokens to <$1/M). GPT-4o saw 83% output and 90...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 1 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
                 <h4>Cloud AI Service Pricing Wars</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge green">GREEN</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +0 pts | Tier 1
                     </span>
+                    
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Stable
                 </p>
             </div>
             </div></div><div class="section"><h2>🏭 Supply Chain Signals</h2><div class="signals-grid">
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Data Center REIT Occupancy & Pricing</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: GREEN
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: GREEN | Confidence: High<br>
+                        <em>Independent research confirms exceptionally strong REIT performance in Q3 2025. Both DLR and EQIX posted healthy growth driven by AI workloads. Equinix: $2.32B revenue (+5% YoY), record $394M bookings...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 1 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
                 <h4>Data Center REIT Occupancy & Pricing</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge green">GREEN</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +0 pts | Tier 1
                     </span>
+                    
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Unknown
                 </p>
             </div>
             
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Power Infrastructure Stress Signals</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: GREEN
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: RED | Confidence: High<br>
+                        <em>Independent research reveals SEVERE power infrastructure constraints that Track A's limited sources missed. Virginia grid connections taking 4-7 years (was <2 years). Northern Virginia data center loa...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        <div style="color: var(--accent-negative);"><strong>⚠️ Divergence Detected</strong></div>
+                    </div>
+                </div>
+                
                 <h4>Power Infrastructure Stress Signals</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge green">GREEN</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +0 pts | Tier 2
                     </span>
+                    <span class="status-badge red" style="margin-left: 8px;">⚠️ DIVERGENT</span>
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Unknown
                 </p>
             </div>
             </div></div><div class="section"><h2>📈 Financial Market Signals</h2><div class="signals-grid">
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">AI Startup Funding Velocity & Valuations</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: YELLOW
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: GREEN | Confidence: High<br>
+                        <em>Independent research reveals exceptionally strong AI funding in Q3-Q4 2025. Q3 global VC funding +38% YoY reaching $97B, with AI capturing $45B (46% of total). Mega-rounds: Anthropic $13B, xAI $5.3B, ...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 1 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +2 points</div>
+                        <div style="color: var(--accent-negative);"><strong>⚠️ Divergence Detected</strong></div>
+                    </div>
+                </div>
+                
                 <h4>AI Startup Funding Velocity & Valuations</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge yellow">YELLOW</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +2 pts | Tier 1
                     </span>
+                    <span class="status-badge red" style="margin-left: 8px;">⚠️ DIVERGENT</span>
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Data Limited
                 </p>
             </div>
             
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Tech Stock Correlation Breakdown</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: YELLOW
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: YELLOW | Confidence: Medium<br>
+                        <em>NVIDIA concentration at 8% of S&P 500 creating unusual dynamics. NVDA +27% vs S&P +15% (12M), but high beta of 0.18 across semiconductor sector means NVDA pullback would drag entire sector. Correlatio...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 1 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +2 points</div>
+                        
+                    </div>
+                </div>
+                
                 <h4>Tech Stock Correlation Breakdown</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge yellow">YELLOW</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +2 pts | Tier 1
                     </span>
+                    
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Moderate Divergence
                 </p>
             </div>
             
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">CDS Spreads for Exposed Lenders</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: UNAVAILABLE
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: YELLOW | Confidence: Medium<br>
+                        <em>Independent research found signs of credit market concern for Big Tech AI spending. Bond spreads for hyperscaler basket (Alphabet, Meta, Microsoft, Oracle) widened to 0.78pp over Treasuries in Nov (hi...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        <div style="color: var(--accent-negative);"><strong>⚠️ Divergence Detected</strong></div>
+                    </div>
+                </div>
+                
                 <h4>CDS Spreads for Exposed Lenders</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge red">UNAVAILABLE</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +0 pts | Tier 2
                     </span>
+                    <span class="status-badge red" style="margin-left: 8px;">⚠️ DIVERGENT</span>
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Unavailable
                 </p>
             </div>
             </div></div><div class="section"><h2>⚡ Activity-Based Signals</h2><div class="signals-grid">
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Model Training Run Announcements</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: GREEN
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: GREEN | Confidence: High<br>
+                        <em>Independent research confirms exceptionally active model training landscape in 2025. Major releases: GPT-5 (Aug 2025), Claude 4 family (May 2025), Claude Sonnet 4.5 (Sept), Gemini 2.5 Pro (March), Lla...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
                 <h4>Model Training Run Announcements</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge green">GREEN</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +0 pts | Tier 2
                     </span>
+                    
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Steady Releases
                 </p>
             </div>
             
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Inference Deployment Velocity</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: YELLOW
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: GREEN | Confidence: High<br>
+                        <em>Independent research shows rapid production deployment across all major platforms. Azure AI Foundry launched GPT-5 with model router saving 60% on inference costs, o3-mini and o4-mini reasoning models...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +1 points</div>
+                        <div style="color: var(--accent-negative);"><strong>⚠️ Divergence Detected</strong></div>
+                    </div>
+                </div>
+                
                 <h4>Inference Deployment Velocity</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge yellow">YELLOW</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +1 pts | Tier 2
                     </span>
+                    <span class="status-badge red" style="margin-left: 8px;">⚠️ DIVERGENT</span>
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Data Limited
                 </p>
             </div>
             
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">NVIDIA Partner Network Activity</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: GREEN
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: GREEN | Confidence: High<br>
+                        <em>Independent research confirms exceptionally strong NVIDIA partner activity in Nov 2025. Major announcements: Palantir integration for operational AI, Cisco Nexus N9100 with Spectrum-X silicon, Lambda ...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
                 <h4>NVIDIA Partner Network Activity</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge green">GREEN</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +0 pts | Tier 2
                     </span>
+                    
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Unknown
                 </p>
             </div>
             
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Analyst Estimate Revisions</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: GREEN
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: GREEN | Confidence: High<br>
+                        <em>Independent research shows overwhelmingly bullish analyst sentiment on NVIDIA. 26 buy ratings vs 1 sell. Average price target $238 (range $155-$350). Recent Nov 3 updates: Loop Capital $350, Goldman $...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 1 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
                 <h4>Analyst Estimate Revisions</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge green">GREEN</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +0 pts | Tier 1
                     </span>
+                    
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Bullish Stable
                 </p>
             </div>
             
-            <div class="signal-card">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Job Postings & Organizational Changes</div>
+                    <div class="popover-description">
+                        <strong style="color: var(--accent-info);">Quantitative (Track A):</strong><br>
+                        Status: GREEN
+                        <br><br>
+                        <strong style="color: var(--accent-positive);">Qualitative (Track B):</strong><br>
+                        Status: RED | Confidence: High<br>
+                        <em>Independent research reveals significant AI-related layoffs in 2025 that Track A's limited access missed. US layoffs topped 1M in 2025, with October at 33,281 (worst spike in 20 years). Microsoft cut ...</em>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        <div style="color: var(--accent-negative);"><strong>⚠️ Divergence Detected</strong></div>
+                    </div>
+                </div>
+                
                 <h4>Job Postings & Organizational Changes</h4>
                 <div style="margin: 8px 0;">
                     <span class="status-badge green">GREEN</span>
                     <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
                         +0 pts | Tier 2
                     </span>
+                    <span class="status-badge red" style="margin-left: 8px;">⚠️ DIVERGENT</span>
                 </div>
                 <p style="margin: 8px 0; font-size: 0.875rem;">
                     <strong>Trend:</strong> Data Limited
@@ -1069,7 +1194,7 @@
         </div>
 
         <footer>
-            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-14 23:37:46 UTC</p>
+            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-14 23:57:57 UTC</p>
             <p>Data sources: SEC filings, earnings calls, public reports</p>
             <p>For educational and research purposes only. Not investment advice.</p>
         </footer>
