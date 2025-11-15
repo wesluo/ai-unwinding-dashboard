@@ -40,6 +40,9 @@ dashboard_20251111_updated.html
 dashboard_20251111_final.html
 PHASE_5_6_7_COMPLETE.md
 SESSION_HANDOFF.md
-*.md
 unwinding_mechanics_report.md
+Vercel v0 github deployment.md
 ai-unwinding-monitor/
+
+# But keep design docs
+!docs/**/*.md
