@@ -1,0 +1,349 @@
+{
+  "_comment": "Leading Indicators Tracking Data - Complete reconstruction with Nov 11-14 Track B data + Nov 15 Track A updates",
+  "_instructions": "This file tracks leading indicators that predict AI infrastructure unwinding 1-3 quarters before lagging indicators. Update weekly for Tier 1 indicators.",
+  "metadata": {
+    "last_updated": "2025-11-16T03:40:14Z",
+    "version": "1.0.2",
+    "description": "Leading indicators for AI infrastructure unwinding - predicts Phase 1 entry before earnings reports confirm it",
+    "collection_frequency": {
+      "weekly": [
+        "GPU Secondary Market Pricing",
+        "Cloud AI Service Pricing",
+        "Tech Stock Correlation",
+        "Analyst Estimate Revisions"
+      ],
+      "monthly": [
+        "Data Center REIT Metrics",
+        "AI Startup Funding Velocity",
+        "CDS Spreads",
+        "Model Training Announcements",
+        "Inference Deployment Velocity",
+        "NVIDIA Partner Announcements",
+        "Job Postings"
+      ],
+      "quarterly": [
+        "Power Infrastructure Stress"
+      ]
+    },
+    "next_scheduled_update": "2025-11-22",
+    "_note": "Phase 6 COMPLETE - Both Track A (vetted sources) and Track B (independent research) collection finished Nov 13-14. Track A refreshed Nov 15 with current stock data. 6 divergences detected."
+  },
+  "composite_leading_score_track_a": 7,
+  "composite_leading_score_track_b": 10,
+  "composite_leading_score": 10,
+  "leading_risk_level": "LOW",
+  "risk_rationale": {
+    "summary": "Phase 6 COMPLETE - Both Track A and Track B collection finished. Track B reveals 6 DIVERGENCES where independent research found different signals than vetted sources. Track B score: 10 points (vs Track A: 7). Two RED signals detected: Power Infrastructure constraints ($64B+ projects delayed, 4-7yr grid waits) and AI-driven Job Layoffs (1M+ in 2025, Microsoft 15K cuts). Despite these concerns, majority of indicators remain GREEN. Risk level: LOW but with specific constraint areas identified.",
+    "divergence_count": 6,
+    "divergences": [
+      "#1 GPU Pricing: Track A YELLOW (limited data) \u2192 Track B GREEN (43% YoY demand growth)",
+      "#5 AI Funding: Track A YELLOW (unclear velocity) \u2192 Track B GREEN ($45B Q3, mega-rounds)",
+      "#6 Power Infrastructure: Track A GREEN (no delays in vetted sources) \u2192 Track B RED ($64B delays, 4-7yr waits)",
+      "#7 CDS Spreads: Track A UNAVAILABLE \u2192 Track B YELLOW (spreads widening but manageable)",
+      "#9 Inference Deployment: Track A YELLOW (data limitations) \u2192 Track B GREEN (rapid expansion)",
+      "#12 Job Postings: Track A GREEN (no signals found) \u2192 Track B RED (1M+ layoffs, AI-driven)"
+    ],
+    "key_concerns_track_b": "Two RED signals: (1) Power infrastructure severely constrained in Virginia/Texas, (2) AI-driven layoffs accelerating (1M+ in 2025). Credit spreads widening but not alarming. These represent real constraints, not data limitations.",
+    "validation_status": "PHASE 6 COMPLETE. Track A (vetted sources) vs Track B (independent research) comparison reveals data access limitations in Track A masked both positive signals (funding, deployment) and negative signals (power, jobs)."
+  },
+  "leading_indicators": [
+    {
+      "name": "GPU Secondary Market Pricing",
+      "category": "Price Signal",
+      "tier": 1,
+      "multiplier": 2,
+      "status": "yellow",
+      "points": 1,
+      "weighted_score": 2,
+      "track_a_data": {
+        "h100_80gb_spot_price": 1.62,
+        "a100_40gb_spot_price": null,
+        "trend_30d": "unknown",
+        "availability": "tight",
+        "offers_count": 3,
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "green",
+        "llm_confidence": "high",
+        "llm_rationale": "Independent research shows prices dropped 64-75% in 2025 but demand remains very strong (43% YoY growth, tight supply with 4-8 month lead times). 300+ new providers entering market. Prices stable Q4 2025 at $1.49-$6.16/hour. Market sentiment bullish despite price compression.",
+        "current_h100_pricing": "1.49-6.16",
+        "pricing_range": "Vast.ai $1.49-$1.87, Lambda $2.99, CoreWeave $4.25-$6.16",
+        "trend_30d": "stable after major 2025 drops",
+        "availability": "tight supply (4-8 month enterprise lead times)",
+        "demand_indicators": "43% YoY demand growth, 300+ new cloud providers, persistent supply constraints",
+        "sources_consulted": [
+          "intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison",
+          "thundercompute.com/blog/ai-gpu-rental-market-trends",
+          "gpus.llm-utils.org/nvidia-h100-gpus-supply-and-demand"
+        ],
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": true,
+      "trend_30d": "stable"
+    },
+    {
+      "name": "Cloud AI Service Pricing Wars",
+      "category": "Price Signal",
+      "tier": 1,
+      "multiplier": 2,
+      "status": "green",
+      "points": 0,
+      "weighted_score": 0,
+      "track_a_data": {
+        "azure_model": "GPT-4o",
+        "azure_price_input": 3.0,
+        "azure_price_output": 10.0,
+        "aws_model": "Claude 3.5 Sonnet",
+        "aws_price_input": 3.0,
+        "aws_price_output": 15.0,
+        "gcp_model": "Gemini 2.5 Pro",
+        "gcp_price_input": 1.25,
+        "gcp_price_output": 10.0,
+        "trend_30d": "stable",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "green",
+        "llm_confidence": "high",
+        "llm_rationale": "Independent research confirms dramatic price declines across all major AI inference platforms. GPT-4 equivalent costs fell 240x in 18 months (from $180/M tokens to <$1/M). GPT-4o saw 83% output and 90% input token price reductions in 16 months. DeepSeek halved prices in late 2025. Strong price competition indicates healthy demand and infrastructure investment, not unwinding. This is deflationary but growth-positive.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": false,
+      "trend_30d": "stable"
+    },
+    {
+      "name": "Data Center REIT Occupancy & Pricing",
+      "category": "Supply Chain Signal",
+      "tier": 1,
+      "multiplier": 2,
+      "status": "green",
+      "points": 0,
+      "weighted_score": 0,
+      "track_a_data": {
+        "trend_30d": "improving",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "green",
+        "llm_confidence": "high",
+        "llm_rationale": "Independent research confirms exceptionally strong REIT performance in Q3 2025. Both DLR and EQIX posted healthy growth driven by AI workloads. Equinix: $2.32B revenue (+5% YoY), record $394M bookings (+25% YoY), 3GW developable capacity (doubling by 2029). Digital Realty: $1.6B revenue (+10% YoY), 499MW Americas pipeline (79% pre-leased), 125MW leasing target 2025. Industry showing historically low vacancy rates and surging rents. No softening signals.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": false,
+      "trend_30d": "improving"
+    },
+    {
+      "name": "Tech Stock Correlation Breakdown",
+      "category": "Financial Market Signal",
+      "tier": 2,
+      "multiplier": 1,
+      "status": "green",
+      "points": 0,
+      "weighted_score": 0,
+      "track_a_data": {
+        "correlation_30d": 0.85,
+        "correlation_90d": 0.82,
+        "trend_30d": "stable",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "green",
+        "llm_confidence": "medium",
+        "llm_rationale": "Stock correlations remain high, indicating market treats AI infrastructure stocks as a cohesive group. No breakdown detected.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": false,
+      "trend_30d": "stable",
+      "track_a_history": [
+        {
+          "correlation_30d": 0.78,
+          "correlation_90d": 0.75,
+          "trend_30d": "increasing",
+          "last_collected": "2025-11-11T12:00:00Z"
+        },
+        {
+          "correlation_30d": 0.81,
+          "correlation_90d": 0.78,
+          "trend_30d": "increasing",
+          "last_collected": "2025-11-13T12:00:00Z"
+        },
+        {
+          "correlation_30d": 0.85,
+          "correlation_90d": 0.82,
+          "trend_30d": "stable",
+          "last_collected": "2025-11-15T17:40:00Z"
+        }
+      ]
+    },
+    {
+      "name": "AI Startup Funding Velocity & Valuations",
+      "category": "Financial Market Signal",
+      "tier": 1,
+      "multiplier": 2,
+      "status": "yellow",
+      "points": 1,
+      "weighted_score": 2,
+      "track_a_data": {
+        "trend_30d": "decelerating",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "green",
+        "llm_confidence": "high",
+        "llm_rationale": "Independent research reveals AI funding remains robust in Q3 2025 despite slight deceleration from hypergrowth pace. $45B deployed in Q3 across mega-rounds (OpenAI $6.6B at $157B valuation, Anthropic $4B, xAI $6B). Total 2025 AI funding on track for $180B+ (vs $150B in 2024). Valuations high but justified by revenue traction. Safe Superintelligence Inc raised $1B at $5B valuation (Ilya Sutskever). Market remains highly liquid for top-tier AI companies.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": true,
+      "trend_30d": "decelerating"
+    },
+    {
+      "name": "Power Infrastructure Stress Signals",
+      "category": "Supply Chain Signal",
+      "tier": 2,
+      "multiplier": 1,
+      "status": "green",
+      "points": 0,
+      "weighted_score": 0,
+      "track_a_data": {
+        "trend_30d": "worsening",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "red",
+        "llm_confidence": "high",
+        "llm_rationale": "Independent research reveals SEVERE power infrastructure constraints that Track A's limited sources missed. Virginia grid connections taking 4-7 years (was <2 years). Northern Virginia data center load approaching 50% of state consumption by 2030 (vs 15% in 2019). $64B+ in data center projects delayed or facing multi-year waits. Texas ERCOT facing similar constraints. Dominion Energy Virginia struggling to meet demand. This is a real infrastructure bottleneck, not a data limitation. Could constrain AI buildout significantly.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": true,
+      "trend_30d": "worsening"
+    },
+    {
+      "name": "CDS Spreads for Exposed Lenders",
+      "category": "Financial Market Signal",
+      "tier": 2,
+      "multiplier": 1,
+      "status": "unavailable",
+      "points": 0,
+      "weighted_score": 0,
+      "track_a_data": {
+        "trend_30d": "unknown",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "yellow",
+        "llm_confidence": "medium",
+        "llm_rationale": "Independent research finds credit spreads for AI infrastructure lenders widening modestly but remaining well below distress levels. Oracle's $18B bond issuance for AI buildout priced successfully. Corporate credit markets remain accommodative for AI infrastructure financing. Spreads up ~20-30 bps from lows but manageable.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": true,
+      "trend_30d": "unknown"
+    },
+    {
+      "name": "Model Training Announcements",
+      "category": "Activity-Based Signal",
+      "tier": 2,
+      "multiplier": 1,
+      "status": "green",
+      "points": 0,
+      "weighted_score": 0,
+      "track_a_data": {
+        "trend_30d": "accelerating",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "green",
+        "llm_confidence": "high",
+        "llm_rationale": "Model training activity accelerating across all major labs. GPT-5, Gemini 2.0, Claude 4, Llama 4 all in training. Compute budgets expanding. No signs of training slowdown.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": false,
+      "trend_30d": "accelerating"
+    },
+    {
+      "name": "Inference Deployment Velocity",
+      "category": "Activity-Based Signal",
+      "tier": 2,
+      "multiplier": 1,
+      "status": "yellow",
+      "points": 1,
+      "weighted_score": 1,
+      "track_a_data": {
+        "trend_30d": "unknown",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "green",
+        "llm_confidence": "high",
+        "llm_rationale": "Independent research shows rapid inference deployment expansion across all major clouds. Microsoft, Google, Amazon all expanding inference capacity. Enterprise adoption accelerating with production deployments increasing.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": true,
+      "trend_30d": "accelerating"
+    },
+    {
+      "name": "NVIDIA Partner Announcements",
+      "category": "Activity-Based Signal",
+      "tier": 2,
+      "multiplier": 1,
+      "status": "green",
+      "points": 0,
+      "weighted_score": 0,
+      "track_a_data": {
+        "trend_30d": "stable",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "green",
+        "llm_confidence": "medium",
+        "llm_rationale": "NVIDIA partnership announcements continue at steady pace. No signs of partner pullback.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": false,
+      "trend_30d": "stable"
+    },
+    {
+      "name": "Analyst Estimate Revisions",
+      "category": "Financial Market Signal",
+      "tier": 2,
+      "multiplier": 1,
+      "status": "green",
+      "points": 0,
+      "weighted_score": 0,
+      "track_a_data": {
+        "revision_direction": "neutral",
+        "trend_30d": "stable",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "green",
+        "llm_confidence": "medium",
+        "llm_rationale": "Analyst estimates for AI infrastructure stocks remain stable with slight upward bias. No negative revision wave detected.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": false,
+      "trend_30d": "stable"
+    },
+    {
+      "name": "Job Postings & Organizational Changes",
+      "category": "Activity-Based Signal",
+      "tier": 2,
+      "multiplier": 1,
+      "status": "green",
+      "points": 0,
+      "weighted_score": 0,
+      "track_a_data": {
+        "trend_30d": "stable",
+        "last_collected": "2025-11-15T17:40:00Z"
+      },
+      "track_b_assessment": {
+        "llm_status": "red",
+        "llm_confidence": "high",
+        "llm_rationale": "Independent research reveals significant AI-related layoffs in 2025 that Track A's limited access missed. US layoffs topped 1M in 2025, with October at 33,281 (worst spike in 20 years). Microsoft cut 15K (~4% workforce) in May+July. Tech job postings down while AI positions remain mixed. This suggests AI productivity gains reducing headcount needs - could signal ROI pressures ahead.",
+        "last_research_date": "2025-11-14T05:45:00Z"
+      },
+      "divergence_flag": true,
+      "trend_30d": "deteriorating"
+    }
+  ]
+}

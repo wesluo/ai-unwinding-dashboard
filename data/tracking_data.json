@@ -1,0 +1,395 @@
+{
+  "metadata": {
+    "last_updated": "2025-11-11T00:00:00Z",
+    "version": "1.2.0",
+    "description": "AI Infrastructure Unwinding Monitor - Q3 2025 Update with AI Infrastructure Specialists",
+    "quarterly_capture_dates": {
+      "Q3_2025": "2025-11-11",
+      "Q2_2025": "2025-08-01",
+      "Q1_2025": "2025-05-01",
+      "Q4_2024": "2025-02-01",
+      "Q3_2024": "2024-11-01"
+    }
+  },
+  "composite_risk_score": 7,
+  "current_phase": 0,
+  "risk_level": "LOW",
+  "risk_rationale": {
+    "summary": "Composite Risk Score of 7/40 indicates LOW RISK. AI infrastructure buildout continues to accelerate with no Phase 1 unwinding signals in operational metrics. All major hyperscalers raised capex guidance in Q3 2025. The 2 Active Signals tracked include both positive developments (capex acceleration) and emerging concerns (Meta investor skepticism).",
+    "why_low": "Score of 7 is well below the 9-point threshold for MODERATE risk. Capex guidance universally increasing (not decreasing), no excess GPU capacity, no project delays, strong semiconductor demand. Collective hyperscaler spending exceeds $380B for 2025. Each RED indicator (capex cuts >15%, AI growth <20% YoY, utilization <60%) would add 2-6 points to the score - none are currently triggered.",
+    "why_not_moderate": "Would need 9+ points to reach MODERATE. No capex reductions detected (would add 3-6 points). AI revenue growth remains strong 25-55% YoY range - no RED signals (would add 6 points if <20%). No indicators of excess capacity or utilization concerns (would add 4 points). Operating fundamentals remain healthy across all primary indicators.",
+    "concerns": "Current 7 points come from: (1) AI revenue deceleration from hypergrowth = 1 point × 3x multiplier = 3 points, (2) Meta market reaction signaling sentiment risk = 1 point × 2x multiplier = 2 points, (3) Minor margin/valuation concerns = 2 points × 1x = 2 points. Meta stock drop (-11% despite beat) signals emerging investor skepticism. CoreWeave revenue guidance miss suggests potential demand softening in specialist tier. These are sentiment risks, not operational signals yet.",
+    "key_watch": "NVIDIA Q3 earnings (Nov 19) critical - if Data Center revenue misses or guidance disappoints, could add 4-6 points, pushing toward MODERATE (9-16 range). Meta sentiment spreading to MSFT/AMZN/GOOGL could add another 2-4 points. Any hyperscaler announcing capex reduction >5% would immediately add 3 points (YELLOW) or 6 points if >15% (RED). Active Signals of 2 reflects these two key developments being monitored."
+  },
+  "indicator_scoring": {
+    "formula": "Composite Risk Score = Σ (Indicator Points × Multiplier)",
+    "indicators": [
+      {
+        "name": "Capex Guidance",
+        "multiplier": 3,
+        "status": "green",
+        "points": 0,
+        "weighted_score": 0,
+        "description": "All hyperscalers raised capex guidance in Q3 2025"
+      },
+      {
+        "name": "AI Revenue Growth",
+        "multiplier": 3,
+        "status": "yellow",
+        "points": 1,
+        "weighted_score": 3,
+        "description": "Decelerating from hypergrowth but still 25-55% YoY"
+      },
+      {
+        "name": "GPU Utilization",
+        "multiplier": 2,
+        "status": "green",
+        "points": 0,
+        "weighted_score": 0,
+        "description": "No indicators of excess capacity, demand remains strong"
+      },
+      {
+        "name": "Margin Compression",
+        "multiplier": 2,
+        "status": "yellow",
+        "points": 1,
+        "weighted_score": 2,
+        "description": "Meta investor concerns, sentiment pressure emerging"
+      },
+      {
+        "name": "Timeline Changes",
+        "multiplier": 2,
+        "status": "green",
+        "points": 0,
+        "weighted_score": 0,
+        "description": "No project delays announced, buildouts on schedule"
+      },
+      {
+        "name": "Enterprise Adoption",
+        "multiplier": 1,
+        "status": "yellow",
+        "points": 1,
+        "weighted_score": 1,
+        "description": "Mixed signals, proving ROI in various use cases"
+      },
+      {
+        "name": "Cost Economics",
+        "multiplier": 1,
+        "status": "yellow",
+        "points": 1,
+        "weighted_score": 1,
+        "description": "Improving but not yet viable for all use cases"
+      },
+      {
+        "name": "Semiconductor Orders",
+        "multiplier": 1,
+        "status": "green",
+        "points": 0,
+        "weighted_score": 0,
+        "description": "Strong demand, NVIDIA backlog robust (pending Q3 confirmation)"
+      }
+    ],
+    "total_points": 4,
+    "total_weighted_score": 7,
+    "risk_level": "LOW"
+  },
+  "active_signals": [
+    {
+      "title": "Hyperscaler CapEx Acceleration Continues",
+      "description": "All major hyperscalers increased 2025 capex guidance in Q3 earnings. Collective spending now exceeds $380B for 2025, up from ~$315B projections.",
+      "source": "Q3 2025 Earnings Reports (Oct/Nov)",
+      "severity": "low",
+      "detected_at": "2025-11-01"
+    },
+    {
+      "title": "Meta Market Reaction: AI Spending Skepticism",
+      "description": "Meta stock dropped 11% despite beating estimates - largest drop in 3 years. Investor concerns about AI spending ROI despite $70-72B capex guidance increase.",
+      "source": "Meta Q3 2025 Earnings (Oct 31)",
+      "severity": "moderate",
+      "detected_at": "2025-10-31"
+    }
+  ],
+  "companies": [
+    {
+      "name": "Microsoft (MSFT)",
+      "ticker": "MSFT",
+      "status": "green",
+      "capex": "$64.6B (FY2025 actual, +45.1% YoY) - Accelerating in FY2026",
+      "ai_growth": "$10B+ annual run rate (Q2 target)",
+      "margin": "Stable",
+      "risk_score": 1,
+      "quarterly_report_date": "2025-10-31",
+      "notes": "AI business fastest ever to $10B milestone. CFO Hood confirmed FY2026 capex acceleration."
+    },
+    {
+      "name": "Amazon (AMZN)",
+      "ticker": "AMZN",
+      "status": "green",
+      "capex": "$125B (2025 guidance) - Q3: $23.95B (+7% QoQ, +83% YoY)",
+      "ai_growth": "Strong AWS AI/ML growth",
+      "margin": "AWS stable",
+      "risk_score": 1,
+      "quarterly_report_date": "2025-10-31",
+      "notes": "CFO Olsavsky indicated capex will grow further in 2026. Q1 2025: $24.3B."
+    },
+    {
+      "name": "Alphabet (GOOGL)",
+      "ticker": "GOOGL",
+      "status": "green",
+      "capex": "$91-93B (2025 guidance raised from $85B) - Q3: $24B",
+      "ai_growth": "Cloud AI strong, 1/4 of code now AI-generated",
+      "margin": "Google Cloud improving",
+      "risk_score": 1,
+      "quarterly_report_date": "2025-10-29",
+      "notes": "Raised capex guidance. 60% servers, 40% data center/networking. Q1: $17B."
+    },
+    {
+      "name": "Meta (META)",
+      "ticker": "META",
+      "status": "yellow",
+      "capex": "$70-72B (2025 guidance raised from $66-72B) - Q3: $19.37B (+14% QoQ, +111% YoY)",
+      "ai_growth": "No direct revenue stream",
+      "margin": "Under pressure",
+      "risk_score": 4,
+      "quarterly_report_date": "2025-10-30",
+      "notes": "Stock dropped 11% (worst in 3 years) despite beat - investor concerns about AI ROI. Lacks cloud revenue story unlike peers."
+    },
+    {
+      "name": "NVIDIA (NVDA)",
+      "ticker": "NVDA",
+      "status": "green",
+      "capex": "N/A (fabless)",
+      "ai_growth": "Expected +55.6% YoY Q3 (reports Nov 19)",
+      "margin": "75%+",
+      "risk_score": 2,
+      "quarterly_report_date": "2025-11-19 (expected)",
+      "notes": "Q3 earnings pending Nov 19. Consensus: $1.23 EPS on $54.59B revenue. Data Center demand remains strong."
+    },
+    {
+      "name": "Oracle (ORCL)",
+      "ticker": "ORCL",
+      "status": "yellow",
+      "capex": "$35B (FY2026 guidance, +91% YoY)",
+      "ai_growth": "52-55% YoY (Cloud Infrastructure)",
+      "margin": "Negative FCF (-$5.9B TTM)",
+      "risk_score": 6,
+      "quarterly_report_date": "2025-12-09 (Q2 FY2026)",
+      "notes": "Q2 FY2026: Cloud infra $3.3B (+52% YoY), RPO $97.3B (+50%). $30B OpenAI deal (4.5GW capacity). Raised $18B bonds, negotiating $38B more. Stargate project financing concerns emerging."
+    },
+    {
+      "name": "CoreWeave (CRWV)",
+      "ticker": "CRWV",
+      "status": "yellow",
+      "capex": "$955.5M Q3 2025",
+      "ai_growth": "355% YoY (Q3 2025)",
+      "margin": "Negative (adj. net loss $100.4M Q3)",
+      "risk_score": 6,
+      "quarterly_report_date": "2025-11-10",
+      "notes": "IPO March 2025 @$40, now $105. Q3: $1.36B revenue, $55.6B backlog. $6.5B OpenAI expansion, $14.2B Meta deal. Revenue guidance cut to $5.05-5.15B (vs $5.29B expected)."
+    },
+    {
+      "name": "Iris Energy (IREN)",
+      "ticker": "IREN",
+      "status": "green",
+      "capex": "$674M GPU procurement",
+      "ai_growth": "$500M+ ARR target by Q1 2026",
+      "margin": "Improving",
+      "risk_score": 4,
+      "quarterly_report_date": "2025-11-08 (Q1 FY2025)",
+      "notes": "Bitcoin miner pivoting to AI cloud. Stock +269% YTD 2025. Doubling GPU fleet to 23k GPUs. Market cap: $17.09B."
+    },
+    {
+      "name": "Applied Digital (APLD)",
+      "ticker": "APLD",
+      "status": "green",
+      "capex": "Multi-GW facilities under development",
+      "ai_growth": "84% YoY (Q1 FY2026)",
+      "margin": "Negative (-$233.68M losses)",
+      "risk_score": 5,
+      "quarterly_report_date": "2025-10-10 (Q1 FY2026)",
+      "notes": "$11B CoreWeave contract (400MW), $5B hyperscaler deal (200MW). Q1 FY2026: $64.2M revenue. Stock +39.4% YTD 2025."
+    },
+    {
+      "name": "Nebius (NBIS)",
+      "ticker": "NBIS",
+      "status": "green",
+      "capex": "$955.5M Q3 2025",
+      "ai_growth": "400% YoY (Q3 2025)",
+      "margin": "Negative (adj. net loss $100.4M Q3)",
+      "risk_score": 4,
+      "quarterly_report_date": "2025-11-11",
+      "notes": "Formerly Yandex, renamed Aug 2024. Q3: $146.1M revenue. $19.4B Microsoft deal, $3B Meta deal (Nov 2025). Stock +475% past year."
+    }
+  ],
+  "capex_chart_data": {
+    "labels": ["Q1 2024", "Q2 2024", "Q3 2024", "Q4 2024", "Q1 2025", "Q2 2025", "Q3 2025"],
+    "datasets": [
+      {
+        "label": "Microsoft",
+        "data": [14, 15, 16, 16.2, 21.4, 19.0, 20.0],
+        "borderColor": "#3b82f6",
+        "backgroundColor": "#3b82f640",
+        "tension": 0.3
+      },
+      {
+        "label": "Amazon/AWS",
+        "data": [13, 14, 16, 18, 24.3, 23.0, 23.95],
+        "borderColor": "#f59e0b",
+        "backgroundColor": "#f59e0b40",
+        "tension": 0.3
+      },
+      {
+        "label": "Alphabet",
+        "data": [10, 11, 12, 13, 17, 19, 24],
+        "borderColor": "#10b981",
+        "backgroundColor": "#10b98140",
+        "tension": 0.3
+      },
+      {
+        "label": "Meta",
+        "data": [6, 7, 8, 9, 13, 17, 19.37],
+        "borderColor": "#8b5cf6",
+        "backgroundColor": "#8b5cf640",
+        "tension": 0.3
+      }
+    ]
+  },
+  "revenue_chart_data": {
+    "labels": ["Q1 2024", "Q2 2024", "Q3 2024", "Q4 2024", "Q1 2025"],
+    "datasets": [
+      {
+        "label": "Azure AI Growth",
+        "data": [50, 48, 45, 42, 38],
+        "borderColor": "#3b82f6",
+        "backgroundColor": "#3b82f640",
+        "tension": 0.3
+      },
+      {
+        "label": "AWS AI/ML Growth (est.)",
+        "data": [45, 44, 43, 41, 40],
+        "borderColor": "#f59e0b",
+        "backgroundColor": "#f59e0b40",
+        "tension": 0.3
+      },
+      {
+        "label": "Google Cloud AI Growth (est.)",
+        "data": [40, 38, 37, 36, 35],
+        "borderColor": "#10b981",
+        "backgroundColor": "#10b98140",
+        "tension": 0.3
+      },
+      {
+        "label": "NVIDIA Data Center Growth",
+        "data": [217, 150, 100, 80, 65],
+        "borderColor": "#ef4444",
+        "backgroundColor": "#ef444440",
+        "tension": 0.3
+      }
+    ]
+  },
+  "indicator_tracking": {
+    "capex_guidance": {
+      "status": "green",
+      "value": "Strongly Increasing",
+      "trend": "accelerating",
+      "last_updated": "2025-11-11",
+      "notes": "Q3 2025: All hyperscalers raised guidance. Collective >$380B for 2025, up from $315B projections. Microsoft accelerating in FY2026."
+    },
+    "ai_revenue_growth": {
+      "status": "yellow",
+      "value": "25-55% YoY",
+      "trend": "decelerating",
+      "last_updated": "2025-11-11",
+      "notes": "Microsoft AI: $10B+ run rate. Mag 7: +26.7% earnings, +17.6% revenue. NVIDIA expected +55.6%. Still strong but decelerating from hypergrowth."
+    },
+    "gpu_utilization": {
+      "status": "green",
+      "value": "High demand continues",
+      "trend": "stable",
+      "last_updated": "2025-11-11",
+      "notes": "Q3 2025: No indicators of excess capacity. NVIDIA demand commentary remains positive ahead of Nov 19 earnings."
+    },
+    "margin_compression": {
+      "status": "yellow",
+      "value": "Mixed signals",
+      "trend": "watching",
+      "last_updated": "2025-11-11",
+      "notes": "Meta facing investor skepticism despite spending increases. Market reaction suggests ROI concerns emerging."
+    },
+    "timeline_changes": {
+      "status": "green",
+      "value": "On or ahead of schedule",
+      "trend": "stable",
+      "last_updated": "2025-11-11",
+      "notes": "No major project delays in Q3 reports. Buildouts proceeding as planned."
+    },
+    "semiconductor_orders": {
+      "status": "green",
+      "value": "Strong",
+      "trend": "stable",
+      "last_updated": "2025-11-11",
+      "notes": "NVIDIA Q3 earnings Nov 19 will be key indicator. Current consensus: $54.59B revenue (+55.6% YoY)."
+    },
+    "credit_spreads": {
+      "status": "green",
+      "value": "Tight",
+      "trend": "stable",
+      "last_updated": "2025-11-11",
+      "notes": "No signs of credit stress. Tech investment-grade spreads remain compressed."
+    },
+    "private_valuations": {
+      "status": "yellow",
+      "value": "Elevated but stable",
+      "trend": "stable",
+      "last_updated": "2025-11-11",
+      "notes": "No new funding rounds reported in Q3. Meta market reaction signals investor patience may be tested."
+    }
+  },
+  "quarterly_updates": [
+    {
+      "quarter": "Q3 2025",
+      "date": "2025-11-11",
+      "summary": "Hyperscaler capex acceleration continues with all major players raising 2025 guidance. Collective spending now >$380B. However, Meta's market reaction signals emerging investor skepticism about AI ROI despite continued spending. Risk remains LOW but watching for sentiment shifts.",
+      "highlights": [
+        "Alphabet raised 2025 capex guidance to $91-93B (from $85B)",
+        "Meta raised guidance to $70-72B but stock dropped 11% - worst decline in 3 years",
+        "Amazon guiding $125B for 2025, CFO indicated further growth in 2026",
+        "Microsoft confirming FY2026 capex acceleration, AI business hitting $10B+ run rate",
+        "NVIDIA earnings Nov 19 will be critical - consensus $54.59B revenue (+55.6% YoY)",
+        "Key concern: Meta reaction shows market testing patience on AI monetization timeline"
+      ],
+      "risk_score": 7
+    },
+    {
+      "quarter": "Q1 2025",
+      "date": "2025-01-28",
+      "summary": "All major hyperscalers reported strong AI revenue growth. No capex reductions announced. Risk remains low.",
+      "highlights": [
+        "Microsoft maintained $80B capex guidance",
+        "AWS AI/ML revenue growing 40%+",
+        "NVIDIA Data Center revenue exceeded expectations",
+        "No warning signals detected"
+      ],
+      "risk_score": 8
+    }
+  ],
+  "news_sentiment": {
+    "last_7_days": {
+      "total_items": 0,
+      "relevant_items": 0,
+      "sentiment_distribution": {},
+      "top_warnings": []
+    },
+    "last_30_days": {
+      "total_items": 0,
+      "relevant_items": 0,
+      "sentiment_distribution": {},
+      "top_warnings": []
+    }
+  },
+  "usage_instructions": {
+    "note": "This is a template file. Update with actual data from earnings calls, SEC filings, and news monitoring.",
+    "update_frequency": "Update companies[] and indicator_tracking{} quarterly after earnings. Update news_sentiment{} weekly.",
+    "risk_scoring": "Composite risk score: 0-8 = LOW, 9-16 = MODERATE, 17-24 = HIGH, 25+ = CRITICAL"
+  }
+}
