@@ -2,7 +2,7 @@
   "_comment": "Leading Indicators Tracking Data - Complete reconstruction with Nov 11-14 Track B data + Nov 15 Track A updates",
   "_instructions": "This file tracks leading indicators that predict AI infrastructure unwinding 1-3 quarters before lagging indicators. Update weekly for Tier 1 indicators.",
   "metadata": {
-    "last_updated": "2025-11-16T05:30:14Z",
+    "last_updated": "2025-11-16T05:41:56Z",
     "version": "1.0.2",
     "description": "Leading indicators for AI infrastructure unwinding - predicts Phase 1 entry before earnings reports confirm it",
     "collection_frequency": {
@@ -28,7 +28,7 @@
     "next_scheduled_update": "2025-11-22",
     "_note": "Divergence logic improved Nov 15 2025: Now prioritizes Track A when data available. Composite score: 5/48 (was 10). 4 true divergences, 2 data fallbacks."
   },
-  "composite_leading_score_track_a": 5,
+  "composite_leading_score_track_a": 4,
   "composite_leading_score_track_b": 5,
   "composite_leading_score": 5,
   "leading_risk_level": "LOW",
@@ -47,7 +47,7 @@
       "#7 CDS Spreads for Exposed Lenders: Track A data insufficient, using Track B YELLOW",
       "#9 Inference Deployment Velocity: Track A data insufficient, using Track B GREEN"
     ],
-    "key_findings": "Composite score dropped from 10 to 5 points because previous logic incorrectly used Track B assessments even when Track A had valid data. New logic correctly prioritizes quantitative data (Track A) when available. Track A score: 5 (quantitative), Track B score: 5 (qualitative), Final score: 5 (data-quality-aware hybrid).",
+    "key_findings": "Composite score is 5/48 using data-quality-aware hybrid approach. When Track A has quantitative data, we use it (even if Track B disagrees). When Track A data unavailable, we fall back to Track B qualitative assessment. Track A score: 4 (pure quantitative), Track B score: 5 (pure qualitative), Final score: 5 (hybrid with smart fallback).",
     "scoring_breakdown": {
       "gpu_pricing": "YELLOW (1 pt \u00d7 2 = 2): Track A shows price volatility despite Track B research suggesting strong demand",
       "ai_funding": "YELLOW (1 pt \u00d7 2 = 2): Track A detects deceleration from hypergrowth pace despite Track B noting robust absolute levels",
@@ -249,7 +249,7 @@
       "category": "Financial Market Signal",
       "tier": 2,
       "multiplier": 1,
-      "status": "unavailable",
+      "status": "yellow",
       "points": 1,
       "weighted_score": 1,
       "track_a_data": {
@@ -296,7 +296,7 @@
       "category": "Activity-Based Signal",
       "tier": 2,
       "multiplier": 1,
-      "status": "yellow",
+      "status": "green",
       "points": 0,
       "weighted_score": 0,
       "track_a_data": {
