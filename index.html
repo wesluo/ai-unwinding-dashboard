@@ -297,26 +297,36 @@
 
         /* Status Badges */
         .status-badge {
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.75rem;
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
+            white-space: nowrap;
+            margin: 4px 4px 4px 0;
+            vertical-align: middle;
         }
 
         .status-badge.green {
-            background: rgba(192, 255, 0, 0.2);
-            color: var(--accent-positive);
+            background: rgba(16, 185, 129, 0.25);
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            color: #10B981;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
         }
 
         .status-badge.yellow {
-            background: rgba(255, 167, 38, 0.2);
-            color: var(--accent-warning);
+            background: rgba(255, 165, 0, 0.15);
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            color: #FFA502;
+            box-shadow: 0 4px 12px rgba(255, 165, 0, 0.15);
         }
 
         .status-badge.red {
-            background: rgba(255, 107, 107, 0.2);
-            color: var(--accent-negative);
+            background: rgba(255, 165, 0, 0.15);
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            color: #FFB366;
+            box-shadow: 0 4px 12px rgba(255, 165, 0, 0.15);
         }
 
         /* Section Styles */
