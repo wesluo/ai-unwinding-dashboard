@@ -7,41 +7,52 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         :root {
-            /* V4.0 Design System - Dark Theme (ai-bubble-monitor.vercel.app) */
+            /* DARK GLASSMORPHISM STYLE - Modern Analytics Dark Theme */
             /* Backgrounds */
-            --bg-primary: #3d4044;
-            --bg-card: #2e3135;
-            --bg-card-alt: #35383c;
-            --bg-hover: rgba(255,255,255,0.05);
+            --bg-primary: #0A1628;              /* Deep navy background */
+            --bg-secondary: #0D1F3C;            /* Slightly lighter navy */
+            --bg-card: rgba(15, 30, 60, 0.6);   /* Semi-transparent dark blue cards */
+            --bg-card-alt: rgba(20, 35, 70, 0.7); /* Alt card with more opacity */
+            --bg-hover: rgba(0, 102, 255, 0.15);  /* Blue hover overlay */
 
             /* Text */
-            --text-primary: #ffffff;
-            --text-secondary: #b0b3b8;
-            --text-tertiary: #8a8d91;
+            --text-primary: #FFFFFF;            /* Pure white for primary text */
+            --text-secondary: #3D9FFF;          /* Electric blue for highlights */
+            --text-tertiary: #7BA3C4;           /* Muted blue-gray for supporting text */
+            --text-data: #FFFFFF;               /* White for data/metrics */
 
             /* Accents */
-            --accent-positive: #c0ff00;  /* Lime green for positive */
-            --accent-negative: #ff6b6b;  /* Coral red for alerts */
-            --accent-warning: #ffa726;   /* Amber for warnings */
-            --accent-info: #64b5f6;      /* Sky blue for info */
+            --accent-positive: #10B981;         /* Vibrant emerald green (positive/green status) */
+            --accent-negative: #FF4757;         /* Soft red (alerts) */
+            --accent-warning: #FFA502;          /* Warm orange (warnings) */
+            --accent-info: #3D9FFF;             /* Info blue (links) */
 
-            /* Chart colors */
-            --chart-lime: #c0ff00;
-            --chart-coral: #ff6b6b;
-            --chart-blue: #87ceeb;
-            --chart-green: #90ee90;
+            /* Chart colors - Modern blue palette */
+            --chart-blue1: #0066FF;
+            --chart-blue2: #3D9FFF;
+            --chart-blue3: #66B3FF;
+            --chart-blue4: #99CCFF;
+            --chart-accent1: #1E90FF;
+            --chart-accent2: #4169E1;
+            --chart-lime: #10B981;              /* Use emerald green instead of lime */
+            --chart-coral: #FF4757;
+            --chart-blue: #3D9FFF;
+            --chart-green: #10B981;
 
-            /* Borders & Shadows */
-            --border-subtle: rgba(255,255,255,0.08);
-            --border-medium: rgba(255,255,255,0.15);
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
-            --shadow-md: 0 4px 8px rgba(0,0,0,0.3);
-            --shadow-lg: 0 8px 16px rgba(0,0,0,0.4);
+            /* Glassmorphism Shadows - Blue glows */
+            --border-subtle: rgba(0, 102, 255, 0.1);
+            --border-medium: rgba(0, 102, 255, 0.25);
+            --shadow-glow: 0 8px 32px rgba(0, 102, 255, 0.3);
+            --shadow-card: 0 4px 20px rgba(0, 102, 255, 0.2);
+            --shadow-hover: 0 12px 40px rgba(0, 102, 255, 0.4);
+            --shadow-sm: 0 4px 20px rgba(0, 102, 255, 0.2);
+            --shadow-md: 0 8px 32px rgba(0, 102, 255, 0.3);
+            --shadow-lg: 0 12px 40px rgba(0, 102, 255, 0.4);
 
-            /* Spacing */
-            --gap: 20px;
-            --card-padding: 24px;
-            --border-radius: 12px;
+            /* Spacing - Modern generous spacing */
+            --gap: 24px;
+            --card-padding: 32px;
+            --border-radius: 20px;              /* Smooth rounded corners */
         }
 
         * {
@@ -51,13 +62,35 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             padding: 0;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Subtle Dark Grid Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: radial-gradient(circle at center, rgba(0, 102, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
 
         /* Container */
         .container {
@@ -77,15 +110,20 @@
         /* Card Base Styles */
         .card {
             background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-subtle);
             border-radius: var(--border-radius);
             padding: var(--card-padding);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.2s ease;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
             position: relative;
         }
 
         .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--border-medium);
             background: var(--bg-card-alt);
         }
 
@@ -1475,7 +1513,7 @@
         </div>
 
         <footer>
-            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-15 21:42:03 UTC</p>
+            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-17 11:52:25 UTC</p>
             <p>Data sources: SEC filings, earnings calls, public reports</p>
             <p>For educational and research purposes only. Not investment advice.</p>
         </footer>
