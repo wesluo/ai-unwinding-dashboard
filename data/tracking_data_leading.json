@@ -2,8 +2,8 @@
   "_comment": "Leading Indicators Tracking Data - Complete reconstruction with Nov 11-14 Track B data + Nov 15 Track A updates",
   "_instructions": "This file tracks leading indicators that predict AI infrastructure unwinding 1-3 quarters before lagging indicators. Update weekly for Tier 1 indicators.",
   "metadata": {
-    "last_updated": "2025-11-16T05:41:56Z",
-    "version": "1.0.2",
+    "last_updated": "2025-11-19T23:30:00Z",
+    "version": "1.0.3",
     "description": "Leading indicators for AI infrastructure unwinding - predicts Phase 1 entry before earnings reports confirm it",
     "collection_frequency": {
       "weekly": [
@@ -160,16 +160,19 @@
       "points": 0,
       "weighted_score": 0,
       "track_a_data": {
-        "correlation_30d": 0.85,
-        "correlation_90d": 0.82,
+        "correlation_30d": 0.82,
+        "correlation_90d": 0.83,
         "trend_30d": "stable",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "last_collected": "2025-11-19T23:30:00Z",
+        "recent_movements": "NVDA +6.77% (Nov 19 earnings), META -11% (Oct 31 earnings), MSFT -3% (Oct 31), AMZN +surge (Oct 31). Collective $380B+ capex maintains structural correlation despite individual stock divergences.",
+        "assessment": "Moderate divergence in individual stock performance (Meta weakness vs NVIDIA strength) but overall correlation remains elevated due to shared AI infrastructure spending trajectory. No systematic breakdown detected."
       },
       "track_b_assessment": {
         "llm_status": "green",
-        "llm_confidence": "medium",
-        "llm_rationale": "Stock correlations remain high, indicating market treats AI infrastructure stocks as a cohesive group. No breakdown detected.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_confidence": "high",
+        "llm_rationale": "Stock correlations remain high despite individual divergences. Market treats AI infrastructure stocks as cohesive group based on collective $380B+ capex spending. Meta's -11% drop isolated to company-specific concerns (no cloud revenue), not ecosystem-wide. NVIDIA's +6.77% validates other hyperscalers. No breakdown detected.",
+        "last_research_date": "2025-11-19T23:30:00Z",
+        "key_evidence": "All hyperscalers (MSFT $80B, AMZN $125B, GOOGL $91-93B, META $70-72B) raised capex guidance in Q3 2025. NVIDIA results confirm demand justifies spending. Structural correlation intact."
       },
       "divergence_flag": false,
       "trend_30d": "stable",
@@ -191,6 +194,13 @@
           "correlation_90d": 0.82,
           "trend_30d": "stable",
           "last_collected": "2025-11-15T17:40:00Z"
+        },
+        {
+          "correlation_30d": 0.82,
+          "correlation_90d": 0.83,
+          "trend_30d": "stable",
+          "last_collected": "2025-11-19T23:30:00Z",
+          "note": "Slight 30d decrease due to Meta divergence, but 90d stable. Individual stock dispersion increasing but group correlation remains elevated."
         }
       ],
       "final_status": "green",

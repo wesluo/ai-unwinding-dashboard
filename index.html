@@ -7,52 +7,41 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         :root {
-            /* DARK GLASSMORPHISM STYLE - Modern Analytics Dark Theme */
+            /* V4.0 Design System - Dark Theme (ai-bubble-monitor.vercel.app) */
             /* Backgrounds */
-            --bg-primary: #0A1628;              /* Deep navy background */
-            --bg-secondary: #0D1F3C;            /* Slightly lighter navy */
-            --bg-card: rgba(15, 30, 60, 0.6);   /* Semi-transparent dark blue cards */
-            --bg-card-alt: rgba(20, 35, 70, 0.7); /* Alt card with more opacity */
-            --bg-hover: rgba(0, 102, 255, 0.15);  /* Blue hover overlay */
+            --bg-primary: #3d4044;
+            --bg-card: #2e3135;
+            --bg-card-alt: #35383c;
+            --bg-hover: rgba(255,255,255,0.05);
 
             /* Text */
-            --text-primary: #FFFFFF;            /* Pure white for primary text */
-            --text-secondary: #3D9FFF;          /* Electric blue for highlights */
-            --text-tertiary: #7BA3C4;           /* Muted blue-gray for supporting text */
-            --text-data: #FFFFFF;               /* White for data/metrics */
+            --text-primary: #ffffff;
+            --text-secondary: #b0b3b8;
+            --text-tertiary: #8a8d91;
 
             /* Accents */
-            --accent-positive: #10B981;         /* Vibrant emerald green (positive/green status) */
-            --accent-negative: #FF4757;         /* Soft red (alerts) */
-            --accent-warning: #FFA502;          /* Warm orange (warnings) */
-            --accent-info: #3D9FFF;             /* Info blue (links) */
+            --accent-positive: #c0ff00;  /* Lime green for positive */
+            --accent-negative: #ff6b6b;  /* Coral red for alerts */
+            --accent-warning: #ffa726;   /* Amber for warnings */
+            --accent-info: #64b5f6;      /* Sky blue for info */
 
-            /* Chart colors - Modern blue palette */
-            --chart-blue1: #0066FF;
-            --chart-blue2: #3D9FFF;
-            --chart-blue3: #66B3FF;
-            --chart-blue4: #99CCFF;
-            --chart-accent1: #1E90FF;
-            --chart-accent2: #4169E1;
-            --chart-lime: #10B981;              /* Use emerald green instead of lime */
-            --chart-coral: #FF4757;
-            --chart-blue: #3D9FFF;
-            --chart-green: #10B981;
+            /* Chart colors */
+            --chart-lime: #c0ff00;
+            --chart-coral: #ff6b6b;
+            --chart-blue: #87ceeb;
+            --chart-green: #90ee90;
 
-            /* Glassmorphism Shadows - Blue glows */
-            --border-subtle: rgba(0, 102, 255, 0.1);
-            --border-medium: rgba(0, 102, 255, 0.25);
-            --shadow-glow: 0 8px 32px rgba(0, 102, 255, 0.3);
-            --shadow-card: 0 4px 20px rgba(0, 102, 255, 0.2);
-            --shadow-hover: 0 12px 40px rgba(0, 102, 255, 0.4);
-            --shadow-sm: 0 4px 20px rgba(0, 102, 255, 0.2);
-            --shadow-md: 0 8px 32px rgba(0, 102, 255, 0.3);
-            --shadow-lg: 0 12px 40px rgba(0, 102, 255, 0.4);
+            /* Borders & Shadows */
+            --border-subtle: rgba(255,255,255,0.08);
+            --border-medium: rgba(255,255,255,0.15);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.3);
+            --shadow-lg: 0 8px 16px rgba(0,0,0,0.4);
 
-            /* Spacing - Modern generous spacing */
-            --gap: 24px;
-            --card-padding: 32px;
-            --border-radius: 20px;              /* Smooth rounded corners */
+            /* Spacing */
+            --gap: 20px;
+            --card-padding: 24px;
+            --border-radius: 12px;
         }
 
         * {
@@ -62,35 +51,13 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             padding: 0;
-            position: relative;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Subtle Dark Grid Pattern */
-        body::before {
-            content: '';
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-image: radial-gradient(circle at center, rgba(0, 102, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.5;
-        }
-
-        body > * {
-            position: relative;
-            z-index: 1;
-        }
 
         /* Container */
         .container {
@@ -110,20 +77,15 @@
         /* Card Base Styles */
         .card {
             background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--border-subtle);
             border-radius: var(--border-radius);
             padding: var(--card-padding);
-            box-shadow: var(--shadow-card);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
             position: relative;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--border-medium);
             background: var(--bg-card-alt);
         }
 
@@ -298,35 +260,27 @@
         /* Status Badges */
         .status-badge {
             display: inline-block;
-            padding: 6px 14px;
-            border-radius: 16px;
-            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             white-space: nowrap;
-            margin: 4px 4px 4px 0;
-            vertical-align: middle;
         }
 
         .status-badge.green {
-            background: rgba(16, 185, 129, 0.25);
-            border: 1px solid rgba(16, 185, 129, 0.5);
-            color: #10B981;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            background: rgba(192, 255, 0, 0.2);
+            color: var(--accent-positive);
         }
 
         .status-badge.yellow {
-            background: rgba(255, 165, 0, 0.15);
-            border: 1px solid rgba(255, 165, 0, 0.3);
-            color: #FFA502;
-            box-shadow: 0 4px 12px rgba(255, 165, 0, 0.15);
+            background: rgba(255, 167, 38, 0.2);
+            color: var(--accent-warning);
         }
 
         .status-badge.red {
-            background: rgba(255, 165, 0, 0.15);
-            border: 1px solid rgba(255, 165, 0, 0.3);
-            color: #FFB366;
-            box-shadow: 0 4px 12px rgba(255, 165, 0, 0.15);
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--accent-negative);
         }
 
         /* Section Styles */
@@ -529,7 +483,17 @@
     <div class="container">
         <!-- Lagging Indicators View -->
         <div class="dashboard-view " id="lagging-view">
-            <div class="dashboard-grid">
+            
+    <div style="background: var(--bg-card-alt); border-left: 3px solid var(--accent-positive); padding: 12px 20px; margin-bottom: var(--gap); border-radius: 6px; display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 1.25rem;">✅</span>
+        <div style="flex: 1;">
+            <span style="color: var(--text-secondary); font-size: 0.875rem;">Latest Update:</span>
+            <strong style="color: var(--text-primary); margin-left: 8px;">NVIDIA Q3 FY2026 Earnings</strong>
+            <span style="background: rgba(255,255,255,0.1); padding: 3px 10px; border-radius: 10px; font-size: 0.75rem; color: var(--accent-positive); margin-left: 12px; font-weight: 600;">Beat Estimates</span>
+            <span style="color: var(--text-tertiary); margin-left: 12px; font-size: 0.8125rem;">Nov 19, 2025 23:00 UTC</span>
+        </div>
+    </div>
+    <div class="dashboard-grid">
     <div class="card metric-card">
         <div class="info-icon" tabindex="0">i</div>
         
@@ -539,6 +503,7 @@
             <div class="popover-meta"><div><strong>Scale:</strong> 0-8 (LOW), 9-16 (MODERATE), 17-24 (HIGH), 25+ (CRITICAL)</div><div><strong>Data Source:</strong> Quarterly earnings reports</div><div><strong>Update Frequency:</strong> Quarterly</div><div><strong>Confidence:</strong> High</div></div>
         </div>
         
+        <div class="metric-title" style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 8px;">Lagging Indicators</div>
         <div class="metric-value" style="color: var(--accent-positive);">7/40</div>
         <div class="metric-badge ">LOW RISK</div>
         <div class="metric-description">Composite risk from quarterly earnings</div>
@@ -553,6 +518,7 @@
             <div class="popover-meta"><div><strong>Current:</strong> Pre-Phase 1 (No unwinding)</div><div><strong>Next Phase:</strong> Capex reductions</div><div><strong>Estimated Duration:</strong> 1-2 quarters</div></div>
         </div>
         
+        <div class="metric-title" style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 8px;">Phase Status</div>
         <div class="metric-value" style="color: var(--text-primary);">Pre-Phase 1</div>
         <div class="metric-badge ">Monitoring</div>
         <div class="metric-description">Current unwinding phase</div>
@@ -562,14 +528,15 @@
         <div class="info-icon" tabindex="0">i</div>
         
         <div class="popover">
-            <div class="popover-title">Active Signals</div>
-            <div class="popover-description">Number of active warning signals being tracked. Includes both positive developments (capex increases) and emerging concerns (investor skepticism).</div>
-            <div class="popover-meta"><div><strong>Total Signals:</strong> 2</div><div><strong>Critical:</strong> 0</div><div><strong>Status:</strong> Monitoring</div></div>
+            <div class="popover-title">Active Signals Breakdown</div>
+            <div class="popover-description">Number of active signals being tracked. Positive signals (severity: low) indicate healthy developments like capex increases or earnings beats. Negative signals (severity: moderate/high) indicate concerns like investor skepticism or guidance misses.</div>
+            <div class="popover-meta"><div><strong>Total Signals:</strong> 3</div><div><strong>Positive (Low Severity):</strong> 2</div><div><strong>Negative (Mod/High Severity):</strong> 1</div><div><strong>Status:</strong> Monitoring</div></div>
         </div>
         
-        <div class="metric-value" style="color: var(--text-primary);">2</div>
-        <div class="metric-badge ">2 Signals</div>
-        <div class="metric-description">Warning signals tracked</div>
+        <div class="metric-title" style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 8px;">Alert Signals</div>
+        <div class="metric-value" style="color: var(--text-primary);">3</div>
+        <div class="metric-badge negative">3 Total</div>
+        <div class="metric-description"><span style='color: var(--accent-positive); font-size: 0.875rem;'>+2 Positive</span> <span style='color: var(--text-tertiary); margin: 0 6px;'>|</span> <span style='color: var(--accent-negative); font-size: 0.875rem;'>-1 Negative</span></div>
     </div>
     </div><div class="dashboard-grid">
     <div class="card chart-card card--wide">
@@ -798,11 +765,11 @@
             </div>
             <div class="metric-row">
                 <span class="metric-label">AI Revenue Growth</span>
-                <span class="metric-value-text">Expected +55.6% YoY Q3 (reports Nov 19)</span>
+                <span class="metric-value-text">+62.5% YoY (Q3 FY2026: $57.01B revenue)</span>
             </div>
             <div class="metric-row">
                 <span class="metric-label">Risk Score</span>
-                <span class="metric-value-text">2</span>
+                <span class="metric-value-text">0</span>
             </div>
         </div>
         
@@ -902,6 +869,14 @@
         </div>
         </div></div><div class="section"><h2>Active Warning Signals</h2><div class="signals-grid">
         <div class="signal-card ">
+            <h4>NVIDIA Q3 Earnings Blowout - Demand Acceleration Confirmed</h4>
+            <p>NVIDIA crushed Q3 FY2026 estimates: $57.01B revenue (+62.5% YoY) vs $54.92B expected. Data Center $51.2B (+66% YoY). Q4 guidance $65B vs $61.66B est. Management: Blackwell 'off the charts', GPUs 'sold out'. Stock +6.77% total (session + AH). ELIMINATES semiconductor demand concerns.</p>
+            <p style="margin-top: 8px; font-size: 0.75rem; color: var(--text-tertiary);">
+                <strong>Source:</strong> NVIDIA Q3 FY2026 Earnings (Nov 19, 2025)
+            </p>
+        </div>
+        
+        <div class="signal-card ">
             <h4>Hyperscaler CapEx Acceleration Continues</h4>
             <p>All major hyperscalers increased 2025 capex guidance in Q3 earnings. Collective spending now exceeds $380B for 2025, up from ~$315B projections.</p>
             <p style="margin-top: 8px; font-size: 0.75rem; color: var(--text-tertiary);">
@@ -910,10 +885,10 @@
         </div>
         
         <div class="signal-card ">
-            <h4>Meta Market Reaction: AI Spending Skepticism</h4>
-            <p>Meta stock dropped 11% despite beating estimates - largest drop in 3 years. Investor concerns about AI spending ROI despite $70-72B capex guidance increase.</p>
+            <h4>Meta Market Reaction: AI Spending Skepticism (Isolated)</h4>
+            <p>Meta stock dropped 11% despite beating estimates - largest drop in 3 years. Investor concerns about AI spending ROI despite $70-72B capex guidance increase. HOWEVER: NVIDIA's blowout results suggest Meta concerns are company-specific (no cloud revenue story), not ecosystem-wide demand softening.</p>
             <p style="margin-top: 8px; font-size: 0.75rem; color: var(--text-tertiary);">
-                <strong>Source:</strong> Meta Q3 2025 Earnings (Oct 31)
+                <strong>Source:</strong> Meta Q3 2025 Earnings (Oct 31) + NVIDIA Q3 context
             </p>
         </div>
         </div></div>
@@ -921,7 +896,17 @@
 
         <!-- Leading Indicators View -->
         <div class="dashboard-view active" id="leading-view">
-            <div class="dashboard-grid">
+            
+    <div style="background: var(--bg-card-alt); border-left: 3px solid var(--accent-positive); padding: 12px 20px; margin-bottom: var(--gap); border-radius: 6px; display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 1.25rem;">✅</span>
+        <div style="flex: 1;">
+            <span style="color: var(--text-secondary); font-size: 0.875rem;">Latest Update:</span>
+            <strong style="color: var(--text-primary); margin-left: 8px;">Tech Stock Correlation Breakdown</strong>
+            <span style="background: rgba(255,255,255,0.1); padding: 3px 10px; border-radius: 10px; font-size: 0.75rem; color: var(--accent-positive); margin-left: 12px; font-weight: 600;">Healthy</span>
+            <span style="color: var(--text-tertiary); margin-left: 12px; font-size: 0.8125rem;">Nov 19, 2025 23:30 UTC</span>
+        </div>
+    </div>
+    <div class="dashboard-grid">
     <div class="card metric-card">
         <div class="info-icon" tabindex="0">i</div>
         
@@ -931,6 +916,7 @@
             <div class="popover-meta"><div><strong>Scale:</strong> 0-12 (LOW), 13-24 (MODERATE), 25-36 (HIGH), 37-48 (CRITICAL)</div><div><strong>Update Frequency:</strong> Weekly/Monthly</div><div><strong>Prediction Horizon:</strong> 1-3 quarters ahead</div></div>
         </div>
         
+        <div class="metric-title" style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 8px;">Leading Indicators</div>
         <div class="metric-value" style="color: var(--accent-positive);">5/48</div>
         <div class="metric-badge ">LOW RISK</div>
         <div class="metric-description">Predictive market signals</div>
@@ -945,6 +931,7 @@
             <div class="popover-meta"><div><strong>Quantitative:</strong> Programmatic data collection</div><div><strong>Qualitative:</strong> Independent LLM research</div><div><strong>Agreement:</strong> 66%</div><div><strong>Divergent Indicators:</strong> 4</div></div>
         </div>
         
+        <div class="metric-title" style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 8px;">Quant/Qual Alignment</div>
         <div class="metric-value" style="color: var(--text-primary);">66%</div>
         <div class="metric-badge negative">DIVERGENT</div>
         <div class="metric-description">Data vs Research agreement</div>
@@ -991,6 +978,7 @@
             <div class="popover-meta"><div><strong>Total Indicators:</strong> 12</div><div><strong>Aligned:</strong> 8</div><div><strong>Divergent:</strong> 4</div></div>
         </div>
         
+        <div class="metric-title" style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 8px;">Divergent Indicators</div>
         <div class="metric-value" style="color: var(--text-primary);">4</div>
         <div class="metric-badge negative">Needs Review</div>
         <div class="metric-description">Requires investigation</div>
@@ -1174,14 +1162,14 @@
                             <strong>Quantitative Analysis</strong>
                             <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
                                 <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN</div>
-                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Correlation 30D:</strong> 0.85<br><strong>Correlation 90D:</strong> 0.82<br><strong>Trend 30D:</strong> Stable<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z<br><br><strong>Historical Trend (3 data points):</strong><br>  • 2025-11-11: Correlation 30D = 0.78<br>  • 2025-11-13: Correlation 30D = 0.81<br>  • 2025-11-15: Correlation 30D = 0.85</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Correlation 30D:</strong> 0.82<br><strong>Correlation 90D:</strong> 0.83<br><strong>Trend 30D:</strong> Stable<br><strong>Recent Movements:</strong> Nvda +6.77% (Nov 19 Earnings), Meta -11% (Oct 31 Earnings), Msft -3% (Oct 31), Amzn +Surge (Oct 31). Collective $380B+ Capex Maintains Structural Correlation Despite Individual Stock Divergences.<br><strong>Assessment:</strong> Moderate Divergence In Individual Stock Performance (Meta Weakness Vs Nvidia Strength) But Overall Correlation Remains Elevated Due To Shared Ai Infrastructure Spending Trajectory. No Systematic Breakdown Detected.<br><strong>Last Collected:</strong> 2025-11-19T23:30:00Z<br><br><strong>Historical Trend (4 data points):</strong><br>  • 2025-11-13: Correlation 30D = 0.81<br>  • 2025-11-15: Correlation 30D = 0.85<br>  • 2025-11-19: Correlation 30D = 0.82</div>
                             </div>
                         </div>
                         <div>
                             <strong>Qualitative Assessment</strong>
                             <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
-                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: Medium</div>
-                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Stock correlations remain high, indicating market treats AI infrastructure stocks as a cohesive group. No breakdown detected.</em></div>
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: High</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Stock correlations remain high despite individual divergences. Market treats AI infrastructure stocks as cohesive group based on collective $380B+ capex spending. Meta's -11% drop isolated to company-specific concerns (no cloud revenue), not ecosystem-wide. NVIDIA's +6.77% validates other hyperscalers. No breakdown detected.</em></div>
                             </div>
                         </div>
                     </div>
@@ -1211,13 +1199,13 @@
                         <text x="30" y="44" text-anchor="end" fill="#999" font-size="9">0.78</text>
 
                         <!-- X-axis labels (dates) -->
-                        <text x="35.0" y="55" text-anchor="middle" fill="#999" font-size="9">11/11</text><text x="85.0" y="55" text-anchor="middle" fill="#999" font-size="9">11/13</text><text x="135.0" y="55" text-anchor="middle" fill="#999" font-size="9">11/15</text>
+                        <text x="35.0" y="55" text-anchor="middle" fill="#999" font-size="9">11/11</text><text x="68.33333333333333" y="55" text-anchor="middle" fill="#999" font-size="9">11/13</text><text x="101.66666666666666" y="55" text-anchor="middle" fill="#999" font-size="9">11/15</text><text x="135.0" y="55" text-anchor="middle" fill="#999" font-size="9">11/19</text>
 
                         <!-- Data line -->
-                        <polyline points="35.0,40.0 85.0,25.0 135.0,5.0" fill="none" stroke="#c0ff00" stroke-width="2.5" opacity="1"/>
+                        <polyline points="35.0,40.0 68.3,25.0 101.7,5.0 135.0,20.0" fill="none" stroke="#c0ff00" stroke-width="2.5" opacity="1"/>
 
                         <!-- Data points -->
-                        <circle cx="35.0" cy="40.0" r="3" fill="#c0ff00"/><circle cx="85.0" cy="24.999999999999975" r="3" fill="#c0ff00"/><circle cx="135.0" cy="5.0" r="3" fill="#c0ff00"/>
+                        <circle cx="35.0" cy="40.0" r="3" fill="#c0ff00"/><circle cx="68.33333333333333" cy="24.999999999999975" r="3" fill="#c0ff00"/><circle cx="101.66666666666666" cy="5.0" r="3" fill="#c0ff00"/><circle cx="135.0" cy="20.000000000000025" r="3" fill="#c0ff00"/>
                     </svg>
                     
                 </div>
@@ -1523,7 +1511,7 @@
         </div>
 
         <footer>
-            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-17 11:52:25 UTC</p>
+            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-19 15:29:03 UTC</p>
             <p>Data sources: SEC filings, earnings calls, public reports</p>
             <p>For educational and research purposes only. Not investment advice.</p>
         </footer>

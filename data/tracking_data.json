@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "last_updated": "2025-11-11T00:00:00Z",
-    "version": "1.2.0",
-    "description": "AI Infrastructure Unwinding Monitor - Q3 2025 Update with AI Infrastructure Specialists",
+    "last_updated": "2025-11-19T23:00:00Z",
+    "version": "1.3.0",
+    "description": "AI Infrastructure Unwinding Monitor - Q3 2025 Update with NVIDIA Q3 FY2026 Earnings (Nov 19)",
     "quarterly_capture_dates": {
       "Q3_2025": "2025-11-11",
       "Q2_2025": "2025-08-01",
@@ -15,11 +15,11 @@
   "current_phase": 0,
   "risk_level": "LOW",
   "risk_rationale": {
-    "summary": "Composite Risk Score of 7/40 indicates LOW RISK. AI infrastructure buildout continues to accelerate with no Phase 1 unwinding signals in operational metrics. All major hyperscalers raised capex guidance in Q3 2025. The 2 Active Signals tracked include both positive developments (capex acceleration) and emerging concerns (Meta investor skepticism).",
-    "why_low": "Score of 7 is well below the 9-point threshold for MODERATE risk. Capex guidance universally increasing (not decreasing), no excess GPU capacity, no project delays, strong semiconductor demand. Collective hyperscaler spending exceeds $380B for 2025. Each RED indicator (capex cuts >15%, AI growth <20% YoY, utilization <60%) would add 2-6 points to the score - none are currently triggered.",
-    "why_not_moderate": "Would need 9+ points to reach MODERATE. No capex reductions detected (would add 3-6 points). AI revenue growth remains strong 25-55% YoY range - no RED signals (would add 6 points if <20%). No indicators of excess capacity or utilization concerns (would add 4 points). Operating fundamentals remain healthy across all primary indicators.",
-    "concerns": "Current 7 points come from: (1) AI revenue deceleration from hypergrowth = 1 point × 3x multiplier = 3 points, (2) Meta market reaction signaling sentiment risk = 1 point × 2x multiplier = 2 points, (3) Minor margin/valuation concerns = 2 points × 1x = 2 points. Meta stock drop (-11% despite beat) signals emerging investor skepticism. CoreWeave revenue guidance miss suggests potential demand softening in specialist tier. These are sentiment risks, not operational signals yet.",
-    "key_watch": "NVIDIA Q3 earnings (Nov 19) critical - if Data Center revenue misses or guidance disappoints, could add 4-6 points, pushing toward MODERATE (9-16 range). Meta sentiment spreading to MSFT/AMZN/GOOGL could add another 2-4 points. Any hyperscaler announcing capex reduction >5% would immediately add 3 points (YELLOW) or 6 points if >15% (RED). Active Signals of 2 reflects these two key developments being monitored."
+    "summary": "Composite Risk Score of 7/40 indicates LOW RISK. AI infrastructure buildout continues to accelerate with no Phase 1 unwinding signals. NVIDIA Q3 earnings (Nov 19) crushed expectations with Data Center revenue +66% YoY and Q4 guidance beating estimates, eliminating semiconductor demand concerns. All major hyperscalers raised capex guidance in Q3 2025. The 2 Active Signals now include NVIDIA's blowout results (positive) and Meta investor skepticism (concern).",
+    "why_low": "Score of 7 is well below the 9-point threshold for MODERATE risk. Capex guidance universally increasing (not decreasing), no excess GPU capacity, no project delays, semiconductor demand ACCELERATING (NVIDIA beat). Collective hyperscaler spending exceeds $380B for 2025. Each RED indicator (capex cuts >15%, AI growth <20% YoY, utilization <60%) would add 2-6 points to the score - none are currently triggered.",
+    "why_not_moderate": "Would need 9+ points to reach MODERATE. No capex reductions detected (would add 3-6 points). AI revenue growth remains strong 25-55% YoY range - no RED signals (would add 6 points if <20%). No indicators of excess capacity or utilization concerns (would add 4 points). NVIDIA results confirm strong demand (+66% Data Center growth). Operating fundamentals remain healthy across all primary indicators.",
+    "concerns": "Current 7 points come from: (1) AI revenue deceleration from hypergrowth = 1 point × 3x multiplier = 3 points, (2) Meta market reaction signaling sentiment risk = 1 point × 2x multiplier = 2 points, (3) Minor margin/valuation concerns = 2 points × 1x = 2 points. Meta stock drop (-11% despite beat) signals emerging investor skepticism. However, NVIDIA's blowout results (Blackwell 'off the charts', GPUs 'sold out') suggest Meta concerns are company-specific, not ecosystem-wide. These are sentiment risks, not operational signals.",
+    "key_watch": "NVIDIA Q3 earnings CLEARED (beat on all metrics). Now watching: Meta sentiment spreading to MSFT/AMZN/GOOGL could add 2-4 points. Any hyperscaler announcing capex reduction >5% would immediately add 3 points (YELLOW) or 6 points if >15% (RED). Q4 2025 earnings cycle (Jan/Feb 2026) will be next major validation point. Active Signals of 2 reflects NVIDIA beat (positive) and Meta skepticism (isolated concern)."
   },
   "indicator_scoring": {
     "formula": "Composite Risk Score = Σ (Indicator Points × Multiplier)",
@@ -95,6 +95,13 @@
   },
   "active_signals": [
     {
+      "title": "NVIDIA Q3 Earnings Blowout - Demand Acceleration Confirmed",
+      "description": "NVIDIA crushed Q3 FY2026 estimates: $57.01B revenue (+62.5% YoY) vs $54.92B expected. Data Center $51.2B (+66% YoY). Q4 guidance $65B vs $61.66B est. Management: Blackwell 'off the charts', GPUs 'sold out'. Stock +6.77% total (session + AH). ELIMINATES semiconductor demand concerns.",
+      "source": "NVIDIA Q3 FY2026 Earnings (Nov 19, 2025)",
+      "severity": "low",
+      "detected_at": "2025-11-19"
+    },
+    {
       "title": "Hyperscaler CapEx Acceleration Continues",
       "description": "All major hyperscalers increased 2025 capex guidance in Q3 earnings. Collective spending now exceeds $380B for 2025, up from ~$315B projections.",
       "source": "Q3 2025 Earnings Reports (Oct/Nov)",
@@ -102,9 +109,9 @@
       "detected_at": "2025-11-01"
     },
     {
-      "title": "Meta Market Reaction: AI Spending Skepticism",
-      "description": "Meta stock dropped 11% despite beating estimates - largest drop in 3 years. Investor concerns about AI spending ROI despite $70-72B capex guidance increase.",
-      "source": "Meta Q3 2025 Earnings (Oct 31)",
+      "title": "Meta Market Reaction: AI Spending Skepticism (Isolated)",
+      "description": "Meta stock dropped 11% despite beating estimates - largest drop in 3 years. Investor concerns about AI spending ROI despite $70-72B capex guidance increase. HOWEVER: NVIDIA's blowout results suggest Meta concerns are company-specific (no cloud revenue story), not ecosystem-wide demand softening.",
+      "source": "Meta Q3 2025 Earnings (Oct 31) + NVIDIA Q3 context",
       "severity": "moderate",
       "detected_at": "2025-10-31"
     }
@@ -159,11 +166,11 @@
       "ticker": "NVDA",
       "status": "green",
       "capex": "N/A (fabless)",
-      "ai_growth": "Expected +55.6% YoY Q3 (reports Nov 19)",
-      "margin": "75%+",
-      "risk_score": 2,
-      "quarterly_report_date": "2025-11-19 (expected)",
-      "notes": "Q3 earnings pending Nov 19. Consensus: $1.23 EPS on $54.59B revenue. Data Center demand remains strong."
+      "ai_growth": "+62.5% YoY (Q3 FY2026: $57.01B revenue)",
+      "margin": "75%",
+      "risk_score": 0,
+      "quarterly_report_date": "2025-11-19",
+      "notes": "Q3 FY2026 BEAT: $57.01B revenue (vs $54.92B est), $1.30 EPS (vs $1.25 est). Data Center: $51.2B (+66% YoY). Q4 guidance: $65B (vs $61.66B est). Blackwell 'off the charts', GPUs 'sold out'. Stock +2.86% session, +3.91% AH. NO DEMAND SOFTENING."
     },
     {
       "name": "Oracle (ORCL)",
@@ -325,10 +332,10 @@
     },
     "semiconductor_orders": {
       "status": "green",
-      "value": "Strong",
-      "trend": "stable",
-      "last_updated": "2025-11-11",
-      "notes": "NVIDIA Q3 earnings Nov 19 will be key indicator. Current consensus: $54.59B revenue (+55.6% YoY)."
+      "value": "Very Strong",
+      "trend": "accelerating",
+      "last_updated": "2025-11-19",
+      "notes": "NVIDIA Q3 FY2026 CRUSHED estimates: $57.01B revenue (+62.5% YoY) vs $54.92B est. Data Center $51.2B (+66% YoY). Q4 guidance $65B vs $61.66B est. Blackwell 'off the charts', GPUs 'sold out'. Zero demand softening signals."
     },
     "credit_spreads": {
       "status": "green",
@@ -346,6 +353,21 @@
     }
   },
   "quarterly_updates": [
+    {
+      "quarter": "Q3 2025 - NVIDIA Update",
+      "date": "2025-11-19",
+      "summary": "NVIDIA Q3 FY2026 earnings crushed all expectations, eliminating semiconductor demand concerns and confirming AI infrastructure buildout remains on track. Data Center revenue +66% YoY with Blackwell 'off the charts' and GPUs 'sold out'. Results validate hyperscaler capex acceleration and suggest Meta's investor skepticism is company-specific, not ecosystem-wide. Risk remains LOW with strengthened confidence.",
+      "highlights": [
+        "NVIDIA Q3 FY2026: $57.01B revenue (beat $54.92B est, +62.5% YoY)",
+        "Data Center: $51.2B (+66% YoY) - strongest segment ever",
+        "Q4 guidance: $65B (beat $61.66B estimate) - demand accelerating",
+        "Blackwell ramp 'off the charts', GPUs 'sold out' - no excess capacity",
+        "Stock +6.77% total (session + after hours) - market validated results",
+        "Meta concerns now appear isolated (lacks cloud revenue story unlike MSFT/AMZN/GOOGL)",
+        "Semiconductor orders indicator upgraded from 'Strong' to 'Very Strong' with 'accelerating' trend"
+      ],
+      "risk_score": 7
+    },
     {
       "quarter": "Q3 2025",
       "date": "2025-11-11",
