@@ -7,41 +7,43 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         :root {
-            /* V4.0 Design System - Dark Theme (ai-bubble-monitor.vercel.app) */
+            /* Dark Glassmorphism Analytics Theme */
             /* Backgrounds */
-            --bg-primary: #3d4044;
-            --bg-card: #2e3135;
-            --bg-card-alt: #35383c;
-            --bg-hover: rgba(255,255,255,0.05);
+            --bg-primary: #0A1628;              /* Deep navy background */
+            --bg-secondary: #0D1F3C;            /* Slightly lighter navy */
+            --bg-card: rgba(15, 30, 60, 0.6);   /* Semi-transparent dark blue cards */
+            --bg-card-alt: rgba(20, 35, 70, 0.7); /* Alt card with more opacity */
+            --bg-hover: rgba(0, 102, 255, 0.15);  /* Blue hover overlay */
 
             /* Text */
-            --text-primary: #ffffff;
-            --text-secondary: #b0b3b8;
-            --text-tertiary: #8a8d91;
+            --text-primary: #FFFFFF;            /* Pure white for primary text */
+            --text-secondary: #3D9FFF;          /* Electric blue for highlights */
+            --text-tertiary: #7BA3C4;           /* Muted blue-gray for supporting text */
+            --text-data: #FFFFFF;               /* White for data/metrics */
 
             /* Accents */
-            --accent-positive: #c0ff00;  /* Lime green for positive */
-            --accent-negative: #ff6b6b;  /* Coral red for alerts */
-            --accent-warning: #ffa726;   /* Amber for warnings */
-            --accent-info: #64b5f6;      /* Sky blue for info */
+            --accent-positive: #10B981;         /* Vibrant emerald green (positive/green status) */
+            --accent-negative: #FF4757;         /* Soft red (alerts) */
+            --accent-warning: #FFA502;          /* Warm orange (warnings) */
+            --accent-info: #3D9FFF;             /* Info blue (links) */
 
             /* Chart colors */
-            --chart-lime: #c0ff00;
-            --chart-coral: #ff6b6b;
-            --chart-blue: #87ceeb;
-            --chart-green: #90ee90;
+            --chart-blue1: #0066FF;
+            --chart-blue2: #3D9FFF;
+            --chart-blue3: #66B3FF;
+            --chart-blue4: #99CCFF;
+            --chart-accent1: #1E90FF;
+            --chart-accent2: #4169E1;
 
-            /* Borders & Shadows */
-            --border-subtle: rgba(255,255,255,0.08);
-            --border-medium: rgba(255,255,255,0.15);
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
-            --shadow-md: 0 4px 8px rgba(0,0,0,0.3);
-            --shadow-lg: 0 8px 16px rgba(0,0,0,0.4);
+            /* Shadows & Glows (Blue-tinted) */
+            --shadow-glow: 0 8px 32px rgba(0, 102, 255, 0.3);
+            --shadow-card: 0 4px 20px rgba(0, 102, 255, 0.2);
+            --shadow-hover: 0 12px 40px rgba(0, 102, 255, 0.4);
 
             /* Spacing */
-            --gap: 20px;
-            --card-padding: 24px;
-            --border-radius: 12px;
+            --gap: 24px;
+            --card-padding: 32px;
+            --border-radius: 20px;
         }
 
         * {
@@ -51,11 +53,28 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Subtle dark grid background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: radial-gradient(circle at center, rgba(0, 102, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
         }
 
 
@@ -64,6 +83,8 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: var(--gap);
+            position: relative;
+            z-index: 1;
         }
 
         /* V4.0 Grid-Based Layout */
@@ -74,19 +95,36 @@
             margin-bottom: var(--gap);
         }
 
-        /* Card Base Styles */
+        /* Card Base Styles - Glassmorphism */
         .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);                    /* Semi-transparent */
+            backdrop-filter: blur(10px);                   /* Glassmorphism blur */
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 102, 255, 0.1);     /* Subtle blue border */
             border-radius: var(--border-radius);
             padding: var(--card-padding);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.2s ease;
+            box-shadow: var(--shadow-card);                /* Blue glow */
+            transition: all 0.3s ease;
             position: relative;
+            animation: smoothFadeIn 0.6s ease-out;
         }
 
         .card:hover {
-            background: var(--bg-card-alt);
+            transform: translateY(-4px);                   /* Gentle lift */
+            box-shadow: var(--shadow-hover);               /* Enhanced glow */
+            border-color: rgba(0, 102, 255, 0.25);         /* Brighter border */
+            background: var(--bg-card-alt);                /* Slightly more opaque */
+        }
+
+        @keyframes smoothFadeIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .card--wide {
@@ -124,25 +162,45 @@
         .metric-value {
             font-size: 3.5rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: var(--text-data);          /* White */
             line-height: 1;
-            margin: 16px 0;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(0, 102, 255, 0.3); /* Blue glow */
+            letter-spacing: -0.02em;
+            animation: smoothScale 0.6s ease-out;
+        }
+
+        @keyframes smoothScale {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .metric-badge {
             display: inline-block;
-            padding: 6px 14px;
+            padding: 8px 18px;
             border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: var(--accent-positive);
-            color: #000;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.25);         /* Emerald green */
+            border: 1px solid rgba(16, 185, 129, 0.5);
+            color: #10B981;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3); /* Green glow */
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
             margin: 12px 0;
         }
 
         .metric-badge.negative {
-            background: var(--accent-negative);
-            color: #fff;
+            background: rgba(255, 165, 0, 0.15);          /* Soft orange */
+            border-color: rgba(255, 165, 0, 0.3);
+            color: #FFB366;                               /* Light peachy orange */
+            box-shadow: 0 4px 12px rgba(255, 165, 0, 0.15);
         }
 
         .metric-description {
@@ -257,30 +315,38 @@
             }
         }
 
-        /* Status Badges */
+        /* Status Badges - Dark Glassmorphism */
         .status-badge {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.75rem;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
             white-space: nowrap;
+            border: 1px solid;
+            margin: 4px 4px 4px 0;
+            vertical-align: middle;
         }
 
         .status-badge.green {
-            background: rgba(192, 255, 0, 0.2);
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--accent-positive);
             color: var(--accent-positive);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
         }
 
         .status-badge.yellow {
-            background: rgba(255, 167, 38, 0.2);
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.12), rgba(212, 165, 116, 0.08));
+            border-color: var(--accent-warning);
             color: var(--accent-warning);
         }
 
         .status-badge.red {
-            background: rgba(255, 107, 107, 0.2);
+            background: rgba(255, 71, 87, 0.15);
+            border-color: var(--accent-negative);
             color: var(--accent-negative);
+            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.15);
         }
 
         /* Section Styles */
@@ -357,6 +423,14 @@
             border-left: 3px solid var(--accent-warning);
             border-radius: 8px;
             padding: 16px;
+        }
+
+        .signal-card.positive {
+            border-left-color: var(--accent-positive);
+        }
+
+        .signal-card.moderate {
+            border-left-color: var(--accent-warning);
         }
 
         .signal-card.critical {
@@ -868,7 +942,7 @@
             </div>
         </div>
         </div></div><div class="section"><h2>Active Warning Signals</h2><div class="signals-grid">
-        <div class="signal-card ">
+        <div class="signal-card positive">
             <h4>NVIDIA Q3 Earnings Blowout - Demand Acceleration Confirmed</h4>
             <p>NVIDIA crushed Q3 FY2026 estimates: $57.01B revenue (+62.5% YoY) vs $54.92B expected. Data Center $51.2B (+66% YoY). Q4 guidance $65B vs $61.66B est. Management: Blackwell 'off the charts', GPUs 'sold out'. Stock +6.77% total (session + AH). ELIMINATES semiconductor demand concerns.</p>
             <p style="margin-top: 8px; font-size: 0.75rem; color: var(--text-tertiary);">
@@ -876,7 +950,7 @@
             </p>
         </div>
         
-        <div class="signal-card ">
+        <div class="signal-card positive">
             <h4>Hyperscaler CapEx Acceleration Continues</h4>
             <p>All major hyperscalers increased 2025 capex guidance in Q3 earnings. Collective spending now exceeds $380B for 2025, up from ~$315B projections.</p>
             <p style="margin-top: 8px; font-size: 0.75rem; color: var(--text-tertiary);">
@@ -884,7 +958,7 @@
             </p>
         </div>
         
-        <div class="signal-card ">
+        <div class="signal-card moderate">
             <h4>Meta Market Reaction: AI Spending Skepticism (Isolated)</h4>
             <p>Meta stock dropped 11% despite beating estimates - largest drop in 3 years. Investor concerns about AI spending ROI despite $70-72B capex guidance increase. HOWEVER: NVIDIA's blowout results suggest Meta concerns are company-specific (no cloud revenue story), not ecosystem-wide demand softening.</p>
             <p style="margin-top: 8px; font-size: 0.75rem; color: var(--text-tertiary);">
@@ -1511,7 +1585,7 @@
         </div>
 
         <footer>
-            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-19 15:29:03 UTC</p>
+            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-19 15:41:03 UTC</p>
             <p>Data sources: SEC filings, earnings calls, public reports</p>
             <p>For educational and research purposes only. Not investment advice.</p>
         </footer>
