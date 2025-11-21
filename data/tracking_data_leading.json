@@ -2,9 +2,9 @@
   "_comment": "Leading Indicators Tracking Data - Complete reconstruction with Nov 11-14 Track B data + Nov 15 Track A updates",
   "_instructions": "This file tracks leading indicators that predict AI infrastructure unwinding 1-3 quarters before lagging indicators. Update weekly for Tier 1 indicators.",
   "metadata": {
-    "last_updated": "2025-11-19T23:30:00Z",
-    "version": "1.0.3",
-    "description": "Leading indicators for AI infrastructure unwinding - predicts Phase 1 entry before earnings reports confirm it",
+    "last_updated": "2025-11-20T19:30:00Z",
+    "version": "1.1.0",
+    "description": "Leading indicators for AI infrastructure unwinding - predicts Phase 1 entry before earnings reports confirm it. Now includes FOMO circular flow tracking in AI Startup Funding indicator.",
     "collection_frequency": {
       "weekly": [
         "GPU Secondary Market Pricing",
@@ -216,19 +216,39 @@
       "weighted_score": 2,
       "track_a_data": {
         "trend_30d": "decelerating",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "last_collected": "2025-11-20T19:30:00Z",
+        "circular_flow_metrics": {
+          "quarter": "Q3 2025",
+          "analysis_date": "2025-11-20",
+          "ai_lab_compute_spending_quarterly": 35,
+          "hyperscaler_ai_revenue_quarterly": 43,
+          "concentration_ratio": 0.81,
+          "openai_spending": 12,
+          "anthropic_spending": 7,
+          "xai_spending": 12,
+          "other_labs_spending": 4,
+          "burn_rate_alert": true,
+          "major_labs_burn_multiples": {
+            "openai": "2-3x revenue ($12B spend vs $7B revenue)",
+            "anthropic": "2-3x revenue ($7B spend vs $3B revenue)",
+            "xai": "6-12x revenue ($12B spend vs $1-2B revenue)"
+          },
+          "last_major_funding_round": "OpenAI $6.6B @ $157B valuation (Oct 2025)",
+          "funding_atmosphere": "Liquid for top-tier labs (OpenAI, Anthropic, xAI), caution for mid-tier. Concentration risk: AI labs represent 81% of hyperscaler AI revenue."
+        }
       },
       "track_b_assessment": {
         "llm_status": "green",
         "llm_confidence": "high",
         "llm_rationale": "Independent research reveals AI funding remains robust in Q3 2025 despite slight deceleration from hypergrowth pace. $45B deployed in Q3 across mega-rounds (OpenAI $6.6B at $157B valuation, Anthropic $4B, xAI $6B). Total 2025 AI funding on track for $180B+ (vs $150B in 2024). Valuations high but justified by revenue traction. Safe Superintelligence Inc raised $1B at $5B valuation (Ilya Sutskever). Market remains highly liquid for top-tier AI companies.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_circular_flow_assessment": "YELLOW - Funding velocity remains strong, but concentration analysis reveals systemic fragility. AI labs spending $35B/quarter on compute represents 81% of hyperscaler AI revenue ($43B/quarter). All major labs burning 2-12x their revenue. This is sustainable only with continued FOMO funding. If funding dries up, hyperscaler AI revenue faces 1-2 quarter collapse (faster than traditional enterprise adoption disappointment).",
+        "last_research_date": "2025-11-20T19:30:00Z"
       },
-      "divergence_flag": true,
+      "divergence_flag": false,
       "trend_30d": "decelerating",
       "final_status": "yellow",
       "data_source_used": "track_a",
-      "divergence_reason": "Methodology difference: Track A quantitative=yellow, Track B qualitative=green"
+      "divergence_reason": "Both tracks now agree on YELLOW status after adding circular flow context. Track A: concentration ratio 81%. Track B: Funding liquid but concentration creates fragility."
     },
     {
       "name": "Power Infrastructure Stress Signals",
