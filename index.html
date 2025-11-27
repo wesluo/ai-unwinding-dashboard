@@ -548,10 +548,15 @@
 </head>
 <body>
     
+    <nav class="mode-toggle" style="margin-top: 20px;">
+        <button class="toggle-btn" data-mode="lagging">Lagging Indicators</button>
+        <button class="toggle-btn active" data-mode="leading">Leading Indicators</button>
+    </nav>
+    
 
     <div class="container">
         <!-- Lagging Indicators View -->
-        <div class="dashboard-view active" id="lagging-view">
+        <div class="dashboard-view " id="lagging-view">
             
     <div style="background: var(--bg-card-alt); border-left: 3px solid var(--accent-positive); padding: 12px 20px; margin-bottom: var(--gap); border-radius: 6px; display: flex; align-items: center; gap: 12px;">
         <span style="font-size: 1.25rem;">✅</span>
@@ -991,12 +996,615 @@
         </div>
 
         <!-- Leading Indicators View -->
-        <div class="dashboard-view " id="leading-view">
+        <div class="dashboard-view active" id="leading-view">
             
+    <div style="background: var(--bg-card-alt); border-left: 3px solid var(--accent-warning); padding: 12px 20px; margin-bottom: var(--gap); border-radius: 6px; display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 1.25rem;">📡</span>
+        <div style="flex: 1;">
+            <span style="color: var(--text-secondary); font-size: 0.875rem;">Latest Update:</span>
+            <strong style="color: var(--text-primary); margin-left: 8px;">AI Startup Funding Velocity & Valuations</strong>
+            <span style="background: rgba(255,255,255,0.1); padding: 3px 10px; border-radius: 10px; font-size: 0.75rem; color: var(--accent-warning); margin-left: 12px; font-weight: 600;">Caution</span>
+            <span style="color: var(--text-tertiary); margin-left: 12px; font-size: 0.8125rem;">Nov 20, 2025 19:30 UTC</span>
+        </div>
+    </div>
+    <div class="dashboard-grid">
+    <div class="card metric-card">
+        <div class="info-icon" tabindex="0">i</div>
+        
+        <div class="popover">
+            <div class="popover-title">Leading Indicators</div>
+            <div class="popover-description">Composite score from real-time market signals including GPU pricing, cloud costs, funding activity, and supply chain signals. Designed to predict Phase 1 entry 1-3 quarters ahead.</div>
+            <div class="popover-meta"><div><strong>Scale:</strong> 0-12 (LOW), 13-24 (MODERATE), 25-36 (HIGH), 37-48 (CRITICAL)</div><div><strong>Update Frequency:</strong> Weekly/Monthly</div><div><strong>Prediction Horizon:</strong> 1-3 quarters ahead</div></div>
+        </div>
+        
+        <div class="metric-title" style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 8px;">Leading Indicators</div>
+        <div class="metric-value" style="color: var(--accent-positive);">5/48</div>
+        <div class="metric-badge ">LOW RISK</div>
+        <div class="metric-description">Predictive market signals</div>
+    </div>
+    
+    <div class="card metric-card">
+        <div class="info-icon" tabindex="0">i</div>
+        
+        <div class="popover">
+            <div class="popover-title">Quantitative/Qualitative Alignment</div>
+            <div class="popover-description">Measures agreement between quantitative data-driven metrics and qualitative LLM research. Alignment indicates both approaches reach the same conclusions.</div>
+            <div class="popover-meta"><div><strong>Quantitative:</strong> Programmatic data collection</div><div><strong>Qualitative:</strong> Independent LLM research</div><div><strong>Agreement:</strong> 66%</div><div><strong>Divergent Indicators:</strong> 4</div></div>
+        </div>
+        
+        <div class="metric-title" style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 8px;">Quant/Qual Alignment</div>
+        <div class="metric-value" style="color: var(--text-primary);">66%</div>
+        <div class="metric-badge negative">DIVERGENT</div>
+        <div class="metric-description">Data vs Research agreement</div>
+    </div>
+    
+    <div class="card metric-card">
+        <div class="info-icon" tabindex="0">i</div>
+        
+        <div class="popover">
+            <div class="popover-title">Divergent Indicators</div>
+            <div class="popover-description">Number of indicators where quantitative and qualitative approaches disagree. Divergence indicates data limitations or market complexity.<div style="margin-top: 12px;"><strong>Indicators Requiring Review:</strong><ul style="margin: 8px 0 0 20px; padding: 0;">
+            <li style="margin-bottom: 8px; font-size: 0.8125rem; line-height: 1.4;">
+                <strong>GPU Secondary Market Pricing</strong><br>
+                <span style="font-size: 0.75rem;">
+                    Quant: <span style="color: var(--accent-warning); font-weight: 600;">YELLOW</span> |
+                    Qual: <span style="color: var(--accent-positive); font-weight: 600;">GREEN</span>
+                </span>
+            </li>
+            
+            <li style="margin-bottom: 8px; font-size: 0.8125rem; line-height: 1.4;">
+                <strong>Power Infrastructure Stress Signals</strong><br>
+                <span style="font-size: 0.75rem;">
+                    Quant: <span style="color: var(--accent-positive); font-weight: 600;">GREEN</span> |
+                    Qual: <span style="color: var(--accent-negative); font-weight: 600;">RED</span>
+                </span>
+            </li>
+            
+            <li style="margin-bottom: 8px; font-size: 0.8125rem; line-height: 1.4;">
+                <strong>Job Postings & Organizational Changes</strong><br>
+                <span style="font-size: 0.75rem;">
+                    Quant: <span style="color: var(--accent-positive); font-weight: 600;">GREEN</span> |
+                    Qual: <span style="color: var(--accent-negative); font-weight: 600;">RED</span>
+                </span>
+            </li>
+            </ul></div></div>
+            <div class="popover-meta"><div><strong>Total Indicators:</strong> 12</div><div><strong>Aligned:</strong> 8</div><div><strong>Divergent:</strong> 4</div></div>
+        </div>
+        
+        <div class="metric-title" style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 8px;">Divergent Indicators</div>
+        <div class="metric-value" style="color: var(--text-primary);">4</div>
+        <div class="metric-badge negative">Needs Review</div>
+        <div class="metric-description">Requires investigation</div>
+    </div>
+    </div><div class="section"><h2>💰 Price Signals</h2><div class="signals-grid">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">GPU Secondary Market Pricing</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-warning);">
+                                <div style="color: var(--accent-warning); font-weight: 600; margin-bottom: 4px;">Status: YELLOW</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>H100 80Gb Spot Price:</strong> $1.62<br><strong>Trend 30D:</strong> Unknown<br><strong>Availability:</strong> Tight<br><strong>Offers Count:</strong> 3.00<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: High</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Independent research shows prices dropped 64-75% in 2025 but demand remains very strong (43% YoY growth, tight supply with 4-8 month lead times). 300+ new providers entering market. Prices stable Q4 2025 at $1.49-$6.16/hour. Market sentiment bullish despite price compression.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 1 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +2 points</div>
+                        <div style="color: var(--accent-negative);"><strong>⚠️ Divergence Detected</strong></div>
+                    </div>
+                </div>
+                
+                <h4>GPU Secondary Market Pricing</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge yellow">YELLOW</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +2 pts | Tier 1
+                    </span>
+                    <span class="status-badge red" style="margin-left: 8px;">⚠️ DIVERGENT</span>
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Stable
+                </p>
+            </div>
+            
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Cloud AI Service Pricing Wars</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Azure Model:</strong> Gpt-4O<br><strong>Azure Price Input:</strong> $3.00<br><strong>Azure Price Output:</strong> $10.00<br><strong>Aws Model:</strong> Claude 3.5 Sonnet<br><strong>Aws Price Input:</strong> $3.00<br><strong>Aws Price Output:</strong> $15.00<br><strong>Gcp Model:</strong> Gemini 2.5 Pro<br><strong>Gcp Price Input:</strong> $1.25<br><strong>Gcp Price Output:</strong> $10.00<br><strong>Trend 30D:</strong> Stable<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: High</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Independent research confirms dramatic price declines across all major AI inference platforms. GPT-4 equivalent costs fell 240x in 18 months (from $180/M tokens to <$1/M). GPT-4o saw 83% output and 90% input token price reductions in 16 months. DeepSeek halved prices in late 2025. Strong price competition indicates healthy demand and infrastructure investment, not unwinding. This is deflationary but growth-positive.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 1 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
+                <h4>Cloud AI Service Pricing Wars</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 1
+                    </span>
+                    
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Stable
+                </p>
+            </div>
+            </div></div><div class="section"><h2>🏭 Supply Chain Signals</h2><div class="signals-grid">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Data Center REIT Occupancy & Pricing</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Trend 30D:</strong> Improving<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: High</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Independent research confirms exceptionally strong REIT performance in Q3 2025. Both DLR and EQIX posted healthy growth driven by AI workloads. Equinix: $2.32B revenue (+5% YoY), record $394M bookings (+25% YoY), 3GW developable capacity (doubling by 2029). Digital Realty: $1.6B revenue (+10% YoY), 499MW Americas pipeline (79% pre-leased), 125MW leasing target 2025. Industry showing historically low vacancy rates and surging rents. No softening signals.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 1 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
+                <h4>Data Center REIT Occupancy & Pricing</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 1
+                    </span>
+                    
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Improving
+                </p>
+            </div>
+            
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Power Infrastructure Stress Signals</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Trend 30D:</strong> Worsening<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-negative);">
+                                <div style="color: var(--accent-negative); font-weight: 600; margin-bottom: 4px;">Status: RED | Confidence: High</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Independent research reveals SEVERE power infrastructure constraints that Track A's limited sources missed. Virginia grid connections taking 4-7 years (was <2 years). Northern Virginia data center load approaching 50% of state consumption by 2030 (vs 15% in 2019). $64B+ in data center projects delayed or facing multi-year waits. Texas ERCOT facing similar constraints. Dominion Energy Virginia struggling to meet demand. This is a real infrastructure bottleneck, not a data limitation. Could constrain AI buildout significantly.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        <div style="color: var(--accent-negative);"><strong>⚠️ Divergence Detected</strong></div>
+                    </div>
+                </div>
+                
+                <h4>Power Infrastructure Stress Signals</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                    <span class="status-badge red" style="margin-left: 8px;">⚠️ DIVERGENT</span>
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Worsening
+                </p>
+            </div>
+            </div></div><div class="section"><h2>📈 Financial Market Signals</h2><div class="signals-grid">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Tech Stock Correlation Breakdown</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Correlation 30D:</strong> 0.82<br><strong>Correlation 90D:</strong> 0.83<br><strong>Trend 30D:</strong> Stable<br><strong>Recent Movements:</strong> Nvda +6.77% (Nov 19 Earnings), Meta -11% (Oct 31 Earnings), Msft -3% (Oct 31), Amzn +Surge (Oct 31). Collective $380B+ Capex Maintains Structural Correlation Despite Individual Stock Divergences.<br><strong>Assessment:</strong> Moderate Divergence In Individual Stock Performance (Meta Weakness Vs Nvidia Strength) But Overall Correlation Remains Elevated Due To Shared Ai Infrastructure Spending Trajectory. No Systematic Breakdown Detected.<br><strong>Last Collected:</strong> 2025-11-19T23:30:00Z<br><br><strong>Historical Trend (4 data points):</strong><br>  • 2025-11-13: Correlation 30D = 0.81<br>  • 2025-11-15: Correlation 30D = 0.85<br>  • 2025-11-19: Correlation 30D = 0.82</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: High</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Stock correlations remain high despite individual divergences. Market treats AI infrastructure stocks as cohesive group based on collective $380B+ capex spending. Meta's -11% drop isolated to company-specific concerns (no cloud revenue), not ecosystem-wide. NVIDIA's +6.77% validates other hyperscalers. No breakdown detected.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
+                <h4>Tech Stock Correlation Breakdown</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                    
+                    
+                    <svg width="140" height="60" style="display: block; margin: 8px 0; background: rgba(0,0,0,0.2); border-radius: 4px;">
+                        <!-- Y-axis -->
+                        <line x1="35" y1="5" x2="35" y2="40" stroke="#666" stroke-width="1"/>
+                        <!-- X-axis -->
+                        <line x1="35" y1="40" x2="135" y2="40" stroke="#666" stroke-width="1"/>
+
+                        <!-- Y-axis labels -->
+                        <text x="30" y="9" text-anchor="end" fill="#999" font-size="9">0.85</text>
+                        <text x="30" y="44" text-anchor="end" fill="#999" font-size="9">0.78</text>
+
+                        <!-- X-axis labels (dates) -->
+                        <text x="35.0" y="55" text-anchor="middle" fill="#999" font-size="9">11/11</text><text x="68.33333333333333" y="55" text-anchor="middle" fill="#999" font-size="9">11/13</text><text x="101.66666666666666" y="55" text-anchor="middle" fill="#999" font-size="9">11/15</text><text x="135.0" y="55" text-anchor="middle" fill="#999" font-size="9">11/19</text>
+
+                        <!-- Data line -->
+                        <polyline points="35.0,40.0 68.3,25.0 101.7,5.0 135.0,20.0" fill="none" stroke="#c0ff00" stroke-width="2.5" opacity="1"/>
+
+                        <!-- Data points -->
+                        <circle cx="35.0" cy="40.0" r="3" fill="#c0ff00"/><circle cx="68.33333333333333" cy="24.999999999999975" r="3" fill="#c0ff00"/><circle cx="101.66666666666666" cy="5.0" r="3" fill="#c0ff00"/><circle cx="135.0" cy="20.000000000000025" r="3" fill="#c0ff00"/>
+                    </svg>
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Stable
+                </p>
+            </div>
+            
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">AI Startup Funding Velocity & Valuations</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-warning);">
+                                <div style="color: var(--accent-warning); font-weight: 600; margin-bottom: 4px;">Status: YELLOW</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Trend 30D:</strong> Decelerating<br><strong>Circular Flow Metrics:</strong> {'quarter': 'Q3 2025', 'analysis_date': '2025-11-20', 'ai_lab_compute_spending_quarterly': 35, 'hyperscaler_ai_revenue_quarterly': 43, 'concentration_ratio': 0.81, 'openai_spending': 12, 'anthropic_spending': 7, 'xai_spending': 12, 'other_labs_spending': 4, 'burn_rate_alert': True, 'major_labs_burn_multiples': {'openai': '2-3x revenue ($12B spend vs $7B revenue)', 'anthropic': '2-3x revenue ($7B spend vs $3B revenue)', 'xai': '6-12x revenue ($12B spend vs $1-2B revenue)'}, 'last_major_funding_round': 'OpenAI $6.6B @ $157B valuation (Oct 2025)', 'funding_atmosphere': 'Liquid for top-tier labs (OpenAI, Anthropic, xAI), caution for mid-tier. Concentration risk: AI labs represent 81% of hyperscaler AI revenue.'}<br><strong>Last Collected:</strong> 2025-11-20T19:30:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: High</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Independent research reveals AI funding remains robust in Q3 2025 despite slight deceleration from hypergrowth pace. $45B deployed in Q3 across mega-rounds (OpenAI $6.6B at $157B valuation, Anthropic $4B, xAI $6B). Total 2025 AI funding on track for $180B+ (vs $150B in 2024). Valuations high but justified by revenue traction. Safe Superintelligence Inc raised $1B at $5B valuation (Ilya Sutskever). Market remains highly liquid for top-tier AI companies.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 1 (×2 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +2 points</div>
+                        
+                    </div>
+                </div>
+                
+                <h4>AI Startup Funding Velocity & Valuations</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge yellow">YELLOW</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +2 pts | Tier 1
+                    </span>
+                    
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Decelerating
+                </p>
+            </div>
+            
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">CDS Spreads for Exposed Lenders</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-warning);">
+                                <div style="color: var(--accent-warning); font-weight: 600; margin-bottom: 4px;">Status: YELLOW</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Trend 30D:</strong> Unknown<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-warning);">
+                                <div style="color: var(--accent-warning); font-weight: 600; margin-bottom: 4px;">Status: YELLOW | Confidence: Medium</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Independent research finds credit spreads for AI infrastructure lenders widening modestly but remaining well below distress levels. Oracle's $18B bond issuance for AI buildout priced successfully. Corporate credit markets remain accommodative for AI infrastructure financing. Spreads up ~20-30 bps from lows but manageable.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +1 points</div>
+                        
+                    </div>
+                </div>
+                
+                <h4>CDS Spreads for Exposed Lenders</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge yellow">YELLOW</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +1 pts | Tier 2
+                    </span>
+                    
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Unknown
+                </p>
+            </div>
+            
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Analyst Estimate Revisions</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Revision Direction:</strong> Neutral<br><strong>Trend 30D:</strong> Stable<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: Medium</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Analyst estimates for AI infrastructure stocks remain stable with slight upward bias. No negative revision wave detected.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
+                <h4>Analyst Estimate Revisions</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                    
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Stable
+                </p>
+            </div>
+            </div></div><div class="section"><h2>⚡ Activity-Based Signals</h2><div class="signals-grid">
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Model Training Announcements</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Trend 30D:</strong> Accelerating<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: High</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Model training activity accelerating across all major labs. GPT-5, Gemini 2.0, Claude 4, Llama 4 all in training. Compute budgets expanding. No signs of training slowdown.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
+                <h4>Model Training Announcements</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                    
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Accelerating
+                </p>
+            </div>
+            
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Inference Deployment Velocity</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Trend 30D:</strong> Unknown<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: High</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Independent research shows rapid inference deployment expansion across all major clouds. Microsoft, Google, Amazon all expanding inference capacity. Enterprise adoption accelerating with production deployments increasing.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
+                <h4>Inference Deployment Velocity</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                    
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Accelerating
+                </p>
+            </div>
+            
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">NVIDIA Partner Announcements</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Trend 30D:</strong> Stable<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN | Confidence: Medium</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>NVIDIA partnership announcements continue at steady pace. No signs of partner pullback.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        
+                    </div>
+                </div>
+                
+                <h4>NVIDIA Partner Announcements</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                    
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Stable
+                </p>
+            </div>
+            
+            <div class="signal-card" style="position: relative;">
+                
+                <div class="info-icon" tabindex="0">i</div>
+                <div class="popover">
+                    <div class="popover-title">Job Postings & Organizational Changes</div>
+                    <div class="popover-description">
+                        <div style="margin-bottom: 12px;">
+                            <strong>Quantitative Analysis</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-positive);">
+                                <div style="color: var(--accent-positive); font-weight: 600; margin-bottom: 4px;">Status: GREEN</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><strong>Trend 30D:</strong> Stable<br><strong>Last Collected:</strong> 2025-11-15T17:40:00Z</div>
+                            </div>
+                        </div>
+                        <div>
+                            <strong>Qualitative Assessment</strong>
+                            <div style="margin-top: 4px; padding: 8px; background: rgba(0,0,0,0.2); border-radius: 6px; border-left: 3px solid var(--accent-negative);">
+                                <div style="color: var(--accent-negative); font-weight: 600; margin-bottom: 4px;">Status: RED | Confidence: High</div>
+                                <div style="font-size: 0.8125rem; line-height: 1.4;"><em>Independent research reveals significant AI-related layoffs in 2025 that Track A's limited access missed. US layoffs topped 1M in 2025, with October at 33,281 (worst spike in 20 years). Microsoft cut 15K (~4% workforce) in May+July. Tech job postings down while AI positions remain mixed. This suggests AI productivity gains reducing headcount needs - could signal ROI pressures ahead.</em></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popover-meta">
+                        <div><strong>Tier:</strong> 2 (×1 multiplier)</div>
+                        <div><strong>Weighted Score:</strong> +0 points</div>
+                        <div style="color: var(--accent-negative);"><strong>⚠️ Divergence Detected</strong></div>
+                    </div>
+                </div>
+                
+                <h4>Job Postings & Organizational Changes</h4>
+                <div style="margin: 8px 0;">
+                    <span class="status-badge green">GREEN</span>
+                    <span style="margin-left: 8px; color: var(--text-tertiary); font-size: 0.75rem;">
+                        +0 pts | Tier 2
+                    </span>
+                    <span class="status-badge red" style="margin-left: 8px;">⚠️ DIVERGENT</span>
+                    
+                </div>
+                <p style="margin: 8px 0; font-size: 0.875rem;">
+                    <strong>Trend:</strong> Deteriorating
+                </p>
+            </div>
+            </div></div>
         </div>
 
         <footer>
-            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-26 16:32:34 UTC</p>
+            <p>AI Infrastructure Unwinding Monitor | Last Updated: 2025-11-26 16:50:10 UTC</p>
             <p>Data sources: SEC filings, earnings calls, public reports</p>
             <p>For educational and research purposes only. Not investment advice.</p>
         </footer>
