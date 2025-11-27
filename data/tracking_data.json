@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "last_updated": "2025-11-19T23:00:00Z",
-    "version": "1.3.0",
-    "description": "AI Infrastructure Unwinding Monitor - Q3 2025 Update with NVIDIA Q3 FY2026 Earnings (Nov 19)",
+    "last_updated": "2025-11-26T12:00:00Z",
+    "version": "1.4.0",
+    "description": "AI Infrastructure Unwinding Monitor - Q3 2025 Update with NVIDIA Q3 FY2026 Earnings (Nov 19) and Dell Q3 FY2025 Addition (Nov 26)",
     "quarterly_capture_dates": {
       "Q3_2025": "2025-11-11",
       "Q2_2025": "2025-08-01",
@@ -94,6 +94,13 @@
     "risk_level": "LOW"
   },
   "active_signals": [
+    {
+      "title": "Dell Q3 AI Server Orders Hit Record $12.3B - Enterprise Demand Surging",
+      "description": "Dell Q3 FY2025 reported record AI server orders of $12.3B (YTD: $30B), with $18.4B backlog. AI server shipments projected at ~$25B for full year (+150% YoY). ISG revenue $14.1B (+24% YoY), Servers $10.1B (+37% YoY). Confirms enterprise AI infrastructure demand is accelerating alongside hyperscaler buildout. Stock rallied on results.",
+      "source": "Dell Technologies Q3 FY2025 Earnings (Nov 26, 2025)",
+      "severity": "low",
+      "detected_at": "2025-11-26"
+    },
     {
       "title": "NVIDIA Q3 Earnings Blowout - Demand Acceleration Confirmed",
       "description": "NVIDIA crushed Q3 FY2026 estimates: $57.01B revenue (+62.5% YoY) vs $54.92B expected. Data Center $51.2B (+66% YoY). Q4 guidance $65B vs $61.66B est. Management: Blackwell 'off the charts', GPUs 'sold out'. Stock +6.77% total (session + AH). ELIMINATES semiconductor demand concerns.",
@@ -226,6 +233,17 @@
       "risk_score": 4,
       "quarterly_report_date": "2025-11-11",
       "notes": "Formerly Yandex, renamed Aug 2024. Q3: $146.1M revenue. $19.4B Microsoft deal, $3B Meta deal (Nov 2025). Stock +475% past year."
+    },
+    {
+      "name": "Dell Technologies (DELL)",
+      "ticker": "DELL",
+      "status": "green",
+      "capex": "N/A (hardware provider, not builder)",
+      "ai_growth": "150%+ YoY (AI server shipments)",
+      "margin": "ISG segment strong",
+      "risk_score": 0,
+      "quarterly_report_date": "2025-11-26",
+      "notes": "Q3 FY2025: Record $27B revenue. ISG $14.1B (+24% YoY), Servers $10.1B (+37% YoY). AI servers: $30B orders YTD, $12.3B in Q3, $18.4B backlog. FY2025 AI server shipments ~$25B (+150% YoY). Q4 AI revenue outlook: $9.4B. Strong indicator of enterprise AI infrastructure demand."
     }
   ],
   "capex_chart_data": {
@@ -353,6 +371,21 @@
     }
   },
   "quarterly_updates": [
+    {
+      "quarter": "Q3 2025 - Dell Addition",
+      "date": "2025-11-26",
+      "summary": "Dell Technologies added to tracking with Q3 FY2025 results showing explosive AI server demand. Record $12.3B AI server orders in Q3 (YTD: $30B) with $18.4B backlog validates that enterprise AI infrastructure buildout is accelerating alongside hyperscalers. Dell provides critical visibility into enterprise AI adoption as a leading hardware provider selling AI-optimized servers to hyperscalers, enterprises, and infrastructure companies.",
+      "highlights": [
+        "Dell Q3 FY2025: Record $27B revenue, beat earnings expectations",
+        "AI server orders: $12.3B in Q3, $30B YTD, $18.4B backlog",
+        "FY2025 AI server shipments projected at ~$25B (+150% YoY)",
+        "ISG revenue: $14.1B (+24% YoY), Servers segment: $10.1B (+37% YoY)",
+        "Q4 AI revenue outlook: $9.4B - strong forward visibility",
+        "Stock rallied on results - market validated AI infrastructure demand story",
+        "Dell added as MEDIUM priority in monitoring matrix - provides enterprise demand signals"
+      ],
+      "risk_score": 7
+    },
     {
       "quarter": "Q3 2025 - NVIDIA Update",
       "date": "2025-11-19",
