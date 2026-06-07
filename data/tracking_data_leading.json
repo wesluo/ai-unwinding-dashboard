@@ -1,61 +1,32 @@
 {
-  "_comment": "Leading Indicators Tracking Data - Complete reconstruction with Nov 11-14 Track B data + Nov 15 Track A updates",
+  "_comment": "Leading Indicators Tracking Data - June 2026 refresh. The leading layer has deteriorated meaningfully since Nov 2025 (composite 5 -> 12): a broad AI-infrastructure equity selloff (Jun 5-6), distressed neocloud credit, an emergency power-curtailment order, and a hyper-concentrated funding blow-off-top.",
   "_instructions": "This file tracks leading indicators that predict AI infrastructure unwinding 1-3 quarters before lagging indicators. Update weekly for Tier 1 indicators.",
   "metadata": {
-    "last_updated": "2025-11-20T19:30:00Z",
-    "version": "1.1.0",
-    "description": "Leading indicators for AI infrastructure unwinding - predicts Phase 1 entry before earnings reports confirm it. Now includes FOMO circular flow tracking in AI Startup Funding indicator.",
+    "last_updated": "2026-06-07T16:00:00Z",
+    "version": "1.2.0",
+    "description": "Leading indicators for AI infrastructure unwinding - predicts Phase 1 entry before earnings reports confirm it. June 2026: sharpest deterioration since tracking began.",
     "collection_frequency": {
-      "weekly": [
-        "GPU Secondary Market Pricing",
-        "Cloud AI Service Pricing",
-        "Tech Stock Correlation",
-        "Analyst Estimate Revisions"
-      ],
-      "monthly": [
-        "Data Center REIT Metrics",
-        "AI Startup Funding Velocity",
-        "CDS Spreads",
-        "Model Training Announcements",
-        "Inference Deployment Velocity",
-        "NVIDIA Partner Announcements",
-        "Job Postings"
-      ],
-      "quarterly": [
-        "Power Infrastructure Stress"
-      ]
+      "weekly": ["GPU Secondary Market Pricing", "Cloud AI Service Pricing", "Tech Stock Correlation", "Analyst Estimate Revisions"],
+      "monthly": ["Data Center REIT Metrics", "AI Startup Funding Velocity", "CDS Spreads", "Model Training Announcements", "Inference Deployment Velocity", "NVIDIA Partner Announcements", "Job Postings"],
+      "quarterly": ["Power Infrastructure Stress"]
     },
-    "next_scheduled_update": "2025-11-22",
-    "_note": "Divergence logic improved Nov 15 2025: Now prioritizes Track A when data available. Composite score: 5/48 (was 10). 4 true divergences, 2 data fallbacks."
+    "next_scheduled_update": "2026-06-14",
+    "_note": "June 2026: composite 12/48 (was 5). Roughly half the layer flipped color or developed an A/B divergence. Highest-signal new developments: the Jun 5-6 correlated equity selloff and distressed AI-borrower credit (CoreWeave)."
   },
-  "composite_leading_score_track_a": 4,
-  "composite_leading_score_track_b": 5,
-  "composite_leading_score": 5,
+  "composite_leading_score_track_a": 9,
+  "composite_leading_score_track_b": 13,
+  "composite_leading_score": 11,
   "leading_risk_level": "LOW",
   "risk_rationale": {
-    "summary": "Composite Leading Score: 5/48 (LOW RISK). Improved divergence logic now prioritizes Track A quantitative data when available, falling back to Track B qualitative research only when Track A has data limitations. 4 indicators show genuine methodology divergences (both tracks have data but reach different conclusions). 2 indicators use Track B as fallback due to Track A data gaps. All GREEN signals except 2 YELLOW (GPU pricing volatility, AI funding deceleration).",
-    "methodology_improvement": "NEW LOGIC: (1) When Track A has sufficient quantitative data \u2192 use Track A status for scoring, even if Track B disagrees (trust data over research). (2) When Track A data unavailable/insufficient \u2192 use Track B qualitative assessment as fallback. (3) Divergence flags now distinguish between 'methodology differences' vs 'data quality fallbacks'.",
-    "divergence_count": 4,
+    "summary": "Composite Leading Score: 11/48 - still LOW (0-12) but at the very top of the band and approaching MODERATE, more than double the Nov 2025 reading of 5. The deterioration is concentrated and coherent rather than scattered: a real correlated equity drawdown finally arrived (Jun 5-6, Nasdaq -4.2% / ~$1.71T in a day), GPU rental pricing reversed from a 2025 collapse into a hard shortage, AI-borrower credit moved from manageable to distressed (CoreWeave ~600-770bps CDS), power stress escalated to emergency DOE curtailment authority, and funding hit a record in blow-off-top, hyper-concentrated form.",
+    "divergence_count": 2,
     "data_fallback_count": 2,
     "true_divergences": [
-      "#1 GPU Secondary Market Pricing: Track A YELLOW \u2260 Track B GREEN (using Track A quantitative data)",
-      "#5 AI Startup Funding Velocity & Valuations: Track A YELLOW \u2260 Track B GREEN (using Track A quantitative data)",
-      "#6 Power Infrastructure Stress Signals: Track A GREEN \u2260 Track B RED (using Track A quantitative data)",
-      "#12 Job Postings & Organizational Changes: Track A GREEN \u2260 Track B RED (using Track A quantitative data)"
+      "#6 Power Infrastructure Stress: Track A GREEN (capex flowing) != Track B RED (DOE emergency curtailment, FERC interconnection-halt request)",
+      "#12 Job Postings & Organizational Changes: Track A GREEN (AI hiring +92%) != Track B RED (layoffs running ahead of 2025; Oracle -20%)"
     ],
-    "data_quality_fallbacks": [
-      "#7 CDS Spreads for Exposed Lenders: Track A data insufficient, using Track B YELLOW",
-      "#9 Inference Deployment Velocity: Track A data insufficient, using Track B GREEN"
-    ],
-    "key_findings": "Composite score is 5/48 using data-quality-aware hybrid approach. When Track A has quantitative data, we use it (even if Track B disagrees). When Track A data unavailable, we fall back to Track B qualitative assessment. Track A score: 4 (pure quantitative), Track B score: 5 (pure qualitative), Final score: 5 (hybrid with smart fallback).",
-    "scoring_breakdown": {
-      "gpu_pricing": "YELLOW (1 pt \u00d7 2 = 2): Track A shows price volatility despite Track B research suggesting strong demand",
-      "ai_funding": "YELLOW (1 pt \u00d7 2 = 2): Track A detects deceleration from hypergrowth pace despite Track B noting robust absolute levels",
-      "cds_spreads": "YELLOW (1 pt \u00d7 1 = 1): Track A unavailable, using Track B assessment of modest spread widening",
-      "all_others": "GREEN (0 pts): No concerns detected in Track A quantitative data"
-    },
-    "risk_level_justification": "LOW RISK (5/48 points) because quantitative data (Track A) shows minimal deterioration. GPU pricing volatility and funding deceleration are normal market corrections, not unwinding signals. Track B flagged power infrastructure and job layoffs as RED, but Track A quantitative data doesn't confirm systematic stress yet. Prioritizing data over research reduces false positives.",
-    "validation_status": "METHODOLOGY IMPROVED: New data-quality-aware logic reduces composite score and divergence count by correctly distinguishing between Track A data limitations (use Track B fallback) vs genuine methodology disagreements (trust Track A quantitative data)."
+    "key_findings": "The genuinely-strong, un-diverged greens are now only three (DC REIT occupancy, training-run cadence, NVIDIA partner flow) - and even those read as late-cycle 'hot' rather than early-cycle. Financial-market signals (correlation, funding, CDS) are where the deterioration clusters.",
+    "validation_status": "ELEVATED: leading layer transitioning from 'watchful' toward 'early-warning'. Lagging operating fundamentals (capex, revenue, chip orders) have NOT yet confirmed - the classic lead/lag divergence the dual-layer design exists to catch."
   },
   "leading_indicators": [
     {
@@ -67,34 +38,23 @@
       "points": 1,
       "weighted_score": 2,
       "track_a_data": {
-        "h100_80gb_spot_price": 1.62,
-        "a100_40gb_spot_price": null,
-        "trend_30d": "unknown",
-        "availability": "tight",
-        "offers_count": 3,
-        "last_collected": "2025-11-15T17:40:00Z"
+        "h100_80gb_1yr_price": 2.35,
+        "b200_on_demand_price": 6.50,
+        "trend_30d": "rising",
+        "availability": "sold out / multi-month lead times",
+        "last_collected": "2026-04-01T00:00:00Z"
       },
       "track_b_assessment": {
-        "llm_status": "green",
+        "llm_status": "yellow",
         "llm_confidence": "high",
-        "llm_rationale": "Independent research shows prices dropped 64-75% in 2025 but demand remains very strong (43% YoY growth, tight supply with 4-8 month lead times). 300+ new providers entering market. Prices stable Q4 2025 at $1.49-$6.16/hour. Market sentiment bullish despite price compression.",
-        "current_h100_pricing": "1.49-6.16",
-        "pricing_range": "Vast.ai $1.49-$1.87, Lambda $2.99, CoreWeave $4.25-$6.16",
-        "trend_30d": "stable after major 2025 drops",
-        "availability": "tight supply (4-8 month enterprise lead times)",
-        "demand_indicators": "43% YoY demand growth, 300+ new cloud providers, persistent supply constraints",
-        "sources_consulted": [
-          "intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison",
-          "thundercompute.com/blog/ai-gpu-rental-market-trends",
-          "gpus.llm-utils.org/nvidia-h100-gpus-supply-and-demand"
-        ],
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_rationale": "The 2025 price collapse has fully reversed into a hard shortage: H100 1-yr contract ~$2.35/hr (up ~40% from the Oct 2025 low), Blackwell capacity booked into Aug-Sep 2026, on-demand 'sold out across all GPU types'. Pricing power flipped back to suppliers - a regime change. Bullish for demand, but rising input costs plus looming 2027 capacity are a classic late-cycle setup.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
-      "divergence_flag": true,
-      "trend_30d": "stable",
+      "divergence_flag": false,
+      "trend_30d": "rising",
       "final_status": "yellow",
       "data_source_used": "track_a",
-      "divergence_reason": "Methodology difference: Track A quantitative=yellow, Track B qualitative=green"
+      "divergence_reason": "Both tracks agree: hard shortage, prices rising. Flagged YELLOW for the regime change (reversal from 2025 collapse), not for weakness."
     },
     {
       "name": "Cloud AI Service Pricing Wars",
@@ -105,23 +65,15 @@
       "points": 0,
       "weighted_score": 0,
       "track_a_data": {
-        "azure_model": "GPT-4o",
-        "azure_price_input": 3.0,
-        "azure_price_output": 10.0,
-        "aws_model": "Claude 3.5 Sonnet",
-        "aws_price_input": 3.0,
-        "aws_price_output": 15.0,
-        "gcp_model": "Gemini 2.5 Pro",
-        "gcp_price_input": 1.25,
-        "gcp_price_output": 10.0,
-        "trend_30d": "stable",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "trend_30d": "still deflationary",
+        "example": "Claude Opus 4.5 cut to $5/$25 per M tokens (from $15/$75)",
+        "last_collected": "2026-06-01T00:00:00Z"
       },
       "track_b_assessment": {
         "llm_status": "green",
         "llm_confidence": "high",
-        "llm_rationale": "Independent research confirms dramatic price declines across all major AI inference platforms. GPT-4 equivalent costs fell 240x in 18 months (from $180/M tokens to <$1/M). GPT-4o saw 83% output and 90% input token price reductions in 16 months. DeepSeek halved prices in late 2025. Strong price competition indicates healthy demand and infrastructure investment, not unwinding. This is deflationary but growth-positive.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_rationale": "Comparable-tier inference pricing fell roughly 10x from early 2025 to mid 2026; Epoch cites up to ~200x/yr on combined price + efficiency. Steep declines continue and remain growth-positive. Louder caveat now: pricing is partly VC/hyperscaler-subsidized and normalization is expected within 12-24 months.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": false,
       "trend_30d": "stable",
@@ -137,14 +89,16 @@
       "points": 0,
       "weighted_score": 0,
       "track_a_data": {
-        "trend_30d": "improving",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "equinix_q1_bookings": "$378M record (+35% YoY)",
+        "digital_realty_occupancy": "90.1% (Mar 31 2026)",
+        "trend_30d": "strong",
+        "last_collected": "2026-04-23T00:00:00Z"
       },
       "track_b_assessment": {
         "llm_status": "green",
         "llm_confidence": "high",
-        "llm_rationale": "Independent research confirms exceptionally strong REIT performance in Q3 2025. Both DLR and EQIX posted healthy growth driven by AI workloads. Equinix: $2.32B revenue (+5% YoY), record $394M bookings (+25% YoY), 3GW developable capacity (doubling by 2029). Digital Realty: $1.6B revenue (+10% YoY), 499MW Americas pipeline (79% pre-leased), 125MW leasing target 2025. Industry showing historically low vacancy rates and surging rents. No softening signals.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_rationale": "Record-strong: Equinix Q1 2026 record gross bookings $378M (+35% YoY), AI = 60% of top deals, FY guide raised; Digital Realty +16% YoY, 90.1% occupancy, record interconnection bookings. No softening - the strongest unambiguously-green indicator, though it lags the equity stress.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": false,
       "trend_30d": "improving",
@@ -156,55 +110,26 @@
       "category": "Financial Market Signal",
       "tier": 2,
       "multiplier": 1,
-      "status": "green",
-      "points": 0,
-      "weighted_score": 0,
+      "status": "red",
+      "points": 2,
+      "weighted_score": 2,
       "track_a_data": {
-        "correlation_30d": 0.82,
-        "correlation_90d": 0.83,
-        "trend_30d": "stable",
-        "last_collected": "2025-11-19T23:30:00Z",
-        "recent_movements": "NVDA +6.77% (Nov 19 earnings), META -11% (Oct 31 earnings), MSFT -3% (Oct 31), AMZN +surge (Oct 31). Collective $380B+ capex maintains structural correlation despite individual stock divergences.",
-        "assessment": "Moderate divergence in individual stock performance (Meta weakness vs NVIDIA strength) but overall correlation remains elevated due to shared AI infrastructure spending trajectory. No systematic breakdown detected."
+        "correlation_30d": null,
+        "trend_30d": "correlated drawdown",
+        "recent_movements": "Jun 5-6 2026: broad AI-infra selloff, Nasdaq -4.2% / ~$1.71T erased in a day, NVDA -6%, triggered by Broadcom guidance. Earlier in 2026 leadership had broadened (NVDA +12% YTD vs PHLX Semi +74%).",
+        "note": "No clean June-2026 correlation coefficient is published; the single-day correlated crash is the key datapoint.",
+        "last_collected": "2026-06-06T00:00:00Z"
       },
       "track_b_assessment": {
-        "llm_status": "green",
-        "llm_confidence": "high",
-        "llm_rationale": "Stock correlations remain high despite individual divergences. Market treats AI infrastructure stocks as cohesive group based on collective $380B+ capex spending. Meta's -11% drop isolated to company-specific concerns (no cloud revenue), not ecosystem-wide. NVIDIA's +6.77% validates other hyperscalers. No breakdown detected.",
-        "last_research_date": "2025-11-19T23:30:00Z",
-        "key_evidence": "All hyperscalers (MSFT $80B, AMZN $125B, GOOGL $91-93B, META $70-72B) raised capex guidance in Q3 2025. NVIDIA results confirm demand justifies spending. Structural correlation intact."
+        "llm_status": "red",
+        "llm_confidence": "medium",
+        "llm_rationale": "Two-sided: through most of 2026 leadership broadened (lower correlation = healthier breadth), but the group still crashes together on bad news. The Jun 6 correlated drawdown shows the complex is one headline from re-correlating to the downside - the single most important new datapoint in this layer.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": false,
-      "trend_30d": "stable",
-      "track_a_history": [
-        {
-          "correlation_30d": 0.78,
-          "correlation_90d": 0.75,
-          "trend_30d": "increasing",
-          "last_collected": "2025-11-11T12:00:00Z"
-        },
-        {
-          "correlation_30d": 0.81,
-          "correlation_90d": 0.78,
-          "trend_30d": "increasing",
-          "last_collected": "2025-11-13T12:00:00Z"
-        },
-        {
-          "correlation_30d": 0.85,
-          "correlation_90d": 0.82,
-          "trend_30d": "stable",
-          "last_collected": "2025-11-15T17:40:00Z"
-        },
-        {
-          "correlation_30d": 0.82,
-          "correlation_90d": 0.83,
-          "trend_30d": "stable",
-          "last_collected": "2025-11-19T23:30:00Z",
-          "note": "Slight 30d decrease due to Meta divergence, but 90d stable. Individual stock dispersion increasing but group correlation remains elevated."
-        }
-      ],
-      "final_status": "green",
-      "data_source_used": "track_a"
+      "trend_30d": "deteriorating",
+      "final_status": "red",
+      "data_source_used": "track_b"
     },
     {
       "name": "AI Startup Funding Velocity & Valuations",
@@ -215,88 +140,91 @@
       "points": 1,
       "weighted_score": 2,
       "track_a_data": {
-        "trend_30d": "decelerating",
-        "last_collected": "2025-11-20T19:30:00Z",
+        "trend_30d": "record but hyper-concentrated",
+        "q1_2026_global_vc": "~$300B (record); AI ~81% of funding",
+        "last_collected": "2026-06-05T00:00:00Z",
         "circular_flow_metrics": {
-          "quarter": "Q3 2025",
-          "analysis_date": "2025-11-20",
-          "ai_lab_compute_spending_quarterly": 35,
-          "hyperscaler_ai_revenue_quarterly": 43,
-          "concentration_ratio": 0.81,
+          "quarter": "Q2 2026",
+          "analysis_date": "2026-06-07",
+          "ai_lab_compute_spending_quarterly": 30,
+          "hyperscaler_ai_revenue_quarterly": 32,
+          "concentration_ratio": 0.94,
           "openai_spending": 12,
-          "anthropic_spending": 7,
-          "xai_spending": 12,
-          "other_labs_spending": 4,
+          "anthropic_spending": 8,
+          "xai_spending": 8,
+          "other_labs_spending": 2,
           "burn_rate_alert": true,
           "major_labs_burn_multiples": {
-            "openai": "2-3x revenue ($12B spend vs $7B revenue)",
-            "anthropic": "2-3x revenue ($7B spend vs $3B revenue)",
-            "xai": "6-12x revenue ($12B spend vs $1-2B revenue)"
+            "openai": "~2x ($50B/yr compute vs ~$25B run-rate revenue); ~$14B 2026 loss projected",
+            "anthropic": "compressing fast (~$47B run-rate revenue, nearing operating profit, spends ~4x less to train)",
+            "xai": "~6x+ (~$30B/yr capex pace vs ~$2-4B revenue); lost ~$6.4B in 2025"
           },
-          "last_major_funding_round": "OpenAI $6.6B @ $157B valuation (Oct 2025)",
-          "funding_atmosphere": "Liquid for top-tier labs (OpenAI, Anthropic, xAI), caution for mid-tier. Concentration risk: AI labs represent 81% of hyperscaler AI revenue."
+          "last_major_funding_round": "OpenAI $122B @ $852B (Mar 2026); Anthropic $65B @ ~$965B (May 2026); xAI $20B @ ~$230B (Jan 2026)",
+          "funding_atmosphere": "Record but hyper-concentrated: OpenAI + Anthropic + xAI + Waymo absorbed ~65% of all Q1 2026 VC. Liquid for ~3 frontier labs; the long tail faces down-rounds ('disrupted or dead'). Concentration ratio rose from ~0.81 toward ~0.95 - labs now spend roughly a dollar of compute per dollar of hyperscaler AI revenue. IPO-exit rush (Cerebras) is a late-cycle liquidity signal."
         }
       },
       "track_b_assessment": {
-        "llm_status": "green",
+        "llm_status": "yellow",
         "llm_confidence": "high",
-        "llm_rationale": "Independent research reveals AI funding remains robust in Q3 2025 despite slight deceleration from hypergrowth pace. $45B deployed in Q3 across mega-rounds (OpenAI $6.6B at $157B valuation, Anthropic $4B, xAI $6B). Total 2025 AI funding on track for $180B+ (vs $150B in 2024). Valuations high but justified by revenue traction. Safe Superintelligence Inc raised $1B at $5B valuation (Ilya Sutskever). Market remains highly liquid for top-tier AI companies.",
-        "llm_circular_flow_assessment": "YELLOW - Funding velocity remains strong, but concentration analysis reveals systemic fragility. AI labs spending $35B/quarter on compute represents 81% of hyperscaler AI revenue ($43B/quarter). All major labs burning 2-12x their revenue. This is sustainable only with continued FOMO funding. If funding dries up, hyperscaler AI revenue faces 1-2 quarter collapse (faster than traditional enterprise adoption disappointment).",
-        "last_research_date": "2025-11-20T19:30:00Z"
+        "llm_rationale": "Velocity is at an all-time high but extraordinarily concentrated in a handful of mega-rounds with explicit bubble warnings in the coverage - blow-off-top behavior, not healthy breadth. The pivot to IPOs and a rising concentration ratio (~0.94) intensify the circular-flow fragility the thesis warns about.",
+        "llm_circular_flow_assessment": "YELLOW->watch. AI labs spending ~$30B/quarter on compute now approximates 100% of cleanly-disclosed hyperscaler AI revenue. All major labs still burn multiples of revenue (xAI ~6x+). Sustainable only with continued FOMO funding; analysts now openly model OpenAI 'cash by mid-2027' scenarios.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": false,
-      "trend_30d": "decelerating",
+      "trend_30d": "decelerating breadth",
       "final_status": "yellow",
       "data_source_used": "track_a",
-      "divergence_reason": "Both tracks now agree on YELLOW status after adding circular flow context. Track A: concentration ratio 81%. Track B: Funding liquid but concentration creates fragility."
+      "divergence_reason": "Both tracks agree YELLOW: record absolute funding, but rising concentration (ratio ~0.94) and tail down-rounds signal fragility."
     },
     {
       "name": "Power Infrastructure Stress Signals",
       "category": "Supply Chain Signal",
       "tier": 2,
       "multiplier": 1,
-      "status": "green",
-      "points": 0,
-      "weighted_score": 0,
+      "status": "yellow",
+      "points": 1,
+      "weighted_score": 1,
       "track_a_data": {
-        "trend_30d": "worsening",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "trend_30d": "capex still flowing (~$725B 2026 industry)",
+        "last_collected": "2026-05-01T00:00:00Z"
       },
       "track_b_assessment": {
         "llm_status": "red",
         "llm_confidence": "high",
-        "llm_rationale": "Independent research reveals SEVERE power infrastructure constraints that Track A's limited sources missed. Virginia grid connections taking 4-7 years (was <2 years). Northern Virginia data center load approaching 50% of state consumption by 2030 (vs 15% in 2019). $64B+ in data center projects delayed or facing multi-year waits. Texas ERCOT facing similar constraints. Dominion Energy Virginia struggling to meet demand. This is a real infrastructure bottleneck, not a data limitation. Could constrain AI buildout significantly.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_rationale": "Materially worse than Nov: a ~2,600 GW interconnection queue with 5+ year waits; PJM record capacity price $333.44/MW-day on a 6.6 GW shortfall; a DOE emergency order (May 2026) letting PJM curtail data centers; and PJM's market monitor asking FERC to halt new data-center connections. Power, not GPUs, is now the binding constraint on the next training-compute order of magnitude.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": true,
       "trend_30d": "worsening",
-      "final_status": "green",
+      "final_status": "yellow",
       "data_source_used": "track_a",
-      "divergence_reason": "Methodology difference: Track A quantitative=green, Track B qualitative=red"
+      "divergence_reason": "Methodology difference: Track A quantitative (capex flowing) = green; Track B qualitative (emergency curtailment, FERC halt request) = red. Emergency curtailment authority and the FERC request are new and material."
     },
     {
       "name": "CDS Spreads for Exposed Lenders",
       "category": "Financial Market Signal",
       "tier": 2,
       "multiplier": 1,
-      "status": "yellow",
-      "points": 1,
-      "weighted_score": 1,
+      "status": "red",
+      "points": 2,
+      "weighted_score": 2,
       "track_a_data": {
-        "trend_30d": "unknown",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "coreweave_5yr_cds_bps": "~665-773",
+        "oracle_5yr_cds_bps": "~105",
+        "trend_30d": "widening sharply",
+        "note": "CoreWeave implied ~42% 5yr default probability; ~$9.7B maturities <12mo. Latest hard quotes are early-2026; exact June level not confirmed.",
+        "last_collected": "2026-03-01T00:00:00Z"
       },
       "track_b_assessment": {
-        "llm_status": "yellow",
+        "llm_status": "red",
         "llm_confidence": "medium",
-        "llm_rationale": "Independent research finds credit spreads for AI infrastructure lenders widening modestly but remaining well below distress levels. Oracle's $18B bond issuance for AI buildout priced successfully. Corporate credit markets remain accommodative for AI infrastructure financing. Spreads up ~20-30 bps from lows but manageable.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_rationale": "Credit markets are pushing back hard on the most-levered AI borrowers even as equity 'pays for the story'. CoreWeave 5yr CDS in distressed territory (~600-770bps, ~42% implied default) is a different regime from Nov's 'up 20-30bps, manageable'. Oracle planning ~$65B of new debt. CoreWeave is the canary.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": false,
-      "trend_30d": "unknown",
-      "final_status": "yellow",
-      "data_source_used": "track_b",
-      "divergence_reason": "Data limitation: Track A insufficient data, using Track B as fallback"
+      "trend_30d": "worsening",
+      "final_status": "red",
+      "data_source_used": "track_a"
     },
     {
       "name": "Model Training Announcements",
@@ -308,13 +236,14 @@
       "weighted_score": 0,
       "track_a_data": {
         "trend_30d": "accelerating",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "recent": "GPT-5.4 (Mar 2026), Gemini 3.1 Pro (Feb 2026), Claude Opus/Sonnet 4.6; xAI Colossus scaling 100k->200k+ GPUs",
+        "last_collected": "2026-06-01T00:00:00Z"
       },
       "track_b_assessment": {
         "llm_status": "green",
         "llm_confidence": "high",
-        "llm_rationale": "Model training activity accelerating across all major labs. GPT-5, Gemini 2.0, Claude 4, Llama 4 all in training. Compute budgets expanding. No signs of training slowdown.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_rationale": "Frontier training runs at ~1e26-1e27 FLOPs and ~$200-500M/run heading to $1-3B by 2027; release cadence at record velocity; labs still scaling. The binding constraint is shifting to power/substations, not chips.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": false,
       "trend_30d": "accelerating",
@@ -326,24 +255,25 @@
       "category": "Activity-Based Signal",
       "tier": 2,
       "multiplier": 1,
-      "status": "green",
-      "points": 0,
-      "weighted_score": 0,
+      "status": "yellow",
+      "points": 1,
+      "weighted_score": 1,
       "track_a_data": {
-        "trend_30d": "unknown",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "trend_30d": "expanding",
+        "note": "Inference spend to exceed training in 2026 (~$150B+); 72% of enterprises have >=1 AI deployment in production",
+        "last_collected": "2026-05-01T00:00:00Z"
       },
       "track_b_assessment": {
-        "llm_status": "green",
-        "llm_confidence": "high",
-        "llm_rationale": "Independent research shows rapid inference deployment expansion across all major clouds. Microsoft, Google, Amazon all expanding inference capacity. Enterprise adoption accelerating with production deployments increasing.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_status": "yellow",
+        "llm_confidence": "medium",
+        "llm_rationale": "Deployment volume still expanding, but ROI realization is deteriorating: ~79% of orgs report adoption challenges (up double-digits YoY) and only ~29% see significant GenAI ROI (Deloitte 2026); MIT NANDA's 95%-of-pilots-fail finding still circulates. Volume up, monetization proof still weak.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": false,
-      "trend_30d": "accelerating",
-      "final_status": "green",
+      "trend_30d": "expanding",
+      "final_status": "yellow",
       "data_source_used": "track_b",
-      "divergence_reason": "Data limitation: Track A insufficient data, using Track B as fallback"
+      "divergence_reason": "Velocity green, but the ROI subtext worsened enough to mark the indicator YELLOW."
     },
     {
       "name": "NVIDIA Partner Announcements",
@@ -354,14 +284,15 @@
       "points": 0,
       "weighted_score": 0,
       "track_a_data": {
-        "trend_30d": "stable",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "trend_30d": "steady",
+        "recent": "GTC 2026: Google Cloud Vera Rubin NVL72 (H2 2026), Azure GB300 running Claude natively, sovereign-AI factories; NVDA put $30B into OpenAI's round",
+        "last_collected": "2026-06-01T00:00:00Z"
       },
       "track_b_assessment": {
         "llm_status": "green",
         "llm_confidence": "medium",
-        "llm_rationale": "NVIDIA partnership announcements continue at steady pace. No signs of partner pullback.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_rationale": "Partnership flow steady-to-strong through GTC 2026. One nuance: reports of NVIDIA recalibrating direct OpenAI/Anthropic stakes ahead of their IPOs - strategic, not a demand signal.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": false,
       "trend_30d": "stable",
@@ -373,24 +304,26 @@
       "category": "Financial Market Signal",
       "tier": 2,
       "multiplier": 1,
-      "status": "green",
-      "points": 0,
-      "weighted_score": 0,
+      "status": "yellow",
+      "points": 1,
+      "weighted_score": 1,
       "track_a_data": {
-        "revision_direction": "neutral",
-        "trend_30d": "stable",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "revision_direction": "net positive, downside risk rising",
+        "trend_30d": "stable pre-crash",
+        "note": "NVDA consensus Buy, avg PT ~$275; CY2026 EPS growth est >20%",
+        "last_collected": "2026-05-01T00:00:00Z"
       },
       "track_b_assessment": {
-        "llm_status": "green",
+        "llm_status": "yellow",
         "llm_confidence": "medium",
-        "llm_rationale": "Analyst estimates for AI infrastructure stocks remain stable with slight upward bias. No negative revision wave detected.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_rationale": "Estimates still net-positive but bake in continued capex acceleration; analysts explicitly warn any capex deceleration triggers 'substantial downward revisions'. The Jun 6 Broadcom guide-down is the first crack and revisions are a lagging signal - pre-crash numbers don't reflect it yet.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": false,
-      "trend_30d": "stable",
-      "final_status": "green",
-      "data_source_used": "track_a"
+      "trend_30d": "downside risk rising",
+      "final_status": "yellow",
+      "data_source_used": "track_b",
+      "divergence_reason": "Green on paper, but the Broadcom guidance miss is the first crack; marked YELLOW for rising downside revision risk."
     },
     {
       "name": "Job Postings & Organizational Changes",
@@ -401,26 +334,27 @@
       "points": 0,
       "weighted_score": 0,
       "track_a_data": {
-        "trend_30d": "stable",
-        "last_collected": "2025-11-15T17:40:00Z"
+        "trend_30d": "AI hiring hot",
+        "note": "~275k open AI roles; +92% AI-role hiring YoY, ~56% wage premium",
+        "last_collected": "2026-05-01T00:00:00Z"
       },
       "track_b_assessment": {
         "llm_status": "red",
         "llm_confidence": "high",
-        "llm_rationale": "Independent research reveals significant AI-related layoffs in 2025 that Track A's limited access missed. US layoffs topped 1M in 2025, with October at 33,281 (worst spike in 20 years). Microsoft cut 15K (~4% workforce) in May+July. Tech job postings down while AI positions remain mixed. This suggests AI productivity gains reducing headcount needs - could signal ROI pressures ahead.",
-        "last_research_date": "2025-11-14T05:45:00Z"
+        "llm_rationale": "Tech layoffs ~81.7k in Q1 2026 (~half of all 2025) and >92k by late April; Amazon -16k in Q1 (-30k since Oct), Meta -8k, Oracle -30k (~20% of staff), Microsoft ~125k via 'voluntary' exits. A sharp bifurcation: AI talent scarce, everyone else cut - partly funded by the $725B capex shift. Oracle's 20% cut is notable given its AI-debt load.",
+        "last_research_date": "2026-06-07T00:00:00Z"
       },
       "divergence_flag": true,
       "trend_30d": "deteriorating",
       "final_status": "green",
       "data_source_used": "track_a",
-      "divergence_reason": "Methodology difference: Track A quantitative=green, Track B qualitative=red"
+      "divergence_reason": "Methodology difference: Track A quantitative (AI hiring +92%) = green; Track B qualitative (layoffs running ahead of 2025) = red."
     }
   ],
   "latest_update": {
-    "emoji": "📡",
-    "headline": "AI Startup Funding Velocity & Valuations",
-    "risk_label": "Caution",
+    "emoji": "📉",
+    "headline": "Leading signals deteriorate: equity selloff, distressed credit, power emergency",
+    "risk_label": "Elevated",
     "accent": "warning"
   },
   "ui_copy": {

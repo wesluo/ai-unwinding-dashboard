@@ -1,0 +1,130 @@
+{
+  "_comment": "Company registry — the single control point for which companies the monitor tracks. See docs/company-criteria.md for the inclusion criteria. The weekly refresh reads this file as its company list; companies[] in tracking_data.json is the rendered, scored output for the tracked names.",
+  "metadata": {
+    "last_updated": "2026-06-07",
+    "version": "1.0.0",
+    "criteria_doc": "docs/company-criteria.md"
+  },
+  "tiers": {
+    "hyperscaler": "Compute demand / capex — primary lagging signal",
+    "semiconductor": "AI chips — real-time demand for AI compute",
+    "infrastructure": "Servers, neoclouds, data centers, power — buildout pace + supply-chain/power stress",
+    "ai_lab": "Private AI labs — demand side of the FOMO circular flow"
+  },
+  "companies": [
+    {
+      "ticker": "MSFT", "name": "Microsoft", "tier": "hyperscaler", "public": true,
+      "role": "Azure cloud + OpenAI partner; largest single AI capex program",
+      "ai_revenue_exposure": "high", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Top-3 hyperscaler; capex bellwether"
+    },
+    {
+      "ticker": "AMZN", "name": "Amazon", "tier": "hyperscaler", "public": true,
+      "role": "AWS cloud; Trainium/Inferentia custom silicon; Anthropic partner",
+      "ai_revenue_exposure": "high", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Top-3 hyperscaler; capex bellwether"
+    },
+    {
+      "ticker": "GOOGL", "name": "Alphabet", "tier": "hyperscaler", "public": true,
+      "role": "Google Cloud; TPU custom silicon; Gemini",
+      "ai_revenue_exposure": "high", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Top-3 hyperscaler; capex bellwether"
+    },
+    {
+      "ticker": "META", "name": "Meta", "tier": "hyperscaler", "public": true,
+      "role": "Largest non-cloud AI capex; no direct AI revenue (ROI-skepticism signal)",
+      "ai_revenue_exposure": "medium", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Top-tier capex; sentiment/ROI bellwether"
+    },
+    {
+      "ticker": "NVDA", "name": "NVIDIA", "tier": "semiconductor", "public": true,
+      "role": "Dominant AI GPU supplier; data-center revenue = demand read",
+      "ai_revenue_exposure": "high", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "#1 AI chip; primary demand signal"
+    },
+    {
+      "ticker": "TSM", "name": "TSMC", "tier": "semiconductor", "public": true,
+      "role": "Sole leading-edge foundry; HPC/AI revenue mix = chip demand reality",
+      "ai_revenue_exposure": "high", "data_sources": ["monthly sales", "earnings calls"],
+      "criteria_met": "Foundry chokepoint; cleanest demand-vs-inventory read"
+    },
+    {
+      "ticker": "AMD", "name": "Advanced Micro Devices", "tier": "semiconductor", "public": true,
+      "role": "Merchant GPU #2 (MI-series); NVDA divergence is a signal",
+      "ai_revenue_exposure": "medium", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Top-3 AI chip; alternate-supplier signal"
+    },
+    {
+      "ticker": "AVGO", "name": "Broadcom", "tier": "semiconductor", "public": true,
+      "role": "Custom AI silicon (ASICs) + AI networking proxy",
+      "ai_revenue_exposure": "medium", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Top-3 in custom silicon/networking node"
+    },
+    {
+      "ticker": "ORCL", "name": "Oracle", "tier": "infrastructure", "public": true,
+      "role": "OCI neocloud; large GPU-backed buildout + debt issuance",
+      "ai_revenue_exposure": "medium", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Major neocloud; counterparty/credit signal"
+    },
+    {
+      "ticker": "CRWV", "name": "CoreWeave", "tier": "infrastructure", "public": true,
+      "role": "Pure-play GPU neocloud; GPU-backed debt, customer concentration",
+      "ai_revenue_exposure": "high", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Bellwether neocloud; counterparty-risk signal"
+    },
+    {
+      "ticker": "NBIS", "name": "Nebius", "tier": "infrastructure", "public": true,
+      "role": "GPU neocloud (EU); buildout pace",
+      "ai_revenue_exposure": "high", "data_sources": ["20-F", "earnings calls"],
+      "criteria_met": "Neocloud buildout signal"
+    },
+    {
+      "ticker": "IREN", "name": "Iris Energy", "tier": "infrastructure", "public": true,
+      "role": "Power-first data centers pivoting to AI GPU cloud",
+      "ai_revenue_exposure": "medium", "data_sources": ["earnings", "ops updates"],
+      "criteria_met": "Power+compute crossover signal"
+    },
+    {
+      "ticker": "APLD", "name": "Applied Digital", "tier": "infrastructure", "public": true,
+      "role": "Multi-GW AI data-center developer",
+      "ai_revenue_exposure": "high", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Buildout/financing signal"
+    },
+    {
+      "ticker": "DELL", "name": "Dell Technologies", "tier": "infrastructure", "public": true,
+      "role": "AI server vendor; orders/backlog = enterprise demand read",
+      "ai_revenue_exposure": "medium", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Enterprise AI-server demand signal"
+    },
+    {
+      "ticker": "SMCI", "name": "Super Micro Computer", "tier": "infrastructure", "public": true,
+      "role": "AI-server assembly throughput; accounting-scrutiny watch",
+      "ai_revenue_exposure": "high", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Server supply-chain + governance signal"
+    },
+    {
+      "ticker": "VRT", "name": "Vertiv", "tier": "infrastructure", "public": true,
+      "role": "Data-center power & cooling; direct read on power bottleneck",
+      "ai_revenue_exposure": "medium", "data_sources": ["10-Q/10-K", "earnings calls"],
+      "criteria_met": "Power/cooling demand signal (Phase 5)"
+    },
+    {
+      "ticker": "OPENAI", "name": "OpenAI", "tier": "ai_lab", "public": false,
+      "role": "Largest AI-lab compute buyer; FOMO circular-flow anchor",
+      "ai_revenue_exposure": "high", "data_sources": ["press", "investor reports", "estimates"],
+      "criteria_met": "Demand-side fragility; burn-vs-revenue signal"
+    },
+    {
+      "ticker": "ANTHROPIC", "name": "Anthropic", "tier": "ai_lab", "public": false,
+      "role": "Major AI-lab compute buyer (AWS/Google)",
+      "ai_revenue_exposure": "high", "data_sources": ["press", "investor reports", "estimates"],
+      "criteria_met": "Demand-side fragility; burn-vs-revenue signal"
+    },
+    {
+      "ticker": "XAI", "name": "xAI", "tier": "ai_lab", "public": false,
+      "role": "High-burn AI-lab compute buyer (Colossus)",
+      "ai_revenue_exposure": "high", "data_sources": ["press", "estimates"],
+      "criteria_met": "Demand-side fragility; highest burn multiple"
+    }
+  ]
+}

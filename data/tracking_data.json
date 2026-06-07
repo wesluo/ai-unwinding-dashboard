@@ -1,28 +1,27 @@
 {
   "metadata": {
-    "last_updated": "2025-11-26T12:00:00Z",
-    "version": "1.4.0",
-    "description": "AI Infrastructure Unwinding Monitor - Q3 2025 Update with NVIDIA Q3 FY2026 Earnings (Nov 19) and Dell Q3 FY2025 Addition (Nov 26)",
+    "last_updated": "2026-06-07T16:00:00Z",
+    "version": "1.5.0",
+    "description": "AI Infrastructure Unwinding Monitor - June 2026 refresh. Q1 2026 earnings cycle: hyperscaler capex still rising (~$700-725B combined 2026 guidance), cloud + semiconductor revenue accelerating, but FCF collapsing and the first broad AI-infrastructure equity selloff (Jun 5-6, 2026). Added TSMC, AMD, Broadcom, Super Micro, Vertiv per data/companies.json.",
     "quarterly_capture_dates": {
+      "Q1_2026": "2026-04-29",
+      "Q4_2025": "2026-01-30",
       "Q3_2025": "2025-11-11",
       "Q2_2025": "2025-08-01",
-      "Q1_2025": "2025-05-01",
-      "Q4_2024": "2025-02-01",
-      "Q3_2024": "2024-11-01"
+      "Q1_2025": "2025-05-01"
     }
   },
   "composite_risk_score": 7,
   "current_phase": 0,
   "risk_level": "LOW",
   "risk_rationale": {
-    "summary": "Composite Risk Score of 7/40 indicates LOW RISK. AI infrastructure buildout continues to accelerate with no Phase 1 unwinding signals. NVIDIA Q3 earnings (Nov 19) crushed expectations with Data Center revenue +66% YoY and Q4 guidance beating estimates, eliminating semiconductor demand concerns. All major hyperscalers raised capex guidance in Q3 2025. The 2 Active Signals now include NVIDIA's blowout results (positive) and Meta investor skepticism (concern).",
-    "why_low": "Score of 7 is well below the 9-point threshold for MODERATE risk. Capex guidance universally increasing (not decreasing), no excess GPU capacity, no project delays, semiconductor demand ACCELERATING (NVIDIA beat). Collective hyperscaler spending exceeds $380B for 2025. Each RED indicator (capex cuts >15%, AI growth <20% YoY, utilization <60%) would add 2-6 points to the score - none are currently triggered.",
-    "why_not_moderate": "Would need 9+ points to reach MODERATE. No capex reductions detected (would add 3-6 points). AI revenue growth remains strong 25-55% YoY range - no RED signals (would add 6 points if <20%). No indicators of excess capacity or utilization concerns (would add 4 points). NVIDIA results confirm strong demand (+66% Data Center growth). Operating fundamentals remain healthy across all primary indicators.",
-    "concerns": "Current 7 points come from: (1) AI revenue deceleration from hypergrowth = 1 point × 3x multiplier = 3 points, (2) Meta market reaction signaling sentiment risk = 1 point × 2x multiplier = 2 points, (3) Minor margin/valuation concerns = 2 points × 1x = 2 points. Meta stock drop (-11% despite beat) signals emerging investor skepticism. However, NVIDIA's blowout results (Blackwell 'off the charts', GPUs 'sold out') suggest Meta concerns are company-specific, not ecosystem-wide. These are sentiment risks, not operational signals.",
-    "key_watch": "NVIDIA Q3 earnings CLEARED (beat on all metrics). Now watching: Meta sentiment spreading to MSFT/AMZN/GOOGL could add 2-4 points. Any hyperscaler announcing capex reduction >5% would immediately add 3 points (YELLOW) or 6 points if >15% (RED). Q4 2025 earnings cycle (Jan/Feb 2026) will be next major validation point. Active Signals of 2 reflects NVIDIA beat (positive) and Meta skepticism (isolated concern)."
+    "summary": "Composite Risk Score of 7/40 holds at LOW. Through the Q1 2026 earnings cycle the LAGGING operating fundamentals remain strong: all four hyperscalers RAISED 2026 capex guidance (no cuts), cloud revenue accelerated (AWS +28%, Google Cloud +63%, Azure ~40%), and semiconductor demand re-accelerated (NVIDIA Data Center +92% YoY, Broadcom AI +143%). No capex reductions means we remain in Pre-Phase 1. However the risk has migrated beneath the top line and into the LEADING layer (see leading file, composite 5->12).",
+    "why_low": "No Phase 1 trigger: zero capex cuts, zero project cancellations, AI/cloud revenue accelerating, chip orders accelerating. The score stays at 7 rather than falling because the quality of growth is deteriorating even as the rate improves.",
+    "concerns": "The 7 points reflect: AI revenue growth quality (AWS/Azure in the 20-40% band = YELLOW even as GCP accelerates), margin/FCF compression (operating margins stable but TTM free cash flow collapsed - Amazon ~$38B->$1.2B, Alphabet -38%, Microsoft -22% - on a depreciation ramp; Michael Burry argued the group understates depreciation ~$176B over 2026-28), weak enterprise ROI proof (~29% report significant GenAI ROI, Deloitte 2026), and unproven inference cost economics.",
+    "key_watch": "Power has become the binding constraint (DOE emergency curtailment order May 2026; PJM watchdog asked FERC to halt new data-center interconnections). The first broad AI-infrastructure equity selloff hit Jun 5-6, 2026 (Nasdaq -4.2%, ~$1.71T in a day, triggered by Broadcom guidance). Watch Q2 2026 earnings (late Jul/Aug) for the first capex-guidance moderation - none yet. Oracle and CoreWeave are where financing stress is sharpest."
   },
   "indicator_scoring": {
-    "formula": "Composite Risk Score = Σ (Indicator Points × Multiplier)",
+    "formula": "Composite Risk Score = Sum (Indicator Points x Multiplier)",
     "indicators": [
       {
         "name": "Capex Guidance",
@@ -30,7 +29,7 @@
         "status": "green",
         "points": 0,
         "weighted_score": 0,
-        "description": "All hyperscalers raised capex guidance in Q3 2025"
+        "description": "All four hyperscalers RAISED 2026 capex guidance in Q4 2025/Q1 2026; combined ~$700-725B. No cuts."
       },
       {
         "name": "AI Revenue Growth",
@@ -38,7 +37,7 @@
         "status": "yellow",
         "points": 1,
         "weighted_score": 3,
-        "description": "Decelerating from hypergrowth but still 25-55% YoY"
+        "description": "Mixed: Google Cloud +63% and Azure ~40% strong, but AWS +28% sits in the 20-40% band and FCF shows monetization lagging spend."
       },
       {
         "name": "GPU Utilization",
@@ -46,7 +45,7 @@
         "status": "green",
         "points": 0,
         "weighted_score": 0,
-        "description": "No indicators of excess capacity, demand remains strong"
+        "description": "GPUs sold out; secondary rental prices rose ~40% on a renewed shortage. No excess capacity."
       },
       {
         "name": "Margin Compression",
@@ -54,7 +53,7 @@
         "status": "yellow",
         "points": 1,
         "weighted_score": 2,
-        "description": "Meta investor concerns, sentiment pressure emerging"
+        "description": "Operating margins stable/expanding, but TTM free cash flow collapsed across hyperscalers as depreciation ramps."
       },
       {
         "name": "Timeline Changes",
@@ -62,7 +61,7 @@
         "status": "green",
         "points": 0,
         "weighted_score": 0,
-        "description": "No project delays announced, buildouts on schedule"
+        "description": "No project delays or cancellations. Power constraints emerging as a buildout risk but no announced pauses yet."
       },
       {
         "name": "Enterprise Adoption",
@@ -70,7 +69,7 @@
         "status": "yellow",
         "points": 1,
         "weighted_score": 1,
-        "description": "Mixed signals, proving ROI in various use cases"
+        "description": "ROI proof still weak - only ~29% report significant GenAI ROI; 79% cite adoption challenges (Deloitte 2026)."
       },
       {
         "name": "Cost Economics",
@@ -78,7 +77,7 @@
         "status": "yellow",
         "points": 1,
         "weighted_score": 1,
-        "description": "Improving but not yet viable for all use cases"
+        "description": "Inference costs keep falling (growth-positive) but are partly subsidy-supported; durable unit economics unproven."
       },
       {
         "name": "Semiconductor Orders",
@@ -86,7 +85,7 @@
         "status": "green",
         "points": 0,
         "weighted_score": 0,
-        "description": "Strong demand, NVIDIA backlog robust (pending Q3 confirmation)"
+        "description": "Re-accelerating: NVIDIA Data Center +92% YoY, Broadcom AI semi +143%, TSMC raised capex. No cancellations."
       }
     ],
     "total_points": 4,
@@ -95,32 +94,46 @@
   },
   "active_signals": [
     {
-      "title": "Dell Q3 AI Server Orders Hit Record $12.3B - Enterprise Demand Surging",
-      "description": "Dell Q3 FY2025 reported record AI server orders of $12.3B (YTD: $30B), with $18.4B backlog. AI server shipments projected at ~$25B for full year (+150% YoY). ISG revenue $14.1B (+24% YoY), Servers $10.1B (+37% YoY). Confirms enterprise AI infrastructure demand is accelerating alongside hyperscaler buildout. Stock rallied on results.",
-      "source": "Dell Technologies Q3 FY2025 Earnings (Nov 26, 2025)",
-      "severity": "low",
-      "detected_at": "2025-11-26"
-    },
-    {
-      "title": "NVIDIA Q3 Earnings Blowout - Demand Acceleration Confirmed",
-      "description": "NVIDIA crushed Q3 FY2026 estimates: $57.01B revenue (+62.5% YoY) vs $54.92B expected. Data Center $51.2B (+66% YoY). Q4 guidance $65B vs $61.66B est. Management: Blackwell 'off the charts', GPUs 'sold out'. Stock +6.77% total (session + AH). ELIMINATES semiconductor demand concerns.",
-      "source": "NVIDIA Q3 FY2026 Earnings (Nov 19, 2025)",
-      "severity": "low",
-      "detected_at": "2025-11-19"
-    },
-    {
-      "title": "Hyperscaler CapEx Acceleration Continues",
-      "description": "All major hyperscalers increased 2025 capex guidance in Q3 earnings. Collective spending now exceeds $380B for 2025, up from ~$315B projections.",
-      "source": "Q3 2025 Earnings Reports (Oct/Nov)",
-      "severity": "low",
-      "detected_at": "2025-11-01"
-    },
-    {
-      "title": "Meta Market Reaction: AI Spending Skepticism (Isolated)",
-      "description": "Meta stock dropped 11% despite beating estimates - largest drop in 3 years. Investor concerns about AI spending ROI despite $70-72B capex guidance increase. HOWEVER: NVIDIA's blowout results suggest Meta concerns are company-specific (no cloud revenue story), not ecosystem-wide demand softening.",
-      "source": "Meta Q3 2025 Earnings (Oct 31) + NVIDIA Q3 context",
+      "title": "AI-Bubble Selloff: Nasdaq Sheds ~$1.71T in a Single Day",
+      "description": "On June 5-6, 2026 a broad AI-infrastructure equity selloff hit markets (Nasdaq -4.2%, ~$1.71 trillion erased in one day, NVDA -6%), triggered by underwhelming Broadcom guidance. The first major correlated repricing of the AI-infra complex - the kind of single-catalyst, whole-group drawdown the correlation indicator exists to catch.",
+      "source": "Market reports (June 6, 2026)",
       "severity": "moderate",
-      "detected_at": "2025-10-31"
+      "detected_at": "2026-06-06"
+    },
+    {
+      "title": "Oracle Financing Stress: Negative FCF, Moody's Cut, Bondholder Lawsuit",
+      "description": "Oracle FY2026 free cash flow ran ~-$24.7B TTM against >$100B debt; Moody's moved its outlook to negative; and a January 2026 bondholder lawsuit alleges the $18B Sept-2025 offering concealed the scale of further debt needed for the $300B OpenAI/Stargate buildout. The clearest single-name credit escalation in this monitor.",
+      "source": "Oracle Q3 FY2026 + filings (Mar 2026)",
+      "severity": "moderate",
+      "detected_at": "2026-03-10"
+    },
+    {
+      "title": "Hyperscaler Free Cash Flow Collapses Beneath Strong Top Line",
+      "description": "Despite raised capex and accelerating cloud revenue, TTM free cash flow collapsed (Amazon ~$38B -> ~$1.2B, Alphabet -38%, Microsoft -22%) as short-lived GPU assets drive a depreciation ramp. Michael Burry publicly argued the group understates depreciation by ~$176B over 2026-28.",
+      "source": "Q1 2026 earnings + analyst notes (Apr-May 2026)",
+      "severity": "moderate",
+      "detected_at": "2026-04-29"
+    },
+    {
+      "title": "Power Becomes the Binding Constraint on AI Buildout",
+      "description": "The DOE issued an emergency order (May 2026) allowing PJM to curtail data centers, and PJM's market monitor asked FERC to halt new data-center interconnections amid a ~2,600 GW queue and record capacity prices. Power, not GPUs, now gates the next order-of-magnitude of training compute.",
+      "source": "Utility Dive / PJM (May 2026)",
+      "severity": "moderate",
+      "detected_at": "2026-05-15"
+    },
+    {
+      "title": "Capex Still Rising: All Four Hyperscalers Raised 2026 Guidance",
+      "description": "No moderation through Q1 2026: combined 2026 capex guidance reached ~$700-725B (Amazon ~$200B, Alphabet $180-190B, Microsoft ~$145B annualized, Meta $125-145B), with Alphabet and Meta raising mid-cycle. Cloud growth accelerated (AWS +28%, Google Cloud +63%). A clearly positive demand signal.",
+      "source": "Q4 2025 + Q1 2026 earnings",
+      "severity": "low",
+      "detected_at": "2026-04-29"
+    },
+    {
+      "title": "Semiconductor Demand Re-Accelerating",
+      "description": "NVIDIA Data Center revenue +92% YoY (Q1 FY2027, $75.2B), Broadcom AI semiconductor +143% YoY (guide >+200% next quarter), AMD Data Center +57%, and TSMC raised 2026 capex to $52-56B on AI/HPC demand. No order cancellations or demand softening anywhere in the chain.",
+      "source": "NVDA / AVGO / AMD / TSMC (May-Jun 2026)",
+      "severity": "low",
+      "detected_at": "2026-06-03"
     }
   ],
   "companies": [
@@ -128,151 +141,206 @@
       "name": "Microsoft (MSFT)",
       "ticker": "MSFT",
       "status": "green",
-      "capex": "$64.6B (FY2025 actual, +45.1% YoY) - Accelerating in FY2026",
-      "ai_growth": "$10B+ annual run rate (Q2 target)",
-      "margin": "Stable",
+      "capex": "~$145B annualized FY2026 (Q3 FY26: $30.9B, +84% YoY) - still rising",
+      "ai_growth": "Azure +40% YoY; AI run-rate $37B (+123% YoY); RPO $625B",
+      "margin": "Stable; FCF -22% YoY on depreciation ramp",
       "risk_score": 1,
-      "quarterly_report_date": "2025-10-31",
-      "notes": "AI business fastest ever to $10B milestone. CFO Hood confirmed FY2026 capex acceleration."
+      "quarterly_report_date": "2026-04-29",
+      "notes": "Azure still supply-constrained at +40% with a $625B (OpenAI-heavy) backlog. Only flag is the FCF/depreciation compression, not demand."
     },
     {
       "name": "Amazon (AMZN)",
       "ticker": "AMZN",
       "status": "green",
-      "capex": "$125B (2025 guidance) - Q3: $23.95B (+7% QoQ, +83% YoY)",
-      "ai_growth": "Strong AWS AI/ML growth",
-      "margin": "AWS stable",
+      "capex": "~$200B 2026 guidance (Q1 2026: $44.2B) - reaffirmed",
+      "ai_growth": "AWS +28% YoY to $37.6B (fastest in ~15 quarters)",
+      "margin": "Record 13.1% op margin; TTM FCF collapsed to ~$1.2B",
       "risk_score": 1,
-      "quarterly_report_date": "2025-10-31",
-      "notes": "CFO Olsavsky indicated capex will grow further in 2026. Q1 2025: $24.3B."
+      "quarterly_report_date": "2026-04-30",
+      "notes": "AWS reaccelerated to +28% and margins expanded, but near-zero free cash flow on a $200B capex plan is the watch item."
     },
     {
       "name": "Alphabet (GOOGL)",
       "ticker": "GOOGL",
       "status": "green",
-      "capex": "$91-93B (2025 guidance raised from $85B) - Q3: $24B",
-      "ai_growth": "Cloud AI strong, 1/4 of code now AI-generated",
-      "margin": "Google Cloud improving",
+      "capex": "$180-190B 2026 guidance (raised; Q1 2026: $35.7B)",
+      "ai_growth": "Google Cloud +63% YoY to $20.0B; backlog ~$460B",
+      "margin": "Group stable/expanding; FCF -38% YoY",
       "risk_score": 1,
-      "quarterly_report_date": "2025-10-29",
-      "notes": "Raised capex guidance. 60% servers, 40% data center/networking. Q1: $17B."
+      "quarterly_report_date": "2026-04-23",
+      "notes": "Strongest cloud growth of the four (+63%) with a near-doubled backlog; offset by the steepest FCF decline."
     },
     {
       "name": "Meta (META)",
       "ticker": "META",
       "status": "yellow",
-      "capex": "$70-72B (2025 guidance raised from $66-72B) - Q3: $19.37B (+14% QoQ, +111% YoY)",
-      "ai_growth": "No direct revenue stream",
-      "margin": "Under pressure",
-      "risk_score": 4,
-      "quarterly_report_date": "2025-10-30",
-      "notes": "Stock dropped 11% (worst in 3 years) despite beat - investor concerns about AI ROI. Lacks cloud revenue story unlike peers."
+      "capex": "$125-145B 2026 guidance (raised; Q1 2026: $19.84B)",
+      "ai_growth": "No direct AI revenue; AI lifted ad conversions >6%",
+      "margin": "Healthy op margin; rising depreciation/opex",
+      "risk_score": 3,
+      "quarterly_report_date": "2026-04-29",
+      "notes": "Raised capex again and stock fell ~7% on the raise despite a revenue beat - the clearest ongoing investor-ROI-skepticism signal among the four."
     },
     {
       "name": "NVIDIA (NVDA)",
       "ticker": "NVDA",
       "status": "green",
       "capex": "N/A (fabless)",
-      "ai_growth": "+62.5% YoY (Q3 FY2026: $57.01B revenue)",
-      "margin": "75%",
+      "ai_growth": "Data Center $75.2B Q1 FY2027 (+92% YoY) - re-accelerating",
+      "margin": "Strong",
       "risk_score": 0,
-      "quarterly_report_date": "2025-11-19",
-      "notes": "Q3 FY2026 BEAT: $57.01B revenue (vs $54.92B est), $1.30 EPS (vs $1.25 est). Data Center: $51.2B (+66% YoY). Q4 guidance: $65B (vs $61.66B est). Blackwell 'off the charts', GPUs 'sold out'. Stock +2.86% session, +3.91% AH. NO DEMAND SOFTENING."
+      "quarterly_report_date": "2026-05-20",
+      "notes": "Blackwell at full scale, Vera Rubin ramping; no demand softening. Raised dividend and added an $80B buyback."
+    },
+    {
+      "name": "TSMC (TSM)",
+      "ticker": "TSM",
+      "status": "green",
+      "capex": "$52-56B 2026 capex (raised, ~+32%) on AI/HPC",
+      "ai_growth": "Q1 2026 $35.9B (+35% YoY); HPC 61% of mix; FY guide >30%",
+      "margin": "Gross margin 66.2%",
+      "risk_score": 1,
+      "quarterly_report_date": "2026-04-16",
+      "notes": "AI/HPC demand and capex both raised. One nuance: April monthly revenue +17.5% YoY was the slowest in ~6 months - a single deceleration datapoint to watch."
+    },
+    {
+      "name": "AMD (AMD)",
+      "ticker": "AMD",
+      "status": "green",
+      "capex": "N/A (fabless)",
+      "ai_growth": "Data Center $5.8B Q1 2026 (+57% YoY); MI450 Meta win",
+      "margin": "Improving",
+      "risk_score": 1,
+      "quarterly_report_date": "2026-05-05",
+      "notes": "CEO called AI demand 'sky high'; MI350 shipping and an MI450 1GW Meta deployment de-risks the 2026-27 ramp. Smaller scale than NVDA."
+    },
+    {
+      "name": "Broadcom (AVGO)",
+      "ticker": "AVGO",
+      "status": "green",
+      "capex": "N/A (fabless)",
+      "ai_growth": "AI semi $10.8B Q2 FY26 (+143% YoY); Q3 guide >+200%",
+      "margin": "Strong",
+      "risk_score": 0,
+      "quarterly_report_date": "2026-06-03",
+      "notes": "Custom-silicon + networking accelerating across six accelerator customers (incl. Google, Meta, OpenAI, Anthropic); reiterated >$100B AI revenue for FY2027. (Its soft total-revenue guide triggered the Jun 6 selloff.)"
     },
     {
       "name": "Oracle (ORCL)",
       "ticker": "ORCL",
       "status": "yellow",
-      "capex": "$35B (FY2026 guidance, +91% YoY)",
-      "ai_growth": "52-55% YoY (Cloud Infrastructure)",
-      "margin": "Negative FCF (-$5.9B TTM)",
+      "capex": "$50B FY2026 (~+135% YoY); FCF ~-$24.7B TTM",
+      "ai_growth": "OCI +84% YoY to $4.9B; RPO $553B (Stargate-anchored)",
+      "margin": "Pressured; >$100B debt",
       "risk_score": 6,
-      "quarterly_report_date": "2025-12-09 (Q2 FY2026)",
-      "notes": "Q2 FY2026: Cloud infra $3.3B (+52% YoY), RPO $97.3B (+50%). $30B OpenAI deal (4.5GW capacity). Raised $18B bonds, negotiating $38B more. Stargate project financing concerns emerging."
+      "quarterly_report_date": "2026-03-10",
+      "notes": "Backlog enormous but financing stress intensifying: Moody's negative outlook and a Jan 2026 bondholder lawsuit over $18B-offering disclosures tied to the $300B OpenAI/Stargate deal. Clearest single-name escalation."
     },
     {
       "name": "CoreWeave (CRWV)",
       "ticker": "CRWV",
       "status": "yellow",
-      "capex": "$955.5M Q3 2025",
-      "ai_growth": "355% YoY (Q3 2025)",
-      "margin": "Negative (adj. net loss $100.4M Q3)",
+      "capex": "Raised; >1 GW active / 3.5 GW contracted power",
+      "ai_growth": "Q1 2026 $2.08B (+112% YoY); backlog $99.4B",
+      "margin": "Net loss $740M; interest expense doubled to $536M",
       "risk_score": 6,
-      "quarterly_report_date": "2025-11-10",
-      "notes": "IPO March 2025 @$40, now $105. Q3: $1.36B revenue, $55.6B backlog. $6.5B OpenAI expansion, $14.2B Meta deal. Revenue guidance cut to $5.05-5.15B (vs $5.29B expected)."
-    },
-    {
-      "name": "Iris Energy (IREN)",
-      "ticker": "IREN",
-      "status": "green",
-      "capex": "$674M GPU procurement",
-      "ai_growth": "$500M+ ARR target by Q1 2026",
-      "margin": "Improving",
-      "risk_score": 4,
-      "quarterly_report_date": "2025-11-08 (Q1 FY2025)",
-      "notes": "Bitcoin miner pivoting to AI cloud. Stock +269% YTD 2025. Doubling GPU fleet to 23k GPUs. Market cap: $17.09B."
-    },
-    {
-      "name": "Applied Digital (APLD)",
-      "ticker": "APLD",
-      "status": "green",
-      "capex": "Multi-GW facilities under development",
-      "ai_growth": "84% YoY (Q1 FY2026)",
-      "margin": "Negative (-$233.68M losses)",
-      "risk_score": 5,
-      "quarterly_report_date": "2025-10-10 (Q1 FY2026)",
-      "notes": "$11B CoreWeave contract (400MW), $5B hyperscaler deal (200MW). Q1 FY2026: $64.2M revenue. Stock +39.4% YTD 2025."
+      "quarterly_report_date": "2026-05-07",
+      "notes": "Growth decelerated from 355% but base is larger; top-customer concentration improved ~67%->45%. Raised an $8.5B HPC-backed debt facility; CDS distressed (~600-770bps). The credit canary."
     },
     {
       "name": "Nebius (NBIS)",
       "ticker": "NBIS",
       "status": "green",
-      "capex": "$955.5M Q3 2025",
-      "ai_growth": "400% YoY (Q3 2025)",
-      "margin": "Negative (adj. net loss $100.4M Q3)",
+      "capex": "$20-25B 2026 (raised); $2.47B in Q1",
+      "ai_growth": "Q1 2026 $399M (+684% YoY); AI-cloud ARR $1.92B",
+      "margin": "Net income +$621M (stake-aided)",
       "risk_score": 4,
-      "quarterly_report_date": "2025-11-11",
-      "notes": "Formerly Yandex, renamed Aug 2024. Q3: $146.1M revenue. $19.4B Microsoft deal, $3B Meta deal (Nov 2025). Stock +475% past year."
+      "quarterly_report_date": "2026-05-13",
+      "notes": "Best growth profile in the group; signed a $27B/5yr Meta deal and 1.2 GW in Pennsylvania. Risk nudges up on the capex ramp ($20-25B vs ~$3B revenue) funded via converts/warrants."
+    },
+    {
+      "name": "Iris Energy (IREN)",
+      "ticker": "IREN",
+      "status": "green",
+      "capex": "~150k GPUs; building toward 5 GW; $2.6B cash",
+      "ai_growth": "AI-cloud $33.6M; ARR under contract $3.1B",
+      "margin": "Net loss $247.8M (mining impairments)",
+      "risk_score": 4,
+      "quarterly_report_date": "2026-05-14",
+      "notes": "Signed a $3.4B AI-cloud / 5 GW NVIDIA partnership. Total revenue fell QoQ and legacy mining is shrinking faster than AI fills in - a transitional-stress signal."
+    },
+    {
+      "name": "Applied Digital (APLD)",
+      "ticker": "APLD",
+      "status": "green",
+      "capex": "600 MW under contract; Polaris Forge 1 live",
+      "ai_growth": "Q3 FY2026 $126.6M (+139% YoY); adj. EBITDA $44.1M",
+      "margin": "Improving; GAAP EPS miss",
+      "risk_score": 5,
+      "quarterly_report_date": "2026-04-14",
+      "notes": "Revenue beat as lease revenue became the primary driver, but heavy single-counterparty dependence on CoreWeave is a direct transmission channel for CRWV's stress."
     },
     {
       "name": "Dell Technologies (DELL)",
       "ticker": "DELL",
       "status": "green",
-      "capex": "N/A (hardware provider, not builder)",
-      "ai_growth": "150%+ YoY (AI server shipments)",
-      "margin": "ISG segment strong",
-      "risk_score": 0,
-      "quarterly_report_date": "2025-11-26",
-      "notes": "Q3 FY2025: Record $27B revenue. ISG $14.1B (+24% YoY), Servers $10.1B (+37% YoY). AI servers: $30B orders YTD, $12.3B in Q3, $18.4B backlog. FY2025 AI server shipments ~$25B (+150% YoY). Q4 AI revenue outlook: $9.4B. Strong indicator of enterprise AI infrastructure demand."
+      "capex": "N/A (OEM); order/backlog signal",
+      "ai_growth": "$24.4B AI orders Q1 FY27; $16.1B AI-server rev; FY27 guide $60B",
+      "margin": "Stable",
+      "risk_score": 1,
+      "quarterly_report_date": "2026-05-28",
+      "notes": "Demand accelerated, not decelerated - stock had its best day ever (+32%). $43B AI backlog. A clean demand barometer flashing strong, no financing/accounting stress."
+    },
+    {
+      "name": "Super Micro (SMCI)",
+      "ticker": "SMCI",
+      "status": "yellow",
+      "capex": "N/A (OEM); ramping liquid-cooled GB300",
+      "ai_growth": "Q2 FY2026 $12.7B (+123% YoY); FY26 guide raised to >=$40B",
+      "margin": "Gross margin compressed to 6.3% (from 11.8%)",
+      "risk_score": 3,
+      "quarterly_report_date": "2026-02-03",
+      "notes": "Explosive revenue but thin, working-capital-intensive margins on the DLC ramp. Accounting/governance overhang eased (BDO audit, no restatement) but some institutional skepticism persists."
+    },
+    {
+      "name": "Vertiv (VRT)",
+      "ticker": "VRT",
+      "status": "green",
+      "capex": "N/A (supplier); orders/backlog proxy",
+      "ai_growth": "Q1 2026 $2.65B (+30% YoY); backlog $12.45B (~+81% YoY)",
+      "margin": "Strong",
+      "risk_score": 1,
+      "quarterly_report_date": "2026-04-22",
+      "notes": "Cleanest 'is demand still there?' proxy and strongly affirmative - book-to-bill >1, ~80%+ backlog growth, raised guidance. Power/cooling remains a genuine bottleneck."
     }
   ],
   "capex_chart_data": {
-    "labels": ["Q1 2024", "Q2 2024", "Q3 2024", "Q4 2024", "Q1 2025", "Q2 2025", "Q3 2025"],
+    "labels": ["Q1 2024", "Q2 2024", "Q3 2024", "Q4 2024", "Q1 2025", "Q2 2025", "Q3 2025", "Q4 2025", "Q1 2026"],
     "datasets": [
       {
         "label": "Microsoft",
-        "data": [14, 15, 16, 16.2, 21.4, 19.0, 20.0],
+        "data": [14, 15, 16, 16.2, 21.4, 24.2, 34.9, 37.5, 30.9],
         "borderColor": "#3b82f6",
         "backgroundColor": "#3b82f640",
         "tension": 0.3
       },
       {
         "label": "Amazon/AWS",
-        "data": [13, 14, 16, 18, 24.3, 23.0, 23.95],
+        "data": [13, 14, 16, 18, 24.3, 31.4, 34.2, 41.9, 44.2],
         "borderColor": "#f59e0b",
         "backgroundColor": "#f59e0b40",
         "tension": 0.3
       },
       {
         "label": "Alphabet",
-        "data": [10, 11, 12, 13, 17, 19, 24],
+        "data": [10, 11, 12, 13, 17, 19, 24, 30, 35.7],
         "borderColor": "#10b981",
         "backgroundColor": "#10b98140",
         "tension": 0.3
       },
       {
         "label": "Meta",
-        "data": [6, 7, 8, 9, 13, 17, 19.37],
+        "data": [6, 7, 8, 9, 13, 17, 19.37, 22.14, 19.84],
         "borderColor": "#8b5cf6",
         "backgroundColor": "#8b5cf640",
         "tension": 0.3
@@ -280,32 +348,32 @@
     ]
   },
   "revenue_chart_data": {
-    "labels": ["Q1 2024", "Q2 2024", "Q3 2024", "Q4 2024", "Q1 2025"],
+    "labels": ["Q1 2025", "Q2 2025", "Q3 2025", "Q4 2025", "Q1 2026"],
     "datasets": [
       {
-        "label": "Azure AI Growth",
-        "data": [50, 48, 45, 42, 38],
+        "label": "Azure AI/Cloud Growth",
+        "data": [38, 39, 40, 39, 40],
         "borderColor": "#3b82f6",
         "backgroundColor": "#3b82f640",
         "tension": 0.3
       },
       {
-        "label": "AWS AI/ML Growth (est.)",
-        "data": [45, 44, 43, 41, 40],
+        "label": "AWS Growth",
+        "data": [17, 18, 20, 24, 28],
         "borderColor": "#f59e0b",
         "backgroundColor": "#f59e0b40",
         "tension": 0.3
       },
       {
-        "label": "Google Cloud AI Growth (est.)",
-        "data": [40, 38, 37, 36, 35],
+        "label": "Google Cloud Growth",
+        "data": [28, 32, 34, 48, 63],
         "borderColor": "#10b981",
         "backgroundColor": "#10b98140",
         "tension": 0.3
       },
       {
         "label": "NVIDIA Data Center Growth",
-        "data": [217, 150, 100, 80, 65],
+        "data": [73, 70, 66, 75, 92],
         "borderColor": "#ef4444",
         "backgroundColor": "#ef444440",
         "tension": 0.3
@@ -317,141 +385,121 @@
       "status": "green",
       "value": "Strongly Increasing",
       "trend": "accelerating",
-      "last_updated": "2025-11-11",
-      "notes": "Q3 2025: All hyperscalers raised guidance. Collective >$380B for 2025, up from $315B projections. Microsoft accelerating in FY2026."
+      "last_updated": "2026-04-29",
+      "notes": "All four hyperscalers raised 2026 capex guidance; combined ~$700-725B. No moderation through Q1 2026."
     },
     "ai_revenue_growth": {
       "status": "yellow",
-      "value": "25-55% YoY",
-      "trend": "decelerating",
-      "last_updated": "2025-11-11",
-      "notes": "Microsoft AI: $10B+ run rate. Mag 7: +26.7% earnings, +17.6% revenue. NVIDIA expected +55.6%. Still strong but decelerating from hypergrowth."
+      "value": "28-63% YoY (mixed)",
+      "trend": "mixed",
+      "last_updated": "2026-04-29",
+      "notes": "Google Cloud +63% and Azure ~40% strong; AWS +28% in the 20-40% band. FCF collapse signals monetization lagging spend."
     },
     "gpu_utilization": {
       "status": "green",
-      "value": "High demand continues",
-      "trend": "stable",
-      "last_updated": "2025-11-11",
-      "notes": "Q3 2025: No indicators of excess capacity. NVIDIA demand commentary remains positive ahead of Nov 19 earnings."
+      "value": "Sold out / shortage",
+      "trend": "tightening",
+      "last_updated": "2026-05-01",
+      "notes": "GPUs sold out; secondary rental prices reversed upward ~40% on a renewed shortage. No excess capacity."
     },
     "margin_compression": {
       "status": "yellow",
-      "value": "Mixed signals",
-      "trend": "watching",
-      "last_updated": "2025-11-11",
-      "notes": "Meta facing investor skepticism despite spending increases. Market reaction suggests ROI concerns emerging."
+      "value": "FCF collapsing",
+      "trend": "worsening",
+      "last_updated": "2026-04-29",
+      "notes": "Operating margins stable/expanding but TTM free cash flow collapsed on a depreciation ramp. Burry flagged ~$176B understated depreciation 2026-28."
     },
     "timeline_changes": {
       "status": "green",
-      "value": "On or ahead of schedule",
-      "trend": "stable",
-      "last_updated": "2025-11-11",
-      "notes": "No major project delays in Q3 reports. Buildouts proceeding as planned."
+      "value": "On schedule; power-constrained",
+      "trend": "watching",
+      "last_updated": "2026-05-15",
+      "notes": "No project pauses, but power has become the binding constraint (DOE emergency curtailment; FERC interconnection-halt request)."
     },
     "semiconductor_orders": {
       "status": "green",
-      "value": "Very Strong",
+      "value": "Very Strong / accelerating",
       "trend": "accelerating",
-      "last_updated": "2025-11-19",
-      "notes": "NVIDIA Q3 FY2026 CRUSHED estimates: $57.01B revenue (+62.5% YoY) vs $54.92B est. Data Center $51.2B (+66% YoY). Q4 guidance $65B vs $61.66B est. Blackwell 'off the charts', GPUs 'sold out'. Zero demand softening signals."
+      "last_updated": "2026-06-03",
+      "notes": "NVIDIA DC +92% YoY, Broadcom AI +143% (guide >+200%), AMD DC +57%, TSMC raised capex. No cancellations."
     },
     "credit_spreads": {
-      "status": "green",
-      "value": "Tight",
-      "trend": "stable",
-      "last_updated": "2025-11-11",
-      "notes": "No signs of credit stress. Tech investment-grade spreads remain compressed."
+      "status": "yellow",
+      "value": "Widening at leveraged operators",
+      "trend": "worsening",
+      "last_updated": "2026-05-01",
+      "notes": "Investment-grade hyperscaler credit fine, but CoreWeave CDS distressed (~600-770bps) and Oracle on Moody's negative outlook + bondholder lawsuit."
     },
     "private_valuations": {
       "status": "yellow",
-      "value": "Elevated but stable",
-      "trend": "stable",
-      "last_updated": "2025-11-11",
-      "notes": "No new funding rounds reported in Q3. Meta market reaction signals investor patience may be tested."
+      "value": "Record but concentrated",
+      "trend": "blow-off-top",
+      "last_updated": "2026-05-28",
+      "notes": "OpenAI $852B, Anthropic ~$965B, xAI ~$230B. Record funding but ~65% of all Q1 VC in 3-4 labs; IPO-exit rush and tail down-rounds."
     }
   },
   "quarterly_updates": [
     {
-      "quarter": "Q3 2025 - Dell Addition",
-      "date": "2025-11-26",
-      "summary": "Dell Technologies added to tracking with Q3 FY2025 results showing explosive AI server demand. Record $12.3B AI server orders in Q3 (YTD: $30B) with $18.4B backlog validates that enterprise AI infrastructure buildout is accelerating alongside hyperscalers. Dell provides critical visibility into enterprise AI adoption as a leading hardware provider selling AI-optimized servers to hyperscalers, enterprises, and infrastructure companies.",
+      "quarter": "Q1 2026 - June refresh",
+      "date": "2026-06-07",
+      "summary": "Q1 2026 earnings confirmed continued capex escalation and accelerating cloud + semiconductor revenue, but with deteriorating quality (FCF collapse, depreciation drag) and a first broad AI-infrastructure equity selloff on Jun 5-6. Added TSMC, AMD, Broadcom, Super Micro, and Vertiv to the tracked roster. Lagging composite holds at 7/40 (LOW, Pre-Phase 1); the leading layer doubled to 12/48.",
       "highlights": [
-        "Dell Q3 FY2025: Record $27B revenue, beat earnings expectations",
-        "AI server orders: $12.3B in Q3, $30B YTD, $18.4B backlog",
-        "FY2025 AI server shipments projected at ~$25B (+150% YoY)",
-        "ISG revenue: $14.1B (+24% YoY), Servers segment: $10.1B (+37% YoY)",
-        "Q4 AI revenue outlook: $9.4B - strong forward visibility",
-        "Stock rallied on results - market validated AI infrastructure demand story",
-        "Dell added as MEDIUM priority in monitoring matrix - provides enterprise demand signals"
-      ],
-      "risk_score": 7
-    },
-    {
-      "quarter": "Q3 2025 - NVIDIA Update",
-      "date": "2025-11-19",
-      "summary": "NVIDIA Q3 FY2026 earnings crushed all expectations, eliminating semiconductor demand concerns and confirming AI infrastructure buildout remains on track. Data Center revenue +66% YoY with Blackwell 'off the charts' and GPUs 'sold out'. Results validate hyperscaler capex acceleration and suggest Meta's investor skepticism is company-specific, not ecosystem-wide. Risk remains LOW with strengthened confidence.",
-      "highlights": [
-        "NVIDIA Q3 FY2026: $57.01B revenue (beat $54.92B est, +62.5% YoY)",
-        "Data Center: $51.2B (+66% YoY) - strongest segment ever",
-        "Q4 guidance: $65B (beat $61.66B estimate) - demand accelerating",
-        "Blackwell ramp 'off the charts', GPUs 'sold out' - no excess capacity",
-        "Stock +6.77% total (session + after hours) - market validated results",
-        "Meta concerns now appear isolated (lacks cloud revenue story unlike MSFT/AMZN/GOOGL)",
-        "Semiconductor orders indicator upgraded from 'Strong' to 'Very Strong' with 'accelerating' trend"
+        "All four hyperscalers RAISED 2026 capex; combined ~$700-725B guidance - no moderation",
+        "Cloud accelerated: AWS +28%, Google Cloud +63%, Azure ~40%; Microsoft AI run-rate $37B (+123%)",
+        "Semis re-accelerated: NVIDIA DC +92% YoY, Broadcom AI +143%, AMD DC +57%, TSMC capex raised to $52-56B",
+        "But TTM free cash flow collapsed (Amazon ~$38B->$1.2B, Alphabet -38%, Microsoft -22%) on depreciation ramp",
+        "Jun 5-6 2026: broad AI-infra selloff, Nasdaq -4.2%, ~$1.71T erased in a day (Broadcom-guidance trigger)",
+        "Oracle financing stress: Moody's negative outlook + bondholder lawsuit; CoreWeave CDS distressed",
+        "Power became the binding constraint: DOE emergency curtailment order; FERC interconnection-halt request"
       ],
       "risk_score": 7
     },
     {
       "quarter": "Q3 2025",
-      "date": "2025-11-11",
-      "summary": "Hyperscaler capex acceleration continues with all major players raising 2025 guidance. Collective spending now >$380B. However, Meta's market reaction signals emerging investor skepticism about AI ROI despite continued spending. Risk remains LOW but watching for sentiment shifts.",
+      "date": "2025-11-26",
+      "summary": "Hyperscaler capex acceleration continued; NVIDIA Q3 crushed estimates; Dell added with record AI server orders. Meta market reaction signaled emerging investor skepticism. Risk LOW at 7/40.",
       "highlights": [
-        "Alphabet raised 2025 capex guidance to $91-93B (from $85B)",
-        "Meta raised guidance to $70-72B but stock dropped 11% - worst decline in 3 years",
-        "Amazon guiding $125B for 2025, CFO indicated further growth in 2026",
-        "Microsoft confirming FY2026 capex acceleration, AI business hitting $10B+ run rate",
-        "NVIDIA earnings Nov 19 will be critical - consensus $54.59B revenue (+55.6% YoY)",
-        "Key concern: Meta reaction shows market testing patience on AI monetization timeline"
+        "NVIDIA Q3 FY2026: $57.01B revenue (+62.5% YoY), Data Center $51.2B (+66% YoY)",
+        "Dell record $12.3B AI server orders (Q3), $18.4B backlog",
+        "All hyperscalers raised 2025 capex guidance; collective >$380B",
+        "Meta stock dropped 11% despite a beat - first ROI-skepticism signal"
       ],
       "risk_score": 7
-    },
-    {
-      "quarter": "Q1 2025",
-      "date": "2025-01-28",
-      "summary": "All major hyperscalers reported strong AI revenue growth. No capex reductions announced. Risk remains low.",
-      "highlights": [
-        "Microsoft maintained $80B capex guidance",
-        "AWS AI/ML revenue growing 40%+",
-        "NVIDIA Data Center revenue exceeded expectations",
-        "No warning signals detected"
-      ],
-      "risk_score": 8
     }
   ],
   "news_sentiment": {
     "last_7_days": {
-      "total_items": 0,
-      "relevant_items": 0,
-      "sentiment_distribution": {},
-      "top_warnings": []
+      "total_items": 42,
+      "relevant_items": 28,
+      "sentiment_distribution": { "negative": 11, "cautionary": 9, "neutral": 4, "positive": 4 },
+      "top_warnings": [
+        "AI-infrastructure equity selloff (~$1.71T in a day, Jun 6)",
+        "Broadcom guidance disappointment triggers broad repricing",
+        "CoreWeave credit-default-swap spreads in distressed territory"
+      ]
     },
     "last_30_days": {
-      "total_items": 0,
-      "relevant_items": 0,
-      "sentiment_distribution": {},
-      "top_warnings": []
+      "total_items": 165,
+      "relevant_items": 104,
+      "sentiment_distribution": { "negative": 31, "cautionary": 38, "neutral": 20, "positive": 15 },
+      "top_warnings": [
+        "Hyperscaler free cash flow collapse / depreciation critique",
+        "DOE emergency data-center power curtailment order",
+        "Oracle bondholder lawsuit and Moody's negative outlook",
+        "Tech layoffs running ahead of 2025 pace"
+      ]
     }
   },
   "usage_instructions": {
-    "note": "This is a template file. Update with actual data from earnings calls, SEC filings, and news monitoring.",
+    "note": "Refreshed June 2026. Update with actual data from earnings calls, SEC filings, and news monitoring. The tracked-company roster is governed by data/companies.json (see docs/company-criteria.md).",
     "update_frequency": "Update companies[] and indicator_tracking{} quarterly after earnings. Update news_sentiment{} weekly.",
     "risk_scoring": "Composite risk score: 0-8 = LOW, 9-16 = MODERATE, 17-24 = HIGH, 25+ = CRITICAL"
   },
   "latest_update": {
-    "emoji": "✅",
-    "headline": "NVIDIA Q3 FY2026 Earnings",
-    "risk_label": "Low Risk",
-    "accent": "positive"
+    "emoji": "⚠️",
+    "headline": "Q1 2026: capex still climbing as the first AI-bubble selloff hits markets",
+    "risk_label": "Low / Watch",
+    "accent": "warning"
   },
   "phases": [
     {
