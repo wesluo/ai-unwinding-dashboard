@@ -446,5 +446,81 @@
     "note": "This is a template file. Update with actual data from earnings calls, SEC filings, and news monitoring.",
     "update_frequency": "Update companies[] and indicator_tracking{} quarterly after earnings. Update news_sentiment{} weekly.",
     "risk_scoring": "Composite risk score: 0-8 = LOW, 9-16 = MODERATE, 17-24 = HIGH, 25+ = CRITICAL"
+  },
+  "latest_update": {
+    "emoji": "✅",
+    "headline": "NVIDIA Q3 FY2026 Earnings",
+    "risk_label": "Low Risk",
+    "accent": "positive"
+  },
+  "phases": [
+    {
+      "number": 0,
+      "title": "Pre-Phase 1",
+      "description": "No unwinding signals. AI infrastructure buildout accelerating.",
+      "criteria": ["Capex increasing", "Strong AI revenue growth", "High GPU utilization"],
+      "duration": "Current state"
+    },
+    {
+      "number": 1,
+      "title": "Capex Guidance Reductions",
+      "description": "Hyperscalers reduce infrastructure spending guidance",
+      "criteria": ["Capex cuts >5%", "AI revenue growth slows", "Utilization concerns"],
+      "duration": "1-2 quarters"
+    },
+    {
+      "number": 2,
+      "title": "GPU Order Cancellations",
+      "description": "NVIDIA sees order reductions and delayed deployments",
+      "criteria": ["NVIDIA revenue miss", "Extended lead times", "Inventory buildup"],
+      "duration": "2-3 quarters"
+    },
+    {
+      "number": 3,
+      "title": "Data Center Stress",
+      "description": "Data center REITs face occupancy pressure",
+      "criteria": ["Vacancy increases", "Pricing pressure", "Project delays"],
+      "duration": "2-4 quarters"
+    },
+    {
+      "number": 4,
+      "title": "Credit Market Contagion",
+      "description": "Financing tightens for AI infrastructure projects",
+      "criteria": ["Spread widening", "Covenant breaches", "Funding gaps"],
+      "duration": "1-3 quarters"
+    },
+    {
+      "number": 5,
+      "title": "Power Infrastructure Surplus",
+      "description": "Excess power capacity, stranded infrastructure assets",
+      "criteria": ["Unused capacity", "Contract renegotiations", "Write-downs"],
+      "duration": "2-4 quarters"
+    },
+    {
+      "number": 6,
+      "title": "Market Reset",
+      "description": "New equilibrium established at lower investment levels",
+      "criteria": ["Stabilization", "Selective investment", "Consolidation"],
+      "duration": "Ongoing"
+    }
+  ],
+  "ui_copy": {
+    "phases_section": {
+      "heading": "📊 Unwinding Phases",
+      "intro": "Six-phase model tracking AI infrastructure unwinding from initial capex reductions to market reset."
+    },
+    "lagging_popover": {
+      "description": "Composite risk score from quarterly earnings reports. Tracks capex guidance, AI revenue growth, utilization rates, operating margins, and other Phase 1 indicators that confirm unwinding after it has begun.",
+      "scale": "0-8 (LOW), 9-16 (MODERATE), 17-24 (HIGH), 25+ (CRITICAL)",
+      "data_source": "Quarterly earnings reports",
+      "update_frequency": "Quarterly",
+      "confidence": "High"
+    },
+    "phase_popover": {
+      "description": "Current phase in the 6-phase unwinding model. Pre-Phase 1 means no unwinding signals detected. Phase 1 would indicate capex guidance reductions by hyperscalers."
+    },
+    "signals_popover": {
+      "description": "Number of active signals being tracked. Positive signals (severity: low) indicate healthy developments like capex increases or earnings beats. Negative signals (severity: moderate/high) indicate concerns like investor skepticism or guidance misses."
+    }
   }
 }

@@ -416,5 +416,27 @@
       "data_source_used": "track_a",
       "divergence_reason": "Methodology difference: Track A quantitative=green, Track B qualitative=red"
     }
-  ]
+  ],
+  "latest_update": {
+    "emoji": "📡",
+    "headline": "AI Startup Funding Velocity & Valuations",
+    "risk_label": "Caution",
+    "accent": "warning"
+  },
+  "ui_copy": {
+    "leading_popover": {
+      "description": "Composite score from real-time market signals including GPU pricing, cloud costs, funding activity, and supply chain signals. Designed to predict Phase 1 entry 1-3 quarters ahead.",
+      "scale": "0-12 (LOW), 13-24 (MODERATE), 25-36 (HIGH), 37-48 (CRITICAL)",
+      "update_frequency": "Weekly/Monthly",
+      "prediction_horizon": "1-3 quarters ahead"
+    },
+    "alignment_popover": {
+      "description": "Measures agreement between quantitative data-driven metrics and qualitative LLM research. Alignment indicates both approaches reach the same conclusions.",
+      "quantitative": "Programmatic data collection",
+      "qualitative": "Independent LLM research"
+    },
+    "divergent_popover": {
+      "description": "Number of indicators where quantitative and qualitative approaches disagree. Divergence indicates data limitations or market complexity."
+    }
+  }
 }
