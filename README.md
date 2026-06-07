@@ -2,6 +2,9 @@
 
 **Dual-Layer Early Warning System for AI Infrastructure Bubble Unwinding**
 
+🔗 **Live dashboard:** https://ai-bubble-monitor.vercel.app
+_(auto-deploys from `main` via Vercel on every push)_
+
 [![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/yourusername/ai-monitor)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Last Updated](https://img.shields.io/badge/last%20updated-Nov%202025-brightgreen.svg)](https://github.com/yourusername/ai-monitor)
